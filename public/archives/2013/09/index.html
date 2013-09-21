@@ -29,7 +29,7 @@
 <body>
   <header id="header" class="inner"><div class="alignleft">
   <h1><a href="/">N</a></h1>
-  <h2><a href="/">N is short for Node.js</a></h2>
+  <h2><a href="/">N is Node.js</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
   <ul>
@@ -45,6 +45,119 @@
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
 <h2 class="archive-title">2013/9</h2>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-09-21T10:09:25.000Z"><a href="/2013/09/21/nodejs_install/">2013-09-21</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2013/09/21/nodejs_install/">How to install N ?</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>N 是跨平台的, 支持 Linux, OSX, Windows, SunOS (也支持 ARM,但还不成熟,本文略过). 以上环境均支持 32 位和 64 位.<br>安装内容包括运行环境 node 和包管理工具 npm.</p>
+<p>N 大致有以下几种安装方式:</p>
+<ul>
+<li>Installer</li>
+<li>系统软件管理工具</li>
+<li>源码编译安装</li>
+<li>版本管理工具</li>
+<li>其他</li>
+</ul>
+<p><a href="http://nodejs.org/download/" target="_blank">官方下载地址</a>, <a href="https://github.com/joyent/node" target="_blank">Github源码</a></p>
+<h2>Installer</h2>
+<p>N 有 OSX, Windows 平台的 Installer, 可直接下载对应版本安装, Linux, SunOS 有编译好的二进制文件, 下载解压后可放到<br>任意位置, 然后将<code>N路径/bin</code>添加到PATH环境变量即可.</p>
+<h2>系统软件管理工具</h2>
+<p>OSX系统可使用 <a href="http://brew.sh" target="_blank">Homebrew</a> 安装:</p>
+<pre><code><span class="title">brew</span> install node</code></pre>
+<p>Ubuntu系统可使 apt-get 安装:</p>
+<pre><code>su<span class="operator"><span class="keyword">do</span> apt-<span class="keyword">get</span> install nodejs npm</code></pre>
+<h2>编译安装</h2>
+<p>首先到官网或 GitHub 下载源码</p>
+<h3>Unix</h3>
+<h4>Prerequisites:</h4>
+<pre><code>* <span class="constant">GCC</span> <span class="number">4.2</span> <span class="keyword">or</span> newer
+* <span class="constant">Python</span> <span class="number">2.6</span> <span class="keyword">or</span> <span class="number">2.7</span>
+* <span class="constant">GNU</span> <span class="constant">Make</span> <span class="number">3.81</span> <span class="keyword">or</span> newer
+* libexecinfo (<span class="constant">FreeBSD</span> <span class="keyword">and</span> <span class="constant">OpenBSD</span> only)</code></pre>
+<p>In Mac:</p>
+<ol>
+<li>安装 Xcode (包含编译依赖库)</li>
+<li>安装 git (用于从 GitHub 获取代码)</li>
+</ol>
+<p>In Ubuntu:</p>
+<ol>
+<li>sudo apt-get install g++ curl libssl-dev apache2-utils</li>
+<li>sudo apt-get install git-core</li>
+</ol>
+<p>In CentOS:</p>
+<ol>
+<li>yum install gcc-c++</li>
+</ol>
+<h4>Build</h4>
+<p>Unix/Macintosh:</p>
+<pre><code>./configure
+<span class="title">make</span>
+<span class="title">make</span> install</code></pre>
+<p>如果 python 没有在标准位置或者没有标准的名字, 需要使用如下命令编译</p>
+<pre><code><span class="title">export</span> <span class="type">PYTHON</span>=/path/to/python
+$<span class="type">PYTHON</span> ./configure
+<span class="title">make</span>
+<span class="title">make</span> install</code></pre>
+<p>详细信息参看 <a href="https://github.com/joyent/node" target="_blank">GitHub源码</a></p>
+<h2>版本管理工具安装</h2>
+<p>N 目前还未到 1.0 版本更迭比较快, 使用版本管理工具安装是不错的选择.<br>Ruby 有 rvm, Python 有 virtualenv, N 有 <a href="https://github.com/creationix/nvm" target="_blank">nvm</a></p>
+<p>Install nvm (use git):</p>
+<pre><code>curl <span class="symbol">https:</span>/<span class="regexp">/raw.github.com/creationix</span><span class="regexp">/nvm/master</span><span class="regexp">/install.sh | sh</code></pre>
+<p>or Wget:</p>
+<pre><code>wget -qO- <span class="symbol">https:</span>/<span class="regexp">/raw.github.com/creationix</span><span class="regexp">/nvm/master</span><span class="regexp">/install.sh | sh</code></pre>
+<p>The script clones the nvm repository to ~/.nvm and adds the source line to your profile (~/.bash_profile or ~/.profile).</p>
+<p>Once nvm has been installed, you can install N like this:</p>
+<pre><code><span class="title">nvm</span> install <span class="number">0</span>.<span class="number">10</span></code></pre>
+<p>关于 nvm 的具体安装和使用方法请参看 <a href="https://github.com/creationix/nvm" target="_blank">nvm GitHub</a></p>
+<p>除了 nvm 之外, <a href="https://github.com/visionmedia/n" target="_blank">n</a>, <a href="https://github.com/isaacs/nave" target="_blank">nave</a> 也是 N 的版本管理工具.</p>
+<h2>其他</h2>
+<p>有几个大公司提供了集成 N 的产品:</p>
+<ul>
+<li><a href="http://strongloop.com/strongloop-suite/downloads/" target="_blank">StrongLoop</a></li>
+<li>Microsoft&#39;s <a href="http://www.microsoft.com/web/webmatrix/" target="_blank">Webmatrix</a></li>
+</ul>
+<h2>测试</h2>
+<p>在终端输入以下命令如果能看到版本号, 即安装成功:</p>
+<pre><code><span class="comment">node</span> <span class="literal">-</span><span class="comment">v</span>
+<span class="comment">#</span> <span class="comment">or</span>
+<span class="comment">node</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">version</code></pre>
+<h2>Tips</h2>
+<ul>
+<li>N 部分 Module 需要编译 在 Windows 下很难或无法安装, 建议使用 OSX 或 Linux 开发</li>
+</ul>
+<h2>常见问题</h2>
+<h2>相关博客</h2>
+<ul>
+<li><a href="http://howtonode.org/how-to-install-nodejs" target="_blank">howtonode.org install instruction</a> (2011.3.11)</li>
+<li><a href="https://www.digitalocean.com/community/articles/how-to-install-and-run-a-node-js-app-on-centos-6-4-64bit" target="_blank">CentOS install instruction</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
 
 
   
@@ -140,7 +253,7 @@
 <p>N是一个关于Node.js的博客, 这里所有的一切都是关于Node.js.</p>
 <p>之前没写过博客, 最近想把自己学习到的东西总结一下分享出来, 于是… </p>
 <p>毕业后一直从事开发工作, 之前做Ruby On Rails和前端JS开发, 换工作后开始做Node.js.<br>不知什么原因, 一接触就深深喜欢上了Node.js, 上手非常简单,亲切,速度快,丰富的第三方模块,<br>以及… </p>
-<p>Nodejs是一个新技术, 虽然现在还不成熟, 但他的众多优点会让它快速发展起来, 希望这里能让大家更加<br>了解它, 不断促进Node.js的发展</p>
+<p>Nodejs是一个新技术, 虽然现在还不成熟, 但正在飞速的成长和发展, 希望这里的知识能帮助大家了解Node.js的方方面面, 从而促进Node.js的使用和发展.</p>
 <p>N使用<a href="http://zespia.tw/hexo/" target="_blank">hexo</a>搭建, 文章使用<a href="http://daringfireball.net/projects/markdown/" target="_blank">Markdown</a>编辑.</p>
 <p>I am <a href="mailto:pana.wang@outlook.com">Pana Wang</a></p>
 
@@ -168,7 +281,7 @@
       
       
   
-    <h1 class="title"><a href="/2013/09/11/nodejs/">Node.js</a></h1>
+    <h1 class="title"><a href="/2013/09/11/nodejs/">Node.js--Evented I/O for V8 javascript</a></h1>
   
 
     </header>
@@ -225,7 +338,7 @@ data-intensive <span class="type">real</span>-<span class="property">time</span>
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
     <input type="search" name="q" results="0" placeholder="搜索">
-    <input type="hidden" name="q" value="site:blog.thepana.com">
+    <input type="hidden" name="q" value="site:n.thepana.com">
   </form>
 </div>
 
@@ -239,6 +352,8 @@ data-intensive <span class="type">real</span>-<span class="property">time</span>
     <li><a href="/tags/Intro/">Intro</a><small>1</small></li>
   
     <li><a href="/tags/Nodejs API Document/">Nodejs API Document</a><small>1</small></li>
+  
+    <li><a href="/tags/安装/">安装</a><small>1</small></li>
   
     <li><a href="/tags/说明/">说明</a><small>1</small></li>
   
