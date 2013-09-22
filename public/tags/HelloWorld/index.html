@@ -1,0 +1,199 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>HelloWorld | N</title>
+  <meta name="author" content="Pana Wang">
+  
+  <meta name="description" content="All about Node.js">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="N"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="N" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">N</a></h1>
+  <h2><a href="/">N is Node.js</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title tag">HelloWorld</h2>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-09-22T04:19:44.000Z"><a href="/2013/09/22/hello_world/">2013-09-22</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2013/09/22/hello_world/">N Hello World</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>送上大家最熟悉N的Hello World</p>
+<h1>REPL</h1>
+<p>REPL(Read Eval Print Loop)是N提供的交互式执行方式, 跟浏览器调试工具的console基本相同. 用户每输入一段代码REPL会即时执行打印结果.<br>同Ruby的Irb, 和 Python一样, 提供同样的服务. 通常用于调试, 测试, 实验运行结果. REPL同样支持以代码的形式集成到其他应用. <a href="http://nodejs.org/api/repl.html" target="_blank">具体参看</a></p>
+<p>REPL打开方式(终端):</p>
+<pre><code><span class="attribute">node</code></pre>
+<p>之后可以输入js代码测试:</p>
+<pre><code>console.<span class="built_in">log</span>(<span class="comment">'Hello World!')</span></code></pre>
+<p>可在REPL输入任何JS代码,进行尝试. 之后会详细介绍REPL.</p>
+<h1>node filename.js</h1>
+<p>跟其他语言一样, 最常用的执行方式是将代码放入文件, 然后用响应语言环境执行代码. N的文件就是JS文件, 以.js结尾即可.<br>执行方式为 <code>node filename.js</code>, 关于<code>node</code>的详细使用方式, 可使用<code>node -h</code>查看</p>
+<h2>hello world</h2>
+<p>将以下代码保存成文件hello_world.js, 用node命令执行即可看到终端输出Hello World!!.</p>
+<pre><code>console.<span class="built_in">log</span>(<span class="comment">'Hello World!!')</span></code></pre>
+<h2>HTTP Server</h2>
+<p>对所有请求响应 Hello World 的 Web Server.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre>    var http = require(<span class="string">'http'</span>);
+    <span class="transposed_variable">http.</span>createServer(<span class="function"><span class="keyword">function</span> <span class="params">(req, res)</span> {</span>
+      <span class="transposed_variable">res.</span>writeHead(<span class="number">200</span>, <span class="cell">{<span class="string">'Content-Type'</span>: <span class="string">'text/plain'</span>}</span>);
+      <span class="transposed_variable">res.</span><span class="keyword">end</span>(<span class="string">'Hello World\n'</span>);
+    }).listen(<span class="number">1337</span>, <span class="string">'127.0.0.1'</span>);
+    <span class="transposed_variable">console.</span><span class="built_in">log</span>(<span class="string">'Server running at http://127.0.0.1:1337/'</span>);
+</pre></td></tr></table></figure>
+
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre>    <span class="title">node</span> example.js
+    server running at <span class="url">http://127.0.0.1:1337/
+</pre></td></tr></table></figure>
+
+<h2>TCP server</h2>
+<p>将发送的内容原样返回的TCP Server</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre>    var net = <span class="keyword">require</span>(<span class="string">'net'</span>);
+
+    var server = net.createServer(function (<span class="keyword">socket</span>) {
+      <span class="keyword">socket</span>.<span class="keyword">write</span>(<span class="string">'Echo server\r\n'</span>);
+      <span class="keyword">socket</span>.<span class="keyword">pipe</span>(<span class="keyword">socket</span>);
+    });
+
+    server.<span class="keyword">listen</span>(<span class="number">1337</span>, <span class="string">'127.0.0.1'</span>);
+</pre></td></tr></table></figure>
+
+<h1>总结</h1>
+<p>以上为N的Hello World, 已及N最主要的使用场景的简单代码, 通过简单的几句代码就能搭建服务器, 完全不用Apache, IIS等服务器.<br>怎么样N是不是很有趣, 那就继续学习N的相关内容吧.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  
+
+  <nav id="pagination">
+  
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:n.thepana.com">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/HelloWorld/">HelloWorld</a><small>1</small></li>
+  
+    <li><a href="/tags/Intro/">Intro</a><small>1</small></li>
+  
+    <li><a href="/tags/Nodejs API Document/">Nodejs API Document</a><small>1</small></li>
+  
+    <li><a href="/tags/安装/">安装</a><small>1</small></li>
+  
+    <li><a href="/tags/说明/">说明</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2013 Pana Wang
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
