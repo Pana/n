@@ -3,23 +3,23 @@ date: 2013-09-21 18:09:25
 tags: 安装
 ---
 
-N 是跨平台的, 支持 Linux, OSX, Windows, SunOS (也支持 ARM,但还不成熟,本文略过). 以上环境均支持 32 位和 64 位.
-安装内容包括运行环境 node 和包管理工具 npm.
+N 是跨平台的, 支持 Linux, OSX, Windows, SunOS (也支持 ARM,但还不成熟,本文略过). 以上环境均支持 32 位和 64 位.  
+安装内容包括: 执行环境`node`, 包管理工具`npm`.
 
 N 大致有以下几种安装方式:
 
 * Installer
 * 系统软件管理工具
-* 源码编译安装
 * 版本管理工具
+* 源码编译安装
 * 其他
 
-[官方下载地址](http://nodejs.org/download/), [Github源码](https://github.com/joyent/node)
+相关链接: [下载地址](http://nodejs.org/download/), [Github源码](https://github.com/joyent/node)
 
 
 ## Installer
-N 有 OSX, Windows 平台的 Installer, 可直接下载对应版本安装, Linux, SunOS 有编译好的二进制文件, 下载解压后可放到
-任意位置, 然后将`N路径/bin`添加到PATH环境变量即可.
+N 有 OSX, Windows 平台的 Installer, 可直接下载对应版本安装.  
+Linux, SunOS 有编译好的二进制文件, 下载解压后可放到任意位置, 然后将`N路径/bin`添加到PATH环境变量即可.
 
 ## 系统软件管理工具
 OSX系统可使用 [Homebrew](http://brew.sh) 安装:
@@ -31,6 +31,33 @@ Ubuntu系统可使 apt-get 安装:
     sudo apt-get install nodejs npm
 
 [详情参看](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager)
+
+
+## 版本管理工具安装
+Ruby, Python都有自己的版本管理工具rvm, virtualenv. 用于安装,管理不同版本环境, 版本之间快速切换等操作. 
+对于版本更迭频繁的N来说, 使用版本管理工具进行安装是不错的选择. 这里介绍N的版本管理工具 [nvm](https://github.com/creationix/nvm)
+
+### nvm 安装
+Install nvm (use git):
+
+    curl https://raw.github.com/creationix/nvm/master/install.sh | sh
+
+or Wget:
+
+    wget -qO- https://raw.github.com/creationix/nvm/master/install.sh | sh
+
+这个脚本会下载nvm到~/.nvm, 然后在profile中添加source line
+
+### nvm 使用
+
+    nvm install 0.10    # 安装0.10版本
+    nvm use 0.10        # 使用0.10版本
+    nvm uninstall 0.10  # 卸载0.10版本
+
+nvm 的具体安装和使用参看 [nvm GitHub](https://github.com/creationix/nvm)
+
+另外[n](https://github.com/visionmedia/n), [nave](https://github.com/isaacs/nave) 也是 N 的版本管理工具
+
 
 
 ## 编译安装
@@ -73,30 +100,6 @@ Unix/Macintosh:
     make install
 
 详细信息参看 [GitHub源码](https://github.com/joyent/node)
-
-
-
-## 版本管理工具安装
-N 目前还未到 1.0 版本更迭比较快, 使用版本管理工具安装是不错的选择.
-Ruby 有 rvm, Python 有 virtualenv, N 有 [nvm](https://github.com/creationix/nvm)
-
-Install nvm (use git):
-
-    curl https://raw.github.com/creationix/nvm/master/install.sh | sh
-
-or Wget:
-
-    wget -qO- https://raw.github.com/creationix/nvm/master/install.sh | sh
-
-The script clones the nvm repository to ~/.nvm and adds the source line to your profile (~/.bash_profile or ~/.profile).
-
-Once nvm has been installed, you can install N like this:
-
-    nvm install 0.10
-
-关于 nvm 的具体安装和使用方法请参看 [nvm GitHub](https://github.com/creationix/nvm)
-
-除了 nvm 之外, [n](https://github.com/visionmedia/n), [nave](https://github.com/isaacs/nave) 也是 N 的版本管理工具.
 
 
 ## 其他

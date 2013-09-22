@@ -1,10 +1,10 @@
 title: Nodejs native modules  
 date: 2013-09-17 16:46:02  
-tags:  Nodejs API Document
+tags:  Native Module
 ---
 Nodejs API document(native modules):
 
-Global or local to every module or other:
+全局属性或所有module都具有的local属性:
 
 * Buffer
 * C/C++ Addons
@@ -17,7 +17,7 @@ Global or local to every module or other:
 * Timers
 * TTY
 
-Need require:
+需要通过require引入的Native Modules:
 
 * Assertion Testing
 * Child Processes
