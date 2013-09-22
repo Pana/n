@@ -5,7 +5,6 @@ menu:
 widgets: 
 - search
 - category
-- tag
 - tagcloud
 
 excerpt_link: Read More
