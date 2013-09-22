@@ -30,6 +30,8 @@ Ubuntu系统可使 apt-get 安装:
 
     sudo apt-get install nodejs npm
 
+[详情参看](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager)
+
 
 ## 编译安装
 首先到官网或 GitHub 下载源码
