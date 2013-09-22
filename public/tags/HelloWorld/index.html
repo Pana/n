@@ -23,11 +23,22 @@
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-38980823-2', 'thepana.com');
+  ga('send', 'pageview');
+</script>
+
 </head>
 
 
 <body>
-  <header id="header" class="inner"><div class="alignleft">
+  <header id="header" class="inner">
+    <div class="alignleft">
   <h1><a href="/">N</a></h1>
   <h2><a href="/">N is Node.js</a></h2>
 </div>
@@ -41,9 +52,12 @@
   </ul>
   <div class="clearfix"></div>
 </nav>
-<div class="clearfix"></div></header>
+<div class="clearfix"></div>
+  </header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
+    <div id="main-col" class="alignleft">
+        <div id="wrapper">
+            
 <h2 class="archive-title tag">HelloWorld</h2>
 
 
@@ -74,7 +88,7 @@
 <p>可在REPL输入任何JS代码,进行尝试. 之后会详细介绍REPL.</p>
 <h1>node filename.js</h1>
 <p>跟其他语言一样, 最常用的执行方式是将代码放入文件, 然后用响应语言环境执行代码. N的文件就是JS文件, 以.js结尾即可.<br>执行方式为 <code>node filename.js</code>, 关于<code>node</code>的详细使用方式, 可使用<code>node -h</code>查看</p>
-<h2>hello world</h2>
+<h2>Hello World</h2>
 <p>将以下代码保存成文件hello_world.js, 用node命令执行即可看到终端输出Hello World!!.</p>
 <pre><code>console.<span class="built_in">log</span>(<span class="comment">'Hello World!!')</span></code></pre>
 <h2>HTTP Server</h2>
@@ -142,8 +156,11 @@
   
   <div class="clearfix"></div>
 </nav>
-</div></div>
+
+        </div>
+    </div>
     <aside id="sidebar" class="alignright">
+        
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
     <input type="search" name="q" results="0" placeholder="搜索">
@@ -171,15 +188,27 @@
   </ul>
 </div>
 
-</aside>
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/HelloWorld/" style="font-size: 10.00px;">HelloWorld</a><a href="/tags/Intro/" style="font-size: 12.00px;">Intro</a><a href="/tags/Nodejs API Document/" style="font-size: 14.00px;">Nodejs API Document</a><a href="/tags/安装/" style="font-size: 16.00px;">安装</a><a href="/tags/说明/" style="font-size: 18.00px;">说明</a>
+  </div>
+</div>
+
+
+    </aside>
     <div class="clearfix"></div>
   </div>
-  <footer id="footer" class="inner"><div class="alignleft">
+  <footer id="footer" class="inner">
+    <div class="alignleft">
   
   &copy; 2013 Pana Wang
   
 </div>
-<div class="clearfix"></div></footer>
+<div class="clearfix"></div>
+  </footer>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>

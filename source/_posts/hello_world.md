@@ -22,7 +22,7 @@ REPL打开方式(终端):
 跟其他语言一样, 最常用的执行方式是将代码放入文件, 然后用响应语言环境执行代码. N的文件就是JS文件, 以.js结尾即可.
 执行方式为 `node filename.js`, 关于`node`的详细使用方式, 可使用`node -h`查看
 
-## hello world
+## Hello World
 将以下代码保存成文件hello_world.js, 用node命令执行即可看到终端输出Hello World!!.
 
     console.log('Hello World!!')

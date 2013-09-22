@@ -6,6 +6,7 @@ widgets:
 - search
 - category
 - tag
+- tagcloud
 
 excerpt_link: Read More
 
@@ -24,5 +25,5 @@ addthis:
 
 fancybox: true
 
-google_analytics:
+google_analytics: UA-38980823-2
 rss:
