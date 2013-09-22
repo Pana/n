@@ -30,3 +30,6 @@ Node.js是基于V8(Chrome开源JS引擎)和libuv的后端JS运行平台.
 * ...
 
 
+<!-- nodejs introduction blog http://misclassblog.com/interactive-web-development/node-js/ -->
+
+
