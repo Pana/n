@@ -2,7 +2,7 @@ title: Nodejs native modules
 date: 2013-09-17 16:46:02  
 tags:  Native Module
 ---
-Nodejs API document(native modules):
+Nodejs API document(native modules)(0.10.18):
 
 全局属性或所有module都具有的local属性:
 

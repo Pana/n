@@ -50,6 +50,6 @@ server.listen(1337, '127.0.0.1');
 执行`node example.js`启动服务, 然后TCP连接到 127.0.0.1:1337, 即可看到效果.
 
 # So Simple
-N的Hello World就是这么Simple. N能够实现的功能远远不止这些, 想要体会N的精彩之处, 赶快学习N的更多内容吧.
+N的Hello World就是这么Simple. N能够实现的功能远远不止这些, 想要体会更多N的精彩之处, 赶快学习N的更多内容吧.
 
 
