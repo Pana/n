@@ -12,4 +12,9 @@ pids
 logs
 results
 
+todo.txt
+toWrite.txt
+n.sublime-project
+n.sublime-workspace
+
 npm-debug.log
