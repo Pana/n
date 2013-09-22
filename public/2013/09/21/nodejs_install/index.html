@@ -74,24 +74,38 @@
     </header>
     <div class="entry">
       
-        <p>N 是跨平台的, 支持 Linux, OSX, Windows, SunOS (也支持 ARM,但还不成熟,本文略过). 以上环境均支持 32 位和 64 位.<br>安装内容包括运行环境 node 和包管理工具 npm.</p>
+        <p>N 是跨平台的, 支持 Linux, OSX, Windows, SunOS (也支持 ARM,但还不成熟,本文略过). 以上环境均支持 32 位和 64 位.<br>安装内容包括: 执行环境<code>node</code>, 包管理工具<code>npm</code>.</p>
 <p>N 大致有以下几种安装方式:</p>
 <ul>
 <li>Installer</li>
 <li>系统软件管理工具</li>
-<li>源码编译安装</li>
 <li>版本管理工具</li>
+<li>源码编译安装</li>
 <li>其他</li>
 </ul>
-<p><a href="http://nodejs.org/download/" target="_blank">官方下载地址</a>, <a href="https://github.com/joyent/node" target="_blank">Github源码</a></p>
+<p>相关链接: <a href="http://nodejs.org/download/" target="_blank">下载地址</a>, <a href="https://github.com/joyent/node" target="_blank">Github源码</a></p>
 <h2>Installer</h2>
-<p>N 有 OSX, Windows 平台的 Installer, 可直接下载对应版本安装, Linux, SunOS 有编译好的二进制文件, 下载解压后可放到<br>任意位置, 然后将<code>N路径/bin</code>添加到PATH环境变量即可.</p>
+<p>N 有 OSX, Windows 平台的 Installer, 可直接下载对应版本安装.<br>Linux, SunOS 有编译好的二进制文件, 下载解压后可放到任意位置, 然后将<code>N路径/bin</code>添加到PATH环境变量即可.</p>
 <h2>系统软件管理工具</h2>
 <p>OSX系统可使用 <a href="http://brew.sh" target="_blank">Homebrew</a> 安装:</p>
 <pre><code><span class="title">brew</span> install node</code></pre>
 <p>Ubuntu系统可使 apt-get 安装:</p>
 <pre><code>su<span class="operator"><span class="keyword">do</span> apt-<span class="keyword">get</span> install nodejs npm</code></pre>
 <p><a href="https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager" target="_blank">详情参看</a></p>
+<h2>版本管理工具安装</h2>
+<p>Ruby, Python都有自己的版本管理工具rvm, virtualenv. 用于安装,管理不同版本环境, 版本之间快速切换等操作.<br>对于版本更迭频繁的N来说, 使用版本管理工具进行安装是不错的选择. 这里介绍N的版本管理工具 <a href="https://github.com/creationix/nvm" target="_blank">nvm</a></p>
+<h3>nvm 安装</h3>
+<p>Install nvm (use git):</p>
+<pre><code>curl <span class="symbol">https:</span>/<span class="regexp">/raw.github.com/creationix</span><span class="regexp">/nvm/master</span><span class="regexp">/install.sh | sh</code></pre>
+<p>or Wget:</p>
+<pre><code>wget -qO- <span class="symbol">https:</span>/<span class="regexp">/raw.github.com/creationix</span><span class="regexp">/nvm/master</span><span class="regexp">/install.sh | sh</code></pre>
+<p>这个脚本会下载nvm到~/.nvm, 然后在profile中添加source line</p>
+<h3>nvm 使用</h3>
+<pre><code><span class="title">nvm</span> install <span class="number">0</span>.<span class="number">10</span>    <span class="comment"># 安装0.10版本</span>
+nvm use <span class="number">0</span>.<span class="number">10</span>        <span class="comment"># 使用0.10版本</span>
+nvm uninstall <span class="number">0</span>.<span class="number">10</span>  <span class="comment"># 卸载0.10版本</span></code></pre>
+<p>nvm 的具体安装和使用参看 <a href="https://github.com/creationix/nvm" target="_blank">nvm GitHub</a></p>
+<p>另外<a href="https://github.com/visionmedia/n" target="_blank">n</a>, <a href="https://github.com/isaacs/nave" target="_blank">nave</a> 也是 N 的版本管理工具</p>
 <h2>编译安装</h2>
 <p>首先到官网或 GitHub 下载源码</p>
 <h3>Unix</h3>
@@ -125,17 +139,6 @@ $<span class="type">PYTHON</span> ./configure
 <span class="title">make</span>
 <span class="title">make</span> install</code></pre>
 <p>详细信息参看 <a href="https://github.com/joyent/node" target="_blank">GitHub源码</a></p>
-<h2>版本管理工具安装</h2>
-<p>N 目前还未到 1.0 版本更迭比较快, 使用版本管理工具安装是不错的选择.<br>Ruby 有 rvm, Python 有 virtualenv, N 有 <a href="https://github.com/creationix/nvm" target="_blank">nvm</a></p>
-<p>Install nvm (use git):</p>
-<pre><code>curl <span class="symbol">https:</span>/<span class="regexp">/raw.github.com/creationix</span><span class="regexp">/nvm/master</span><span class="regexp">/install.sh | sh</code></pre>
-<p>or Wget:</p>
-<pre><code>wget -qO- <span class="symbol">https:</span>/<span class="regexp">/raw.github.com/creationix</span><span class="regexp">/nvm/master</span><span class="regexp">/install.sh | sh</code></pre>
-<p>The script clones the nvm repository to ~/.nvm and adds the source line to your profile (~/.bash_profile or ~/.profile).</p>
-<p>Once nvm has been installed, you can install N like this:</p>
-<pre><code><span class="title">nvm</span> install <span class="number">0</span>.<span class="number">10</span></code></pre>
-<p>关于 nvm 的具体安装和使用方法请参看 <a href="https://github.com/creationix/nvm" target="_blank">nvm GitHub</a></p>
-<p>除了 nvm 之外, <a href="https://github.com/visionmedia/n" target="_blank">n</a>, <a href="https://github.com/isaacs/nave" target="_blank">nave</a> 也是 N 的版本管理工具.</p>
 <h2>其他</h2>
 <p>有几个大公司提供了集成 N 的产品:</p>
 <ul>
@@ -208,29 +211,10 @@ $<span class="type">PYTHON</span> ./configure
   
 
   
-<div class="widget tag">
-  <h3 class="title">标签</h3>
-  <ul class="entry">
-  
-    <li><a href="/tags/HelloWorld/">HelloWorld</a><small>1</small></li>
-  
-    <li><a href="/tags/Intro/">Intro</a><small>1</small></li>
-  
-    <li><a href="/tags/Nodejs API Document/">Nodejs API Document</a><small>1</small></li>
-  
-    <li><a href="/tags/安装/">安装</a><small>1</small></li>
-  
-    <li><a href="/tags/说明/">说明</a><small>1</small></li>
-  
-  </ul>
-</div>
-
-
-  
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/HelloWorld/" style="font-size: 10.00px;">HelloWorld</a><a href="/tags/Intro/" style="font-size: 12.00px;">Intro</a><a href="/tags/Nodejs API Document/" style="font-size: 14.00px;">Nodejs API Document</a><a href="/tags/安装/" style="font-size: 16.00px;">安装</a><a href="/tags/说明/" style="font-size: 18.00px;">说明</a>
+    <a href="/tags/HelloWorld/" style="font-size: 10.00px;">HelloWorld</a><a href="/tags/Intro/" style="font-size: 12.00px;">Intro</a><a href="/tags/Native Module/" style="font-size: 14.00px;">Native Module</a><a href="/tags/安装/" style="font-size: 16.00px;">安装</a><a href="/tags/说明/" style="font-size: 18.00px;">说明</a>
   </div>
 </div>
 

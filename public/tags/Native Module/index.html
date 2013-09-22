@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>HelloWorld | N</title>
+  <title>Native Module | N</title>
   <meta name="author" content="Pana Wang">
   
   <meta name="description" content="N is a blog about Node.js everything about Node.js">
@@ -59,7 +59,7 @@
     <div id="main-col" class="alignleft">
         <div id="wrapper">
             
-<h2 class="archive-title tag">HelloWorld</h2>
+<h2 class="archive-title tag">Native Module</h2>
 
 
   
@@ -69,68 +69,57 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2013-09-22T04:19:44.000Z"><a href="/2013/09/22/hello_world/">2013-09-22</a></time>
+        <time datetime="2013-09-17T08:46:02.000Z"><a href="/2013/09/17/nodejs-native-modules/">2013-09-17</a></time>
       
       
   
-    <h1 class="title"><a href="/2013/09/22/hello_world/">Hello World</a></h1>
+    <h1 class="title"><a href="/2013/09/17/nodejs-native-modules/">Nodejs native modules</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>几乎所有语言和平台都有自己的Hello World. 这里介绍如何运行N的Hello World.</p>
-<h1>Simple Version</h1>
-<p>在终端输入<code>node</code>回车打开N的<a href="http://nodejs.org/api/repl.html" target="_blank">REPL</a>, 输入以下代码:</p>
-<pre><code>console.<span class="built_in">log</span>(<span class="comment">'Hello World!')</span></code></pre>
-<p>回车即可看到输出结果: “Hello World”.</p>
-<p>还可将以上代码保存成文件 <code>example.js</code>, 然后执行<code>node example.js</code>, 可看到同样的结果.</p>
-<h1>HTTP&amp;TCP Version</h1>
-<p>N最频繁的使用场合是Web或TCP Server开发</p>
-<h3>HTTP Server</h3>
-<p>返回 Hello World 的 Web Server.</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-</pre></td><td class="code"><pre>var http = require(<span class="string">'http'</span>);
-
-<span class="transposed_variable">http.</span>createServer(<span class="function"><span class="keyword">function</span> <span class="params">(req, res)</span> {</span>
-  <span class="transposed_variable">res.</span>writeHead(<span class="number">200</span>, <span class="cell">{<span class="string">'Content-Type'</span>: <span class="string">'text/plain'</span>}</span>);
-  <span class="transposed_variable">res.</span><span class="keyword">end</span>(<span class="string">'Hello World\n'</span>);
-}).listen(<span class="number">1337</span>, <span class="string">'127.0.0.1'</span>);
-
-<span class="transposed_variable">console.</span><span class="built_in">log</span>(<span class="string">'Server running at http://127.0.0.1:1337/'</span>);
-</pre></td></tr></table></figure>
-
-<p>执行<code>node example.js</code>启动服务, 使用浏览器访问 <a href="http://127.0.0.1:1337" target="_blank">http://127.0.0.1:1337</a> </p>
-<h3>TCP server</h3>
-<p>将收到的请求内容原样返回的 TCP Server</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-</pre></td><td class="code"><pre>var net = <span class="keyword">require</span>(<span class="string">'net'</span>);
-
-var server = net.createServer(function (<span class="keyword">socket</span>) {
-  <span class="keyword">socket</span>.<span class="keyword">write</span>(<span class="string">'Echo server\r\n'</span>);
-  <span class="keyword">socket</span>.<span class="keyword">pipe</span>(<span class="keyword">socket</span>);
-});
-
-server.<span class="keyword">listen</span>(<span class="number">1337</span>, <span class="string">'127.0.0.1'</span>);
-</pre></td></tr></table></figure>
-
-<p>执行<code>node example.js</code>启动服务, 然后TCP连接到 127.0.0.1:1337, 即可看到效果.</p>
-<h1>So Simple</h1>
-<p>N的Hello World就是这么Simple. N能够实现的功能远远不止这些, 想要体会更多N的精彩之处, 赶快学习N的更多内容吧.</p>
+        <p>Nodejs API document(native modules)(0.10.18):</p>
+<p>全局属性或所有module都具有的local属性:</p>
+<ul>
+<li>Buffer</li>
+<li>C/C++ Addons</li>
+<li>Console</li>
+<li>Debugger</li>
+<li>Globals</li>
+<li>Query Strings</li>
+<li>Modules</li>
+<li>Process</li>
+<li>Timers</li>
+<li>TTY</li>
+</ul>
+<p>需要通过require引入的Native Modules:</p>
+<ul>
+<li>Assertion Testing</li>
+<li>Child Processes</li>
+<li>Cluster</li>
+<li>Crypto</li>
+<li>DNS</li>
+<li>Domain</li>
+<li>Events</li>
+<li>File System</li>
+<li>HTTP</li>
+<li>HTTPS</li>
+<li>Net</li>
+<li>OS</li>
+<li>Path</li>
+<li>Punycode</li>
+<li>Readline</li>
+<li>REPL</li>
+<li>Stream</li>
+<li>String Decoder</li>
+<li>TLS/SSL</li>
+<li>UDP/Datagram</li>
+<li>URL</li>
+<li>Utilities</li>
+<li>VM</li>
+<li>ZLIB</li>
+</ul>
 
       
     </div>

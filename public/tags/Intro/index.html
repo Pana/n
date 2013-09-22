@@ -91,20 +91,62 @@ data-intensive <span class="type">real</span>-<span class="property">time</span>
 <pre><code><span class="filename">Node.js是基于Chrome JS引擎(V8)的平台. 能用于开发速度快,可扩展的网络应用. 
 它使用事件驱动、无阻塞模型, 从而具有轻量,高效的特性, 非常适合于开发运行在分布式设备上的
 数据密集,实时型应用.</code></pre>
+<h2>Node.js组成&amp;原理</h2>
+<h3>组成</h3>
 <ul>
-<li>Node.js优缺点</li>
-<li>Node.js历史,发展现状</li>
-<li><p>Node.js的组成部分</p>
-<ol>
-<li>v8,libuv, native module, npm, third party module</li>
-</ol>
-</li>
-<li><p>作者</p>
-</li>
-<li>相关博客</li>
-<li>…</li>
+<li>Node.js底层核心使用v8和libuv实现</li>
+<li>其上是C++和JS开发的Native Module</li>
+<li>再往上是npm和众多的第三方模块</li>
 </ul>
-<!-- nodejs introduction blog http://misclassblog.com/interactive-web-development/node-js/ -->
+<h3>原理</h3>
+<h2>Node.js优缺点</h2>
+<h3>优点</h3>
+<ul>
+<li>开源</li>
+<li>高性能</li>
+<li>前后端可使用一种语言完成</li>
+<li>庞大的第三方模块</li>
+<li>活跃的开发者社区</li>
+</ul>
+<h3>缺点</h3>
+<ul>
+<li>不够成熟, 还未到1.0</li>
+<li>回调开发模式理解, 调试复杂</li>
+<li>第三方模块过多, 导致选择麻烦</li>
+</ul>
+<h2>Node.js历史,发展现状</h2>
+<p>发展历史:</p>
+<ul>
+<li>2009.2，Ryan Dahl在博客上宣布准备基于V8创建一个轻量级的Web服务器并提供一套库</li>
+<li>2009.5，Ryan Dahl在GitHub上发布了最初版本的部分Node.js包，随后几个月里，有人开始使用Node.js开发应用</li>
+<li>2009.11和2010.4，两届JSConf大会都安排了Node.js的讲座</li>
+<li>2010年年底，Node.js获得云计算服务商Joyent资助，创始人Ryan Dahl加入Joyent全职负责Node.js的发展</li>
+<li>2011.7，Node.js在微软的支持下发布Windows版本</li>
+<li>2012.12.22，Luvit 0.6.0 发布，Lua 实现的 Node.js</li>
+<li>2013.9.4 v0.10.18发布</li>
+</ul>
+<p>现状(2013.9.22):</p>
+<ul>
+<li>有将近4万2千个第三方Module, 且还在快速增加当中</li>
+<li>许多大云服务都已支持Node.js, Amazon, Azure, baidu, alibaba, heroku, <a href="https://www.nodejitsu.com/" target="_blank">nodejitsu</a></li>
+<li>Node.js性能还在不断提升</li>
+<li>Node.js在2014年初即可实现1.0</li>
+<li>Node.js有庞大的社区</li>
+</ul>
+<h2>作者, 维护人员, 公司</h2>
+<ul>
+<li>Node.js 由 Ryan Dahl在2009年开发, 他是一个资深C++开发者</li>
+<li>目前主要由 Isaac Z. Schlueter(npm作者)开发和维护</li>
+<li>Node.js是joyent(高性能云服务提供商)的产品</li>
+</ul>
+<h2>相关博客和链接</h2>
+<ul>
+<li>Node.js <a href="http://en.wikipedia.org/wiki/Nodejs" target="_blank">wiki</a> 和 <a href="http://baike.baidu.com/view/3974030.htm" target="_blank">baike</a></li>
+<li>Node.js <a href="https://github.com/joyent/node" target="_blank">GitHub</a></li>
+<li><a href="http://misclassblog.com/interactive-web-development/node-js/" target="_blank">MIS Class Blog Node.js</a></li>
+<li><a href="http://www.programmer.com.cn/13844/" target="_blank">Node.js的核心与红利-朴灵(田永强)</a></li>
+</ul>
+
       
     </div>
     <footer>
@@ -140,29 +182,10 @@ data-intensive <span class="type">real</span>-<span class="property">time</span>
   
 
   
-<div class="widget tag">
-  <h3 class="title">标签</h3>
-  <ul class="entry">
-  
-    <li><a href="/tags/HelloWorld/">HelloWorld</a><small>1</small></li>
-  
-    <li><a href="/tags/Intro/">Intro</a><small>1</small></li>
-  
-    <li><a href="/tags/Nodejs API Document/">Nodejs API Document</a><small>1</small></li>
-  
-    <li><a href="/tags/安装/">安装</a><small>1</small></li>
-  
-    <li><a href="/tags/说明/">说明</a><small>1</small></li>
-  
-  </ul>
-</div>
-
-
-  
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/HelloWorld/" style="font-size: 10.00px;">HelloWorld</a><a href="/tags/Intro/" style="font-size: 12.00px;">Intro</a><a href="/tags/Nodejs API Document/" style="font-size: 14.00px;">Nodejs API Document</a><a href="/tags/安装/" style="font-size: 16.00px;">安装</a><a href="/tags/说明/" style="font-size: 18.00px;">说明</a>
+    <a href="/tags/HelloWorld/" style="font-size: 10.00px;">HelloWorld</a><a href="/tags/Intro/" style="font-size: 12.00px;">Intro</a><a href="/tags/Native Module/" style="font-size: 14.00px;">Native Module</a><a href="/tags/安装/" style="font-size: 16.00px;">安装</a><a href="/tags/说明/" style="font-size: 18.00px;">说明</a>
   </div>
 </div>
 
