@@ -66,10 +66,10 @@ nvm 的具体安装和使用参看 [nvm GitHub](https://github.com/creationix/nv
 
 #### Prerequisites:
 
-    * GCC 4.2 or newer
-    * Python 2.6 or 2.7
-    * GNU Make 3.81 or newer
-    * libexecinfo (FreeBSD and OpenBSD only)
+* GCC 4.2 or newer
+* Python 2.6 or 2.7
+* GNU Make 3.81 or newer
+* libexecinfo (FreeBSD and OpenBSD only)
 
 In Mac:
 
