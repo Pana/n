@@ -14,6 +14,14 @@ N是一个关于Node.js的博客, 这里所有的一切都是关于Node.js.
 
 Nodejs是一个新技术, 虽然还不成熟, 但正在飞速成长和发展, 希望这里的分享能帮助大家更多了解Node.js, 促进Node.js的使用和发展.
 
+N的博客将会介绍内容:
+
+* N内部实现, 原理, 机制, 更新
+* N原生模块介绍
+* 优秀的N第三方模块
+* N在不同技术领域的应用
+* N的商业化进程
+
 N使用[hexo](http://zespia.tw/hexo/)搭建, 文章使用[Markdown](http://daringfireball.net/projects/markdown/)编辑.
 
 My name is [Pana Wang](mailto:pana.wang@outlook.com)
