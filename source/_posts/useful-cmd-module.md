@@ -11,6 +11,7 @@ Node催生了许多有用的终端命令工具, 能帮助我们快速的开发�
 
 * [supervisor](https://github.com/isaacs/node-supervisor)
 * [nodemon](http://remy.github.io/nodemon/)
+* [node-dev](https://github.com/fgnass/node-dev)
 
 ## static server
 静态服务器

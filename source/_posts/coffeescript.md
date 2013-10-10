@@ -69,3 +69,7 @@ tags: coffeescript
 更多内容参看[coffeescript](http://coffeescript.org/), 包含coffeescript的特点, 前世今生, 安装, 语法, books, screencasts, exmaples, resources, annotated source, 交互终端
 
 个人推荐Node.js开发的同学使用. 后端开发不涉及dom操作, 使用coffee开发应该能加快开发效率, 提升代码执行效率.
+
+[LiveScript](http://livescript.net/)跟coffee有点类似,也是支持使用全新的语法开发JS.
+
+[TypeScript](http://www.typescriptlang.org/)是微软开发的可扩展语言, 适用于开发大型JS程序.
