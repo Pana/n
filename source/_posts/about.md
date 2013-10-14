@@ -22,6 +22,12 @@ N的博客将会介绍内容:
 * N在不同技术领域的应用
 * N的商业化进程
 
+N相关内容但本博客不会涉及: 
+
+* JavaScript语言(Node.js的开发语言为JS, 所以想成为Node.js高手必须熟悉JS的语言特性-不涉及Dom,及兼容性部分)
+* V8&libuv(这两者为Node.js的基础核心, 想要深层次理解Node.js或进行Addon开发, 或参与Node.js源码开发这两者必须熟悉)
+
+
 N使用[hexo](http://zespia.tw/hexo/)搭建, 文章使用[Markdown](http://daringfireball.net/projects/markdown/)编辑.
 
 My name is [Pana Wang](mailto:pana.wang@outlook.com)
