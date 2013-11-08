@@ -2,12 +2,10 @@ title: Node.js事件机制
 date: 2013-11-08 14:50:41
 tags: Module
 ---
-Node.js在Github代码仓库上的描述为Evented I/O for V8 JavaScript. 这句话清晰表达了Node.js最大特点Evented. Node.js通过事件异步机制成功突破单线程编程模型的性能机制, 并有前后端编程模型统一, 性能更高等优点, 从而迅速被大家所接受.本文介绍下Node.js的事件机制.
+Node.js在Github代码仓库上的描述为Evented I/O for V8 JavaScript. 这句话清晰表达了Node.js最大特点Evented. Node.js通过事件异步机制成功突破单线程编程模型的性能机制, 并有前后端编程模型统一, 性能更高等优点, 从而迅速被大家所接受.本文介绍Node.js的事件机制.
 
 ## Event 模块
-event模块是Node.js的核心原生模块, 提供事件绑定, 触发等相关方法. Node.js的大部分模块都继承自Event模块. 与前端DOM树事件不同之处在于不存在冒泡, 捕获等行为, 亦没有preventDefault(), stopPropagation(), stopImmediatePropagation().
-
-Event模块官方[API](http://nodejs.org/api/events.html), 中包含EventEmitter类.
+event模块是Node.js的核心原生模块, 该模块包含EventEmitter类, 提供事件绑定, 触发等相关方法. Node.js的大部分模块都继承自Event模块. 与前端DOM树事件不同之处在于不存在冒泡, 捕获等行为, 亦没有preventDefault(), stopPropagation(), stopImmediatePropagation(). 具体参看官方[API](http://nodejs.org/api/events.html)
 
 class: events.EventEmitter
 
@@ -26,7 +24,7 @@ class: events.EventEmitter
 关于事件的几点说明:
 
 * 事件机制本身是hook的一种实现, 可用于导出内部数据或状态
-* 通常事件命名遵循camel-cased字符串规则, 但是没有强制限制
+* 事件命名通常遵循camel-cased字符串规则, 但是没有强制限制
 * 绑定到对象上得方法通常叫做监听器, 在监听器内部this指向EventEmitter对象
 * 如果事件对象遇到error, node会触发一个`'error'`事件, 如果事件没有绑定listener, node会打印stack trace, 然后退出程序
 * 一个对象的某个事件绑定listener超过默认10之后, node会打印警告, 该行为对查找memory leak非常有用.可以使用setMaxListners(n)修改这个默认行为, 设为0为不限制
