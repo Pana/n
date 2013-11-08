@@ -1,4 +1,4 @@
-title: events
+title: Node.js事件机制
 date: 2013-11-08 14:50:41
 tags: Module
 ---
