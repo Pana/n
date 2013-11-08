@@ -30,7 +30,7 @@ class: events.EventEmitter
 * 一个对象的某个事件绑定listener超过默认10之后, node会打印警告, 该行为对查找memory leak非常有用.可以使用setMaxListners(n)修改这个默认行为, 设为0为不限制
 
 ## 继承Event
-可使用原生util模块继承EventEmitter对象
+可使用原生`util`模块提供的`inherits`方法继承EventEmitter对象
 
 ```
 var util = require("util");
@@ -58,7 +58,7 @@ stream.write("It works!"); // Received data: "It works!"
 ```
 
 ## 其他
-在Node中回调函数通常作为方法的最后参数传递.
+Node中回调函数通常作为方法的最后参数传递.
 
 
 ### 参考
