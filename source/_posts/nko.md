@@ -3,8 +3,7 @@ date: 2013-11-19 15:01:21
 tags: Competition
 ---
 ![NKO logo](http://nodeknockout.com/designs/exports/png/nko-logo-3700x1000.png)  
-[Node Knockout](http://nodeknockout.com/) 是全球最大的Node.js编程比赛.NKO是为期48小时, 来自全球竞争者参与的在线虚拟Node.js黑客马拉松编程比赛.2013年比赛已于UTC 2013.11.9-2013.9.11举行, 比赛最终圣者由裁判和公共投票决定, 最终胜出的项目可到NKO网站查看. NKO举办灵感来源于[Rails
-Rumble](http://railsrumble.com/). NKO始于2010年, 今年是第四次举办.
+[Node Knockout](http://nodeknockout.com/) 是全球最大的Node.js编程比赛.NKO是为期48小时, 来自全球竞争者参与的在线虚拟Node.js黑客马拉松编程比赛.2013年比赛已于UTC 2013.11.9-2013.9.11举行, 比赛最终圣者由裁判和公共投票决定, 最终胜出的项目可到NKO网站查看. NKO举办灵感来源于[Rails Rumble](http://railsrumble.com/). NKO始于2010年, 今年是第四次举办.
 
 
 ## Winners
