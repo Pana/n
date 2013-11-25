@@ -28,6 +28,12 @@ WebStorm从级别来上来说算是IDE, 不是简单的编辑器. WebStorm支持
 * 支持最新前端技术: Node.js TypeScript CoffeeScript Dart EJS Handlebars, Mustache …
 * 跨平台
 
+# [Node.js tools for Visual Studio](https://nodejstools.codeplex.com/)
+随着Node.js快速发展成为后端服务开发的一个平台, 微软也越来越重视Node.js. 并且发布了Visual Studio的Node.js开发工具, 该工具不仅具有最基础的开发, 调试功能, 而且大大简化部署到Windows Azure和远端调试的功能. 该工具能让开发者享受到Visual Studio的众多优秀功能, 比如代码提示等.
+
+
+
+
 
 # NodeEclipse
 NodeEclipse本质上是Eclipse的一个插件或扩展, 在Eclipse的基础只上添加了对Node.js的支持. 目标是实现一站式Node.js开发工具.
