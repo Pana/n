@@ -127,6 +127,40 @@ generator除了可以用于方便迭代之外, 在JS中(尤其是Node.js)估计�
 
 虽然现在ES6还没有被实现, 但是[gnode](https://github.com/TooTallNate/gnode)可以让现在的JS引擎支持generator特性, 有兴趣的同学可以尝试下. Node相交于浏览器没有多浏览器兼容问题, 一旦v8完全支持即可迅速采用, 另外0.12版本的node马上就会到来.
 
+使用co可以使用同步的代码实现异步的流程, 下例中三个读取文件的操作顺序执行, 但没有嵌套代码
+
+```
+var co = require('co');
+var fs = require('fs');
+
+function read(file) {
+  return function(fn){
+    fs.readFile(file, 'utf8', fn);
+  }
+}
+
+co(function *(){
+  var a = yield read('.gitignore');
+  var b = yield read('Makefile');
+  var c = yield read('package.json');
+  return [a, b, c];
+})()
+```
+
+并行执行的异步代码
+
+```
+co(function *(){
+  var a = size('package.json');
+  var b = size('Readme.md');
+  var c = size('Makefile');
+
+  return [yield a, yield b, yield c];
+})()
+```
+
+这只是简单的展示, co支持参数支持, 异常处理, 只有300行代码, 支持promise, thunk, array, object, generator, generator function. 关于co的详细使用可参看co[github](https://github.com/visionmedia/co), 有兴趣的同学可以尝试下[koa](https://github.com/koajs/koa)框架 
+
 ## 参考资料
 
 * [ES6 proposals official wiki](http://wiki.ecmascript.org/doku.php?id=harmony:proposals)
@@ -144,4 +178,7 @@ generator除了可以用于方便迭代之外, 在JS中(尤其是Node.js)估计�
 * [what's the big deal with generator](http://devsmash.com/blog/whats-the-big-deal-with-generators)
 * [New in javascript 1.7](https://developer.mozilla.org/en-US/docs/Web/JavaScript/New_in_JavaScript/1.7?redirectlocale=en-US&redirectslug=JavaScript%2FNew_in_JavaScript%2F1.7)
 * [javascript-yield](http://jlongster.com/2012/10/05/javascript-yield.html)
+* [promise](http://wiki.commonjs.org/wiki/Promises)
+* [when.js](https://github.com/cujojs/when)
+* [Q](https://github.com/kriskowal/q)
 
