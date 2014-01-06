@@ -26,11 +26,10 @@ Node.js大致有33个原生模块.以下为根据模块的使用场景和使用�
 
 * Buffer
 * events
-* globals
 * modules
-* process
 * stream
 * timers
+* globals
 
 ### system
 
@@ -38,6 +37,7 @@ Node.js大致有33个原生模块.以下为根据模块的使用场景和使用�
 * file system
 * OS
 * readline
+* process
 
 
 ### network
