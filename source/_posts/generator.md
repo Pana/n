@@ -120,6 +120,8 @@ for (let z of lazySequence) {
 * [es6中生成器函数介绍](https://www.imququ.com/post/generator-function-in-es6.html)
 * [迭代器和生成器](https://developer.mozilla.org/zh-CN/docs/JavaScript/Guide/Iterators_and_Generators)
 * [generators-in-v8](http://wingolog.org/archives/2013/05/08/generators-in-v8)
+* [Harmony Generator, yield, ES6, co框架学习](http://bg.biedalian.com/2013/12/21/harmony-generator.html)
+* [co中yield的n种重载](http://bg.biedalian.com/2014/01/08/what-can-i-yield.html)
 
 
 ## 相关module: gnode, co, suspend, promise
