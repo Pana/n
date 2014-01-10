@@ -81,6 +81,7 @@ Node.js是一个年轻的平台, 不久就会迎来自己的成人礼(1.0大概�
 ### 参考
 
 * [IBM--Node.js究竟是什么](http://www.ibm.com/developerworks/cn/opensource/os-nodejs/)
+* [How to decide when to use Node.js](http://blog.lovedan.cn/?p=266)
 * [推酷--Node.js 优缺点及适用场景讨论](http://www.tuicool.com/articles/nAjYNf)
 * [Felix Node.js guide--说服老板](http://nodeguide.com/convincing_the_boss.html)
 * [说服老板中文翻译](http://cssor.com/suitable-for-the-scene-of-nodejs-use.html) 
