@@ -88,6 +88,7 @@ Node.js是一个年轻的平台, 不久就会迎来自己的成人礼(1.0大概�
 * [知乎--使用 Node.js 的优势和劣势都有哪些？有大公司用吗？](http://www.zhihu.com/question/19653241)
 * [知乎--Node.js 发展前景如何？适用于哪些场景？](http://www.zhihu.com/question/19587881)
 * [segmentfault--实例说明为什么应使用 Node.js](http://segmentfault.com/a/1190000000375619)
+* [为什么我要用 Node.js? 案例逐一介绍](http://developer.51cto.com/art/201312/425921.htm)
 * [stackoverflow--How to decide when to use NodeJS?](http://stackoverflow.com/questions/5062614/how-to-decide-when-to-use-nodejs)
 * [Node.js is taking over the Enterprise – whether you like it or not](http://blog.appfog.com/node-js-is-taking-over-the-enterprise-whether-you-like-it-or-not/)
 * [Infoq--廖恺谈NodeJS在淘宝的应用](http://www.infoq.com/cn/interviews/lk-nodejs-taobao)
