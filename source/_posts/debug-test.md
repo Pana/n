@@ -82,6 +82,7 @@ Mocha 是 TJ 大神开发的测试模块, 也是目前 Node 社区最有名, 使
 
 #### 其他参考
 
+* [推荐几款非常不错的Node.js测试工具](http://www.csdn.net/article/2012-09-05/2809553)
 * [欲善其功，必先利其器--Nodejs调试技术总结](http://www.cnblogs.com/moonz-wu/archive/2012/01/15/2322120.html)
 * [nodejs 开发调试工具](http://www.oschina.net/question/35932_29983)
 * [elipse打造Nodejs的调试环境](http://blog.sina.com.cn/s/blog_72603eac0101567z.html)
