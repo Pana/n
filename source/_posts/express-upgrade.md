@@ -38,6 +38,8 @@ Express 不强制用户使用指定的 ORM 或 模板引擎, 用户可以自由�
 * [Express github](https://github.com/visionmedia/express)
 * [new features in 4.x](https://github.com/visionmedia/express/wiki/New-features-in-4.x)
 * [express migrate from 3.x to 4.x](https://github.com/visionmedia/express/wiki/Migrating-from-3.x-to-4.x)
+* [ExpressJS 4.0: New Features and Upgrading from 3.0](http://scotch.io/bar-talk/expressjs-4-0-new-features-and-upgrading-from-3-0)
+* [Express roadmap](https://github.com/visionmedia/express/wiki/4.x-roadmap)
 
 
 
