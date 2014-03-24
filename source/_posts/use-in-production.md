@@ -14,6 +14,6 @@ tags: 应用
 
 #### 参考资料
 
-* http://tech.it168.com/a2013/0308/1460/000001460366.shtml
-* http://sandinmyjoints.github.io/towards-100-pct-uptime/#/
-* http://engineering.spanishdict.com/blog/2013/12/20/the-4-keys-to-100-uptime-with-nodejs
+* [构建Node.js应用的10个重要的方面](http://tech.it168.com/a2013/0308/1460/000001460366.shtml)
+* [Towards 100% Uptime with Node.js](http://sandinmyjoints.github.io/towards-100-pct-uptime/#/)
+* [THE 4 KEYS TO 100% UPTIME WITH NODE.JS](http://engineering.spanishdict.com/blog/2013/12/20/the-4-keys-to-100-uptime-with-nodejs)
