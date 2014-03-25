@@ -11,6 +11,7 @@ N 大致有以下几种安装方式:
 * Installer
 * 系统软件管理工具
 * 版本管理工具
+* 下载binary, 添加path
 * 源码编译安装
 * 其他
 
@@ -58,6 +59,9 @@ nvm 的具体安装和使用参看 [nvm GitHub](https://github.com/creationix/nv
 
 另外[n](https://github.com/visionmedia/n), [nave](https://github.com/isaacs/nave) 也是 N 的版本管理工具
 
+
+## 下载binary, 添加PATH
+Node 官方有编译好的二进制文件, 下载后放到指定目录, 然后将路径添加到 PATH 环境变量即可
 
 
 ## 编译安装
