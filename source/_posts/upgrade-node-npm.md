@@ -1,4 +1,4 @@
-title: upgrade-node-npm
+title: Node & NPM upgrade
 date: 2014-03-25 17:05:45
 tags:
 ---
