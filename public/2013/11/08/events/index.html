@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Node.js事件机制 | N</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Node.js在Github代码仓库上的描述为Evented I/O for V8 JavaScript. 这句话清晰表达了Node.js最大特点Evented. Node.js通过事件异步机制成功突破单线程编程模型的性能机制, 并有前后端编程模型统一, 性能更高等优点, 从而迅速被大家所接受.本文介绍Node.js的事件机制.
+Event 模块event模块是Node.js的核心原生模块, 该模">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js事件机制">
+<meta property="og:url" content="http://n.thepana.com/2013/11/08/events/index.html">
+<meta property="og:site_name" content="N">
+<meta property="og:description" content="Node.js在Github代码仓库上的描述为Evented I/O for V8 JavaScript. 这句话清晰表达了Node.js最大特点Evented. Node.js通过事件异步机制成功突破单线程编程模型的性能机制, 并有前后端编程模型统一, 性能更高等优点, 从而迅速被大家所接受.本文介绍Node.js的事件机制.
+Event 模块event模块是Node.js的核心原生模块, 该模">
+<meta property="og:updated_time" content="2015-10-10T10:19:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node.js事件机制">
+<meta name="twitter:description" content="Node.js在Github代码仓库上的描述为Evented I/O for V8 JavaScript. 这句话清晰表达了Node.js最大特点Evented. Node.js通过事件异步机制成功突破单线程编程模型的性能机制, 并有前后端编程模型统一, 性能更高等优点, 从而迅速被大家所接受.本文介绍Node.js的事件机制.
+Event 模块event模块是Node.js的核心原生模块, 该模">
+  
+  
+    <link rel="icon" href="http://blog.rednode.cn/content/images/2015/Jul/rednode_logo.png">
+  
+  
+ <link href='//fonts.useso.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+ <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" type="text/css">
+  
+
+  
+
+  
+</head>
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="/" id="logo"><i class="logo" style="background-image: url(http://blog.rednode.cn/content/images/2015/Jul/rednode_logo.png)"></i><span class="site-title">N</span></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/.">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags">标签</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+        <nav id="sub-nav">
+          <div class="profile" id="profile-nav">
+            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="http://pana.wang/assets/pana.png"><i class="fa fa-caret-down"></i></a>
+          </div>
+        </nav>
+      
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://n.thepana.com"></form>
+      </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+        
+          <td><a class="main-nav-link" href="/.">首页</a></td>
+        
+          <td><a class="main-nav-link" href="/archives">归档</a></td>
+        
+          <td><a class="main-nav-link" href="/tags">标签</a></td>
+        
+          <td><a class="main-nav-link" href="/about">关于</a></td>
+        
+        <td>
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="hidden" name="sitesearch" value="http://n.thepana.com"></form>
+        </td>
+      </tr>
+    </table>
+  </div>
+</header>
+
+    <div class="outer">
+      
+        <aside id="profile">
+  <div class="inner profile-inner">
+    <div class="base-info profile-block">
+      <img id="avatar" src="http://pana.wang/assets/pana.png">
+      <h2 id="name">Pana Wang</h2>
+      <h3 id="title">Professional Noder &amp; Gopher</h3>
+      <span id="location"><i class="fa fa-map-marker"></i>Beijing, China</span>
+      <a id="follow" href="https://github.com/Pana">关注我</a>
+    </div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        30
+        <span>文章</span>
+      </div>
+      <div class="article-info-block">
+        18
+        <span>标签</span>
+      </div>
+    </div>
+    
+    <div class="contact-info profile-block">
+      <table class="contact-list">
+        <tr>
+          
+          <td><a href="http://github.com/Pana" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
+          
+          <td><a href="https://twitter.com/coderpana" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
+          
+          <td><a href="https://www.facebook.com/pana.wang" target="_blank" title="facebook"><i class="fa fa-facebook"></i></a></td>
+          
+          <td><a href="http://www.linkedin.com/in/panawang" target="_blank" title="linkedin"><i class="fa fa-linkedin"></i></a></td>
+          
+        </tr>
+      </table>
+    </div>
+    
+    
+  </div>
+</aside>
+
+      
+      <section id="main"><article id="post-events" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Node.js事件机制
+    </h1>
+  
+
+        <div class="article-meta">
+          
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2013/11/08/events/">
+      <time datetime="2013-11-08T06:50:41.000Z" itemprop="datePublished">2013-11-08</time>
+    </a>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+                
+        <p>Node.js在Github代码仓库上的描述为Evented I/O for V8 JavaScript. 这句话清晰表达了Node.js最大特点Evented. Node.js通过事件异步机制成功突破单线程编程模型的性能机制, 并有前后端编程模型统一, 性能更高等优点, 从而迅速被大家所接受.本文介绍Node.js的事件机制.</p>
+<h2 id="Event_模块">Event 模块</h2><p>event模块是Node.js的核心原生模块, 该模块包含EventEmitter类, 提供事件绑定, 触发等相关方法. Node.js的大部分模块都继承自Event模块. 与前端DOM树事件不同之处在于不存在冒泡, 捕获等行为, 亦没有preventDefault(), stopPropagation(), stopImmediatePropagation(). 具体参看官方<a href="http://nodejs.org/api/events.html" target="_blank" rel="external">API</a></p>
+<p>class: events.EventEmitter</p>
+<ul>
+<li>addListner(event, listener)</li>
+<li>on(event, listner)</li>
+<li>once(event, listner)</li>
+<li>removeListener(event, listner)</li>
+<li>removeAllListener([event])</li>
+<li>setMaxListeners(n)</li>
+<li>listeners(event)</li>
+<li>emit(event, [arg1], [arg2], […])</li>
+<li>Class Method: EventEmitter.listenerCount(emitter, event)</li>
+<li>Event: ‘newListener’</li>
+<li>Event: ‘removeListener’</li>
+</ul>
+<p>关于事件的几点说明:</p>
+<ul>
+<li>事件机制本身是hook的一种实现, 可用于导出内部数据或状态</li>
+<li>事件命名通常遵循camel-cased字符串规则, 但是没有强制限制</li>
+<li>绑定到对象上得方法通常叫做监听器, 在监听器内部this指向EventEmitter对象</li>
+<li>如果事件对象遇到error, node会触发一个<code>&#39;error&#39;</code>事件, 如果事件没有绑定listener, node会打印stack trace, 然后退出程序</li>
+<li>一个对象的某个事件绑定listener超过默认10之后, node会打印警告, 该行为对查找memory leak非常有用.可以使用setMaxListners(n)修改这个默认行为, 设为0为不限制</li>
+</ul>
+<h2 id="继承Event">继承Event</h2><p>可使用原生<code>util</code>模块提供的<code>inherits</code>方法继承EventEmitter对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var util = require(&#34;util&#34;);&#10;var events = require(&#34;events&#34;);&#10;&#10;function MyStream() &#123;&#10;    events.EventEmitter.call(this);&#10;&#125;&#10;&#10;util.inherits(MyStream, events.EventEmitter);&#10;&#10;MyStream.prototype.write = function(data) &#123;&#10;    this.emit(&#34;data&#34;, data);&#10;&#125;&#10;&#10;var stream = new MyStream();&#10;&#10;console.log(stream instanceof events.EventEmitter); // true&#10;console.log(MyStream.super_ === events.EventEmitter); // true&#10;&#10;stream.on(&#34;data&#34;, function(data) &#123;&#10;    console.log(&#39;Received data: &#34;&#39; + data + &#39;&#34;&#39;);&#10;&#125;)&#10;stream.write(&#34;It works!&#34;); // Received data: &#34;It works!&#34;</span><br></pre></td></tr></table></figure>
+<h2 id="其他">其他</h2><p>Node中回调函数通常作为方法的最后参数传递.</p>
+<h3 id="参考">参考</h3><ul>
+<li><a href="http://www.infoq.com/cn/articles/tyq-nodejs-event" target="_blank" rel="external">深入浅出Node.js事件机制</a></li>
+<li><a href="http://nodejs.org/api/events.html" target="_blank" rel="external">官方API</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://n.thepana.com/2013/11/08/events/" data-id="cifm46n36001hms1mp42cdgw6" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Module/">Module</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2013/11/13/control_flow/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Node.js流程控制
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2013/10/25/module-machanism/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Node.js模块机制</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+</section>
+      
+        <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul id="recent-post" class="">
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2014/04/08/node012-upgrade/" class="thumbnail">
+  
+    <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/salt-lake.jpg)" alt="Node.js 0.12 全解" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2014/04/08/node012-upgrade/" class="title">Node.js 0.12 全解</a></p>
+              <p class="item-date"><time datetime="2014-04-08T06:52:15.000Z" itemprop="datePublished">2014-04-08</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2014/03/25/upgrade-node-npm/" class="thumbnail">
+  
+    <span class="thumbnail-image thumbnail-none"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2014/03/25/upgrade-node-npm/" class="title">Node &amp; NPM upgrade</a></p>
+              <p class="item-date"><time datetime="2014-03-25T09:05:45.000Z" itemprop="datePublished">2014-03-25</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2014/02/25/express-upgrade/" class="thumbnail">
+  
+    <span class="thumbnail-image thumbnail-none"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2014/02/25/express-upgrade/" class="title">Express 升级</a></p>
+              <p class="item-date"><time datetime="2014-02-25T06:51:56.000Z" itemprop="datePublished">2014-02-25</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2014/01/28/enterprise_conclusion/" class="thumbnail">
+  
+    <span class="thumbnail-image thumbnail-none"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2014/01/28/enterprise_conclusion/" class="title">Node.js企业开发 六总结</a></p>
+              <p class="item-date"><time datetime="2014-01-28T08:28:14.000Z" itemprop="datePublished">2014-01-28</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2014/01/27/performance-monitor/" class="thumbnail">
+  
+    <span style="background-image:url(http://public1.qiniudn.com/img/StrongLoop%20%20%20StrongOps.png.resized.png
+)" alt="Node.js企业开发 五服务监控" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2014/01/27/performance-monitor/" class="title">Node.js企业开发 五服务监控</a></p>
+              <p class="item-date"><time datetime="2014-01-27T09:19:04.000Z" itemprop="datePublished">2014-01-27</time></p>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Competition/">Competition</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6-异步流程/">ES6 异步流程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Express-upgrade/">Express upgrade</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HelloWorld/">HelloWorld</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intro/">Intro</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Module/">Module</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Native-Module/">Native Module</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/REPL/">REPL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog-cms/">blog&cms</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coffeescript/">coffeescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conference/">conference</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/国内/">国内</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安装/">安装</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应用/">应用</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应用场景/">应用场景</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/更新/">更新</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/说明/">说明</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">9</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://blog.rednode.cn">Rednode</a>
+          </li>
+        
+          <li>
+            <a href="http://pana.wang">Pana</a>
+          </li>
+        
+          <li>
+            <a href="http://nodejs.org">Node.js</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+  <div id="toTop" class="fa fa-chevron-up"></div>
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2011 - 2015 Pana Wang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+    </div>
+  </div>
+</footer>
+    
+
+
+
+ <script src="//ajax.useso.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

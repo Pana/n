@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>generator | N</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ES6ES6(代号harmony)是下一代JavaScript语言规范, 目前还在制定当中. 在2014年底将会完成规范制定, 并有部分Engine实现. ES6包含众多新语言特性: Module, Class, Set, Map, iterator, generator, for-of…  
+众多的语法特性将为JS开发打开全新的天地. 这里主要介绍generator和iterator, 因为该特">
+<meta property="og:type" content="article">
+<meta property="og:title" content="generator">
+<meta property="og:url" content="http://n.thepana.com/2014/01/02/generator/index.html">
+<meta property="og:site_name" content="N">
+<meta property="og:description" content="ES6ES6(代号harmony)是下一代JavaScript语言规范, 目前还在制定当中. 在2014年底将会完成规范制定, 并有部分Engine实现. ES6包含众多新语言特性: Module, Class, Set, Map, iterator, generator, for-of…  
+众多的语法特性将为JS开发打开全新的天地. 这里主要介绍generator和iterator, 因为该特">
+<meta property="og:updated_time" content="2015-10-10T10:19:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="generator">
+<meta name="twitter:description" content="ES6ES6(代号harmony)是下一代JavaScript语言规范, 目前还在制定当中. 在2014年底将会完成规范制定, 并有部分Engine实现. ES6包含众多新语言特性: Module, Class, Set, Map, iterator, generator, for-of…  
+众多的语法特性将为JS开发打开全新的天地. 这里主要介绍generator和iterator, 因为该特">
+  
+  
+    <link rel="icon" href="http://blog.rednode.cn/content/images/2015/Jul/rednode_logo.png">
+  
+  
+ <link href='//fonts.useso.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+ <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" type="text/css">
+  
+
+  
+
+  
+</head>
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="/" id="logo"><i class="logo" style="background-image: url(http://blog.rednode.cn/content/images/2015/Jul/rednode_logo.png)"></i><span class="site-title">N</span></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/.">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags">标签</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+        <nav id="sub-nav">
+          <div class="profile" id="profile-nav">
+            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="http://pana.wang/assets/pana.png"><i class="fa fa-caret-down"></i></a>
+          </div>
+        </nav>
+      
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://n.thepana.com"></form>
+      </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+        
+          <td><a class="main-nav-link" href="/.">首页</a></td>
+        
+          <td><a class="main-nav-link" href="/archives">归档</a></td>
+        
+          <td><a class="main-nav-link" href="/tags">标签</a></td>
+        
+          <td><a class="main-nav-link" href="/about">关于</a></td>
+        
+        <td>
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="hidden" name="sitesearch" value="http://n.thepana.com"></form>
+        </td>
+      </tr>
+    </table>
+  </div>
+</header>
+
+    <div class="outer">
+      
+        <aside id="profile">
+  <div class="inner profile-inner">
+    <div class="base-info profile-block">
+      <img id="avatar" src="http://pana.wang/assets/pana.png">
+      <h2 id="name">Pana Wang</h2>
+      <h3 id="title">Professional Noder &amp; Gopher</h3>
+      <span id="location"><i class="fa fa-map-marker"></i>Beijing, China</span>
+      <a id="follow" href="https://github.com/Pana">关注我</a>
+    </div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        30
+        <span>文章</span>
+      </div>
+      <div class="article-info-block">
+        18
+        <span>标签</span>
+      </div>
+    </div>
+    
+    <div class="contact-info profile-block">
+      <table class="contact-list">
+        <tr>
+          
+          <td><a href="http://github.com/Pana" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
+          
+          <td><a href="https://twitter.com/coderpana" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
+          
+          <td><a href="https://www.facebook.com/pana.wang" target="_blank" title="facebook"><i class="fa fa-facebook"></i></a></td>
+          
+          <td><a href="http://www.linkedin.com/in/panawang" target="_blank" title="linkedin"><i class="fa fa-linkedin"></i></a></td>
+          
+        </tr>
+      </table>
+    </div>
+    
+    
+  </div>
+</aside>
+
+      
+      <section id="main"><article id="post-generator" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      generator
+    </h1>
+  
+
+        <div class="article-meta">
+          
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2014/01/02/generator/">
+      <time datetime="2014-01-02T08:00:10.000Z" itemprop="datePublished">2014-01-02</time>
+    </a>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+                
+        <h2 id="ES6">ES6</h2><p><a href="http://wiki.ecmascript.org/doku.php" target="_blank" rel="external">ES6(代号harmony)</a>是下一代JavaScript语言规范, 目前还在制定当中. 在2014年底将会完成规范制定, 并有部分Engine实现. ES6包含众多新语言<a href="http://tc39wiki.calculist.org/es6/" target="_blank" rel="external">特性</a>: Module, Class, Set, Map, iterator, generator, for-of…  </p>
+<p>众多的语法特性将为JS开发打开全新的天地. 这里主要介绍<a href="http://wiki.ecmascript.org/doku.php?id=harmony:generators" target="_blank" rel="external">generator</a>和<a href="http://wiki.ecmascript.org/doku.php?id=harmony:iterators" target="_blank" rel="external">iterator</a>, 因为该特性能够以同步的代码实现异步的流程.</p>
+<h2 id="generator_&amp;_iterator">generator &amp; iterator</h2><p>iterator和generator特性借鉴于Python, Ruby, smalltalk, 本来用于方便访问容器内各个元素. 该特性需要node v0.11.9并开启–harmony特性才能使用, 在chrome(29+)浏览器中需要在<code>chrome://flags/</code> 开启<code>Enable Experimental JavaScript</code>选项, 然后重启. 这里先介绍下相关的概念.</p>
+<p>iterator(迭代器): 具有next方法的对象, 返回{done: true/false, value: returnValue}结构数据</p>
+<p>iterable(可迭代变量): 具有内部方法<code>obj[@@iterator]()</code>的对象, 该方法会返回iterator.</p>
+<p>generator(生成器): 一种特殊的iterator, 其next()方法的返回结果由他的generator function定义. generator还包含一个throw方法, 他们next方法可以接受一个参数.</p>
+<p>generator function: 是generator的构造器方法, 在该方法内可以使用yield关键字. yield调用的地方可以传出value(通过next方法)或exception(通过throw方法). generator function的书写语法为 <code>function*</code></p>
+<p>generator comprehension: 一种生成generator的简化表达式如: <code>(for (x of a) for (y of b) x * y)</code></p>
+<p>在generator function内部可以使用 yield 语句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function* genFunc () &#123;&#10;    console.log(&#39;step 1&#39;)&#10;    yield 1&#10;    console.log(&#39;step 2&#39;)&#10;    yield 2&#10;    console.log(&#39;step 3&#39;)&#10;    return 3&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>调用generator function的时候，你会获得一个generator对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var gen = genFunc()  // &#21487;&#20197;&#20256;&#36882;&#21442;&#25968;</span><br></pre></td></tr></table></figure>
+<p>这个对象有一个方法叫做 next()。每当调用 next() 的时候，generator function内部就会执行直到遇到下一个 yield 语句，然后暂停在那里，并返回一个对象。这个对象含有被 yield 的值和generator函数的运行状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var ret = gen.next() // &#36755;&#20986;: &#39;step 1&#39;&#10;console.log(ret.value) // 1&#10;console.log(ret.done) // false</span><br></pre></td></tr></table></figure>
+<p>直到generator函数内部不再有 yield 语句存在了，这时你再调用 next()，获得的就会是该函数的常规返回值 (return 的值)：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ret = gen.next() // &#36755;&#20986; &#39;step 3&#39;&#10;console.log(ret.value) // 3&#10;console.log(ret.done) // true</span><br></pre></td></tr></table></figure>
+<p>同时，iterator对象的 next() 方法是可以传递一个参数的。这个参数将会成为generator函数内对应 yield 语句的返回值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function* genFunc () &#123;&#10;    var result = yield 1&#10;    console.log(result)&#10;&#125;&#10;var gen = genFunc()&#10;gen.next() // &#27492;&#26102;generator&#20869;&#37096;&#25191;&#34892;&#21040; yield 1 &#24182;&#26242;&#20572;&#65292;&#20294;&#36824;&#26410;&#23545;result&#36171;&#20540;&#65281;&#10;// &#21363;&#20351;&#24322;&#27493;&#20063;&#21487;&#20197;&#65281;&#10;setTimeout(function () &#123;&#10;    gen.next(123) // &#32473;result&#36171;&#20540;&#24182;&#32487;&#32493;&#25191;&#34892;&#65292;&#36755;&#20986;: 123&#10;&#125;, 1000)</span><br></pre></td></tr></table></figure>
+<p>yield语句会暂停生成器方法中的代码执行, 但对外部代码没有影响, 外部代码可以继续执行下去. 这样generator function可以借助 yield 在需要的时候才继续执行剩余的语句，并且传递回一个值, 这其实是另外一种形式的回调, 而且这里可以使用同步的形式表达异步的流程, 没有函数嵌套. TJ大神的<a href="https://github.com/visionmedia/co" target="_blank" rel="external">co</a>流程控制库就是这个原理. <a href="">参考</a></p>
+<p>其他 generator function定义:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function* foo1() &#123; &#125;;&#10;function *foo2() &#123; &#125;;&#10;function * foo3() &#123; &#125;;&#10; &#10;foo1.toString(); // &#34;function* foo1() &#123; &#125;&#34;&#10;foo2.toString(); // &#34;function* foo2() &#123; &#125;&#34;&#10;foo3.toString(); // &#34;function* foo3() &#123; &#125;&#34;&#10;foo1.constructor; // function GeneratorFunction() &#123; [native code] &#125;</span><br></pre></td></tr></table></figure>
+<p>几点需要注意的地方:</p>
+<ul>
+<li>yield 只能在生成器构造方法中使用</li>
+<li>yield 只会将它的第一个参数返回, 且至少有一个参数否则会报错</li>
+<li>生成器构造方法接受参数</li>
+<li>next()方法接受一个参数, 该值会返回给yield的左值, next参数作为上一个yield的左值</li>
+</ul>
+<h3 id="for-of">for-of</h3><p>ES6的<code>for of</code>表达式可在iterables上使用 <code>for (let x of iterable) { /* ... */ }</code><br>它会去调用<code>iterable.prototype[@@iterator]()</code>方法获取iterator对象. <code>Map.prototype</code>,<br><code>Set.prototype</code>以及所有包含<code>@@iterator</code>方法的都能使用<code>for of</code>表达式.</p>
+<p><code>for in</code>表达式用法没有发生任何变化, 不能用于iterables上</p>
+<p>如果一个<code>iterator</code>拥有<code>@@iterator()</code>方法那他也是<code>iterable</code>的. ES6中大部分iterator都是iterable的, 内部方法会直接返回this(本身). 而且所有通过generator function和generator comprehension创建的generator都有iterable的.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const lazySequence = (for (x of a) for (y of b) x * y);&#10;for (let z of lazySequence) &#123;&#10;  console.log(z);&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>关于如何创建iterable对象和Generator Comprehension Desugaring可参看<a href="http://domenic.me/2013/09/06/es6-iterators-generators-and-iterables/" target="_blank" rel="external">这里</a></p>
+<p>参考: </p>
+<ul>
+<li><a href="http://domenic.me/2013/09/06/es6-iterators-generators-and-iterables/" target="_blank" rel="external">es6-iterators-generators-and-iterables</a></li>
+<li><a href="http://segmentfault.com/q/1010000000367154#a-1020000000373763" target="_blank" rel="external">segment问答</a></li>
+<li><a href="http://tobyho.com/2013/06/16/what-are-generators/" target="_blank" rel="external">What are generators</a></li>
+<li><a href="https://www.imququ.com/post/generator-function-in-es6.html" target="_blank" rel="external">es6中生成器函数介绍</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/JavaScript/Guide/Iterators_and_Generators" target="_blank" rel="external">迭代器和生成器</a></li>
+<li><a href="http://wingolog.org/archives/2013/05/08/generators-in-v8" target="_blank" rel="external">generators-in-v8</a></li>
+<li><a href="http://wingolog.org/archives/2013/02/25/on-generators" target="_blank" rel="external">on generators</a></li>
+<li><a href="http://bg.biedalian.com/2013/12/21/harmony-generator.html" target="_blank" rel="external">Harmony Generator, yield, ES6, co框架学习</a></li>
+<li><a href="http://bg.biedalian.com/2014/01/08/what-can-i-yield.html" target="_blank" rel="external">co中yield的n种重载</a></li>
+</ul>
+<h2 id="相关module:_gnode,_co,_suspend,_promise">相关module: gnode, co, suspend, promise</h2><p>generator除了可以用于方便迭代之外, 在JS中(尤其是Node.js)估计最有用的地方应该是流程控制了. 利用yield的特性可以使用同步的代码开发异步的流程, 避免逻辑混乱和函数嵌套. 目前TJ大神已经开发除了新的流程控制模块<a href="https://github.com/visionmedia/co" target="_blank" rel="external">co</a>, (<a href="http://www.html-js.com/article/1687" target="_blank" rel="external">这里对generator和co进行了详细介绍</a>) 并在此基础之上开发了全新的web 框架koa. 等0.12版发布之后, koa可以很方便应用, 届时又将是一个很火的框架. 另外<a href="https://github.com/jmar777/suspend" target="_blank" rel="external">suspend</a>也是使用generator特性实现的全新流程控制解决方案. </p>
+<p>虽然现在ES6还没有被实现, 但是<a href="https://github.com/TooTallNate/gnode" target="_blank" rel="external">gnode</a>可以让现在的JS引擎支持generator特性, 有兴趣的同学可以尝试下. Node相交于浏览器没有多浏览器兼容问题, 一旦v8完全支持即可迅速采用, 另外0.12版本的node马上就会到来.</p>
+<p>使用co可以使用同步的代码实现异步的流程, 下例中三个读取文件的操作顺序执行, 但没有嵌套代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var co = require(&#39;co&#39;);&#10;var fs = require(&#39;fs&#39;);&#10;&#10;function read(file) &#123;&#10;  return function(fn)&#123;&#10;    fs.readFile(file, &#39;utf8&#39;, fn);&#10;  &#125;&#10;&#125;&#10;&#10;co(function *()&#123;&#10;  var a = yield read(&#39;.gitignore&#39;);&#10;  var b = yield read(&#39;Makefile&#39;);&#10;  var c = yield read(&#39;package.json&#39;);&#10;  return [a, b, c];&#10;&#125;)()</span><br></pre></td></tr></table></figure>
+<p>并行执行的异步代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">co(function *()&#123;&#10;  var a = size(&#39;package.json&#39;);&#10;  var b = size(&#39;Readme.md&#39;);&#10;  var c = size(&#39;Makefile&#39;);&#10;&#10;  return [yield a, yield b, yield c];&#10;&#125;)()</span><br></pre></td></tr></table></figure>
+<p>这只是简单的展示, co支持参数支持, 异常处理, 只有300行代码, 支持promise, thunk, array, object, generator, generator function. 关于co的详细使用可参看co<a href="https://github.com/visionmedia/co" target="_blank" rel="external">github</a>, 有兴趣的同学可以尝试下<a href="https://github.com/koajs/koa" target="_blank" rel="external">koa</a>框架 </p>
+<h2 id="参考资料">参考资料</h2><ul>
+<li><a href="http://wiki.ecmascript.org/doku.php?id=harmony:proposals" target="_blank" rel="external">ES6 proposals official wiki</a></li>
+<li><a href="http://espadrine.github.io/New-In-A-Spec/es6/" target="_blank" rel="external">ES6 proposals</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators" target="_blank" rel="external">MDN iterator and generator</a></li>
+<li><a href="http://addyosmani.com/blog/ecmascript-6-resources-for-the-curious-javascripter/" target="_blank" rel="external">ES6资源</a></li>
+<li><a href="http://globaldev.co.uk/2013/09/es6-part-1/" target="_blank" rel="external">Using es6 today</a></li>
+<li><a href="http://tc39wiki.calculist.org/es6/" target="_blank" rel="external">ES6 Feature proposals</a></li>
+<li><a href="http://tc39wiki.calculist.org/about/harmony/" target="_blank" rel="external">Harmony process</a></li>
+<li><a href="http://www.cnblogs.com/ziyunfei/archive/2012/12/05/2802382.html" target="_blank" rel="external">ES6规范制作流程</a></li>
+<li><a href="http://www.tuicool.com/topics/11060047?st=0&amp;lang=0&amp;pn=3" target="_blank" rel="external">ES6相关文章(中文)</a></li>
+<li><a href="http://kangax.github.io/es5-compat-table/es6/" target="_blank" rel="external">ES6各浏览器实现情况</a></li>
+<li><a href="http://www.xdf.me/?p=754" target="_blank" rel="external">ECMAScript 6，一定要了解的10个特性</a></li>
+<li><a href="http://net.tutsplus.com/tutorials/javascript-ajax/eight-cool-features-coming-in-es6/" target="_blank" rel="external">eight cool features coming in es6</a></li>
+<li><a href="http://devsmash.com/blog/whats-the-big-deal-with-generators" target="_blank" rel="external">what’s the big deal with generator</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/New_in_JavaScript/1.7?redirectlocale=en-US&amp;redirectslug=JavaScript%2FNew_in_JavaScript%2F1.7" target="_blank" rel="external">New in javascript 1.7</a></li>
+<li><a href="http://jlongster.com/2012/10/05/javascript-yield.html" target="_blank" rel="external">javascript-yield</a></li>
+<li><a href="http://wiki.commonjs.org/wiki/Promises" target="_blank" rel="external">promise</a></li>
+<li><a href="https://github.com/cujojs/when" target="_blank" rel="external">when.js</a></li>
+<li><a href="https://github.com/kriskowal/q" target="_blank" rel="external">Q</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://n.thepana.com/2014/01/02/generator/" data-id="cifm46n32001bms1mm7y6rn81" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6-异步流程/">ES6 异步流程</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/01/06/node-yingyong-changjing/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Node.js企业开发 一应用场景
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2013/11/21/use-in-production/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Node.js企业开发</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+</section>
+      
+        <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul id="recent-post" class="">
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2014/04/08/node012-upgrade/" class="thumbnail">
+  
+    <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/salt-lake.jpg)" alt="Node.js 0.12 全解" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2014/04/08/node012-upgrade/" class="title">Node.js 0.12 全解</a></p>
+              <p class="item-date"><time datetime="2014-04-08T06:52:15.000Z" itemprop="datePublished">2014-04-08</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2014/03/25/upgrade-node-npm/" class="thumbnail">
+  
+    <span class="thumbnail-image thumbnail-none"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2014/03/25/upgrade-node-npm/" class="title">Node &amp; NPM upgrade</a></p>
+              <p class="item-date"><time datetime="2014-03-25T09:05:45.000Z" itemprop="datePublished">2014-03-25</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2014/02/25/express-upgrade/" class="thumbnail">
+  
+    <span class="thumbnail-image thumbnail-none"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2014/02/25/express-upgrade/" class="title">Express 升级</a></p>
+              <p class="item-date"><time datetime="2014-02-25T06:51:56.000Z" itemprop="datePublished">2014-02-25</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2014/01/28/enterprise_conclusion/" class="thumbnail">
+  
+    <span class="thumbnail-image thumbnail-none"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2014/01/28/enterprise_conclusion/" class="title">Node.js企业开发 六总结</a></p>
+              <p class="item-date"><time datetime="2014-01-28T08:28:14.000Z" itemprop="datePublished">2014-01-28</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2014/01/27/performance-monitor/" class="thumbnail">
+  
+    <span style="background-image:url(http://public1.qiniudn.com/img/StrongLoop%20%20%20StrongOps.png.resized.png
+)" alt="Node.js企业开发 五服务监控" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2014/01/27/performance-monitor/" class="title">Node.js企业开发 五服务监控</a></p>
+              <p class="item-date"><time datetime="2014-01-27T09:19:04.000Z" itemprop="datePublished">2014-01-27</time></p>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Competition/">Competition</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6-异步流程/">ES6 异步流程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Express-upgrade/">Express upgrade</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HelloWorld/">HelloWorld</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intro/">Intro</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Module/">Module</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Native-Module/">Native Module</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/REPL/">REPL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog-cms/">blog&cms</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coffeescript/">coffeescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conference/">conference</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/国内/">国内</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安装/">安装</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应用/">应用</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应用场景/">应用场景</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/更新/">更新</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/说明/">说明</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">9</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://blog.rednode.cn">Rednode</a>
+          </li>
+        
+          <li>
+            <a href="http://pana.wang">Pana</a>
+          </li>
+        
+          <li>
+            <a href="http://nodejs.org">Node.js</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+  <div id="toTop" class="fa fa-chevron-up"></div>
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2011 - 2015 Pana Wang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+    </div>
+  </div>
+</footer>
+    
+
+
+
+ <script src="//ajax.useso.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

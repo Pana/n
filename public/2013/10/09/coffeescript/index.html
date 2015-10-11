@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>CoffeeScript | N</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="CoffeeScript的实际意义是允许使用Ruby/Python的更优语法开发JS代码. JS语言本身有good parts和坏的部分(全局变量声明, with等), CoffeeScript的目标是使用一种简单的方式暴露JS的good parts
+About coffeescript
+使用Coffeescript开发
+Golden rule: ‘It’s just JavaScript’
+同直">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CoffeeScript">
+<meta property="og:url" content="http://n.thepana.com/2013/10/09/coffeescript/index.html">
+<meta property="og:site_name" content="N">
+<meta property="og:description" content="CoffeeScript的实际意义是允许使用Ruby/Python的更优语法开发JS代码. JS语言本身有good parts和坏的部分(全局变量声明, with等), CoffeeScript的目标是使用一种简单的方式暴露JS的good parts
+About coffeescript
+使用Coffeescript开发
+Golden rule: ‘It’s just JavaScript’
+同直">
+<meta property="og:updated_time" content="2015-10-10T10:19:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CoffeeScript">
+<meta name="twitter:description" content="CoffeeScript的实际意义是允许使用Ruby/Python的更优语法开发JS代码. JS语言本身有good parts和坏的部分(全局变量声明, with等), CoffeeScript的目标是使用一种简单的方式暴露JS的good parts
+About coffeescript
+使用Coffeescript开发
+Golden rule: ‘It’s just JavaScript’
+同直">
+  
+  
+    <link rel="icon" href="http://blog.rednode.cn/content/images/2015/Jul/rednode_logo.png">
+  
+  
+ <link href='//fonts.useso.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+ <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" type="text/css">
+  
+
+  
+
+  
+</head>
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="/" id="logo"><i class="logo" style="background-image: url(http://blog.rednode.cn/content/images/2015/Jul/rednode_logo.png)"></i><span class="site-title">N</span></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/.">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags">标签</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+        <nav id="sub-nav">
+          <div class="profile" id="profile-nav">
+            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="http://pana.wang/assets/pana.png"><i class="fa fa-caret-down"></i></a>
+          </div>
+        </nav>
+      
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://n.thepana.com"></form>
+      </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+        
+          <td><a class="main-nav-link" href="/.">首页</a></td>
+        
+          <td><a class="main-nav-link" href="/archives">归档</a></td>
+        
+          <td><a class="main-nav-link" href="/tags">标签</a></td>
+        
+          <td><a class="main-nav-link" href="/about">关于</a></td>
+        
+        <td>
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="hidden" name="sitesearch" value="http://n.thepana.com"></form>
+        </td>
+      </tr>
+    </table>
+  </div>
+</header>
+
+    <div class="outer">
+      
+        <aside id="profile">
+  <div class="inner profile-inner">
+    <div class="base-info profile-block">
+      <img id="avatar" src="http://pana.wang/assets/pana.png">
+      <h2 id="name">Pana Wang</h2>
+      <h3 id="title">Professional Noder &amp; Gopher</h3>
+      <span id="location"><i class="fa fa-map-marker"></i>Beijing, China</span>
+      <a id="follow" href="https://github.com/Pana">关注我</a>
+    </div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        30
+        <span>文章</span>
+      </div>
+      <div class="article-info-block">
+        18
+        <span>标签</span>
+      </div>
+    </div>
+    
+    <div class="contact-info profile-block">
+      <table class="contact-list">
+        <tr>
+          
+          <td><a href="http://github.com/Pana" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
+          
+          <td><a href="https://twitter.com/coderpana" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
+          
+          <td><a href="https://www.facebook.com/pana.wang" target="_blank" title="facebook"><i class="fa fa-facebook"></i></a></td>
+          
+          <td><a href="http://www.linkedin.com/in/panawang" target="_blank" title="linkedin"><i class="fa fa-linkedin"></i></a></td>
+          
+        </tr>
+      </table>
+    </div>
+    
+    
+  </div>
+</aside>
+
+      
+      <section id="main"><article id="post-coffeescript" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CoffeeScript
+    </h1>
+  
+
+        <div class="article-meta">
+          
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2013/10/09/coffeescript/">
+      <time datetime="2013-10-09T13:51:34.000Z" itemprop="datePublished">2013-10-09</time>
+    </a>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+                
+        <p><a href="http://coffeescript.org/" target="_blank" rel="external">CoffeeScript</a>的实际意义是允许使用Ruby/Python的更优语法开发JS代码. JS语言本身有good parts和坏的部分(全局变量声明, with等), CoffeeScript的目标是使用一种简单的方式暴露JS的good parts</p>
+<h2 id="About_coffeescript">About coffeescript</h2><ul>
+<li>使用Coffeescript开发</li>
+<li>Golden rule: ‘It’s just JavaScript’</li>
+<li>同直接使用JS开发的同等代码相比有更高的执行效率</li>
+<li>能在所有的JavaScript runtime 执行: 所有浏览器, node</li>
+<li>command-line version coffee 是一个Node.js utility, 包含compiler和REPL, 使用npm安装 <code>npm install -g coffee-script</code>, 同时包含一个build system cake</li>
+</ul>
+<h2 id="Features_(coffee_has_a_ruby_like_grammer):">Features (coffee has a ruby like grammer):</h2><ul>
+<li>使用有意义的空白符界定代码块, 抛弃{}</li>
+<li>变量作用域自动管理, 不需要 var</li>
+<li>换行作为表达式的结束, 不需要 ;</li>
+<li>方法调用可省略()</li>
+<li>变量对象定义, 换行处无需 ,</li>
+<li>变量定义可省略 {}</li>
+<li>灵活的条件语句: if else then until unless</li>
+<li>方法定义支持默认参数</li>
+<li>方法定义调用支持不定量参数</li>
+<li>方便的循环和迭代</li>
+<li>支持range</li>
+<li>everything is expression</li>
+<li>定义操作符的单词行alias: is isnt not and or true yes on false no off @ this of in</li>
+<li>存在操作符 ?</li>
+<li>方便的类定义形式: Class, Inheritance, Super</li>
+<li>Function binding</li>
+<li>Destructuring Assignment</li>
+</ul>
+<h2 id="coffee_grammer">coffee grammer</h2><ul>
+<li>Functions</li>
+<li>Objects and Arrays</li>
+<li>Lexical Scoping and Variable Safety</li>
+<li>If, Else, Unless, and Conditional Assignment</li>
+<li>Splats…</li>
+<li>Loops and Comprehensions</li>
+<li>Array Slicing and Splicing with Ranges</li>
+<li>Everything is an Expression(at least, as much as possible)</li>
+<li>Operators and Aliases</li>
+<li>The Existential Operator</li>
+<li>Classses, Inheritance, and Super</li>
+<li>Destructuring Assignment</li>
+<li>Function binding</li>
+<li>Embedded Javascript</li>
+<li>Switch/When/Else</li>
+<li>Try/Catch/Finally</li>
+<li>Chained Comparisons</li>
+<li>String Interpolation, Block Strings, and Block Comments</li>
+<li>Block Regular Expressions</li>
+</ul>
+<h2 id="学习目标">学习目标</h2><ol>
+<li>学习并灵活使用coffee支持的所有语法</li>
+<li>知道coffee代码的转换规则</li>
+</ol>
+<p>更多内容参看<a href="http://coffeescript.org/" target="_blank" rel="external">coffeescript</a>, 包含coffeescript的特点, 前世今生, 安装, 语法, books, screencasts, exmaples, resources, annotated source, 交互终端</p>
+<p>个人推荐Node.js开发的同学使用. 后端开发不涉及dom操作, 使用coffee开发应该能加快开发效率, 提升代码执行效率.</p>
+<p><a href="http://livescript.net/" target="_blank" rel="external">LiveScript</a>跟coffee有点类似,也是支持使用全新的语法开发JS.</p>
+<p><a href="http://www.typescriptlang.org/" target="_blank" rel="external">TypeScript</a>是微软开发的可扩展语言, 适用于开发大型JS程序.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://n.thepana.com/2013/10/09/coffeescript/" data-id="cifm46n3e001pms1mtybentjb" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/coffeescript/">coffeescript</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2013/10/14/ghost-plan/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Ghost project
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2013/10/09/useful-cmd-module/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Useful CMD Module</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+</section>
+      
+        <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul id="recent-post" class="">
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2014/04/08/node012-upgrade/" class="thumbnail">
+  
+    <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/salt-lake.jpg)" alt="Node.js 0.12 全解" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2014/04/08/node012-upgrade/" class="title">Node.js 0.12 全解</a></p>
+              <p class="item-date"><time datetime="2014-04-08T06:52:15.000Z" itemprop="datePublished">2014-04-08</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2014/03/25/upgrade-node-npm/" class="thumbnail">
+  
+    <span class="thumbnail-image thumbnail-none"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2014/03/25/upgrade-node-npm/" class="title">Node &amp; NPM upgrade</a></p>
+              <p class="item-date"><time datetime="2014-03-25T09:05:45.000Z" itemprop="datePublished">2014-03-25</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2014/02/25/express-upgrade/" class="thumbnail">
+  
+    <span class="thumbnail-image thumbnail-none"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2014/02/25/express-upgrade/" class="title">Express 升级</a></p>
+              <p class="item-date"><time datetime="2014-02-25T06:51:56.000Z" itemprop="datePublished">2014-02-25</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2014/01/28/enterprise_conclusion/" class="thumbnail">
+  
+    <span class="thumbnail-image thumbnail-none"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2014/01/28/enterprise_conclusion/" class="title">Node.js企业开发 六总结</a></p>
+              <p class="item-date"><time datetime="2014-01-28T08:28:14.000Z" itemprop="datePublished">2014-01-28</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2014/01/27/performance-monitor/" class="thumbnail">
+  
+    <span style="background-image:url(http://public1.qiniudn.com/img/StrongLoop%20%20%20StrongOps.png.resized.png
+)" alt="Node.js企业开发 五服务监控" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2014/01/27/performance-monitor/" class="title">Node.js企业开发 五服务监控</a></p>
+              <p class="item-date"><time datetime="2014-01-27T09:19:04.000Z" itemprop="datePublished">2014-01-27</time></p>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Competition/">Competition</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6-异步流程/">ES6 异步流程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Express-upgrade/">Express upgrade</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HelloWorld/">HelloWorld</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intro/">Intro</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Module/">Module</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Native-Module/">Native Module</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/REPL/">REPL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog-cms/">blog&cms</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coffeescript/">coffeescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conference/">conference</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/国内/">国内</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安装/">安装</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应用/">应用</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应用场景/">应用场景</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/更新/">更新</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/说明/">说明</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">9</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://blog.rednode.cn">Rednode</a>
+          </li>
+        
+          <li>
+            <a href="http://pana.wang">Pana</a>
+          </li>
+        
+          <li>
+            <a href="http://nodejs.org">Node.js</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+  <div id="toTop" class="fa fa-chevron-up"></div>
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2011 - 2015 Pana Wang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+    </div>
+  </div>
+</footer>
+    
+
+
+
+ <script src="//ajax.useso.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

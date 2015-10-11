@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Node.js 0.12 全解 | N</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Node 0.12 马上就会发布, 距离 0.10 发布已有一年多的时间, 该版本不仅增加了多个重大 API, 还大幅度提升了速度. 0.12 也是 1.0 之前最后一个重大版本. 至此 Node 的 API 基本固定, 为企业化大规模应用做好准备.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js 0.12 全解">
+<meta property="og:url" content="http://n.thepana.com/2014/04/08/node012-upgrade/index.html">
+<meta property="og:site_name" content="N">
+<meta property="og:description" content="Node 0.12 马上就会发布, 距离 0.10 发布已有一年多的时间, 该版本不仅增加了多个重大 API, 还大幅度提升了速度. 0.12 也是 1.0 之前最后一个重大版本. 至此 Node 的 API 基本固定, 为企业化大规模应用做好准备.">
+<meta property="og:updated_time" content="2015-10-11T02:48:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node.js 0.12 全解">
+<meta name="twitter:description" content="Node 0.12 马上就会发布, 距离 0.10 发布已有一年多的时间, 该版本不仅增加了多个重大 API, 还大幅度提升了速度. 0.12 也是 1.0 之前最后一个重大版本. 至此 Node 的 API 基本固定, 为企业化大规模应用做好准备.">
+  
+  
+    <link rel="icon" href="http://blog.rednode.cn/content/images/2015/Jul/rednode_logo.png">
+  
+  
+ <link href='//fonts.useso.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+ <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" type="text/css">
+  
+
+  
+
+  
+</head>
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="/" id="logo"><i class="logo" style="background-image: url(http://blog.rednode.cn/content/images/2015/Jul/rednode_logo.png)"></i><span class="site-title">N</span></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/.">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags">标签</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+        <nav id="sub-nav">
+          <div class="profile" id="profile-nav">
+            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="http://pana.wang/assets/pana.png"><i class="fa fa-caret-down"></i></a>
+          </div>
+        </nav>
+      
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://n.thepana.com"></form>
+      </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+        
+          <td><a class="main-nav-link" href="/.">首页</a></td>
+        
+          <td><a class="main-nav-link" href="/archives">归档</a></td>
+        
+          <td><a class="main-nav-link" href="/tags">标签</a></td>
+        
+          <td><a class="main-nav-link" href="/about">关于</a></td>
+        
+        <td>
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="hidden" name="sitesearch" value="http://n.thepana.com"></form>
+        </td>
+      </tr>
+    </table>
+  </div>
+</header>
+
+    <div class="outer">
+      
+        <aside id="profile">
+  <div class="inner profile-inner">
+    <div class="base-info profile-block">
+      <img id="avatar" src="http://pana.wang/assets/pana.png">
+      <h2 id="name">Pana Wang</h2>
+      <h3 id="title">Professional Noder &amp; Gopher</h3>
+      <span id="location"><i class="fa fa-map-marker"></i>Beijing, China</span>
+      <a id="follow" href="https://github.com/Pana">关注我</a>
+    </div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        30
+        <span>文章</span>
+      </div>
+      <div class="article-info-block">
+        18
+        <span>标签</span>
+      </div>
+    </div>
+    
+    <div class="contact-info profile-block">
+      <table class="contact-list">
+        <tr>
+          
+          <td><a href="http://github.com/Pana" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
+          
+          <td><a href="https://twitter.com/coderpana" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
+          
+          <td><a href="https://www.facebook.com/pana.wang" target="_blank" title="facebook"><i class="fa fa-facebook"></i></a></td>
+          
+          <td><a href="http://www.linkedin.com/in/panawang" target="_blank" title="linkedin"><i class="fa fa-linkedin"></i></a></td>
+          
+        </tr>
+      </table>
+    </div>
+    
+    
+  </div>
+</aside>
+
+      
+      <section id="main"><article id="post-node012-upgrade" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      
+	
+		<img src="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/salt-lake.jpg" class="article-banner">
+	
+
+
+
+    
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Node.js 0.12 全解
+    </h1>
+  
+
+        <div class="article-meta">
+          
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2014/04/08/node012-upgrade/">
+      <time datetime="2014-04-08T06:52:15.000Z" itemprop="datePublished">2014-04-08</time>
+    </a>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+                
+        <p>Node 0.12 马上就会发布, 距离 0.10 发布已有一年多的时间, 该版本不仅增加了多个重大 API, 还大幅度提升了速度. 0.12 也是 1.0 之前最后一个重大版本. 至此 Node 的 API 基本固定, 为企业化大规模应用做好准备. </p>
+<a id="more"></a>
+<h2 id="New_API">New API</h2><ul>
+<li><a href="">stream3</a></li>
+<li><a href="http://strongloop.com/strongblog/whats-new-in-node-js-v0-12-execsync-a-synchronous-api-for-child-processes/" target="_blank" rel="external">spawnSync, execSync, execFileSync</a></li>
+<li><a href="http://strongloop.com/strongblog/whats-new-node-js-v0-12-multiple-context-execution/" target="_blank" rel="external">multiple execution contexts from within the same event loop</a></li>
+<li>profiling API</li>
+<li>smalloc</li>
+<li>asynclisteners</li>
+</ul>
+<h2 id="Speed_up">Speed up</h2><h3 id="writable_streams_增加_cork_支持">writable streams 增加 cork 支持</h3><p>写入流增加了类似 <code>man tcp</code> 的 <code>TCP_CORK</code> 和 <code>TCP_NOPUSH</code> socket 选项支持. 当流处于 corked 状态, 写进流的数据会进行队列处理, 直到流回到 uncorked 状态. 这样 Node.js 可以将小数据写入组装成大数据写入, 从而减少系统调用和 TCP 往返.</p>
+<p>http 模块已经进行升级, 在发送 chunked 的请求和响应时, 会使用 corked 模式. 通过 strace 输出可以看到增加了 writev 调用, 减少了 write 调用.</p>
+<h3 id="TLS_性能提升">TLS 性能提升</h3><p>tls 模块在 v0.12 中是完全不同的工作方式</p>
+<p>Node.js v0.10 tls 建立在 net 模块之上, 在传输 stream 时透明的进行加密和解密, 从工程学角度这层是根本没有必要的, 还会带来额外消耗(更多的内存移动, 更多的 V8 VM 调入调出). v0.12 重写直接使用 libuv, 直接从 wire 获取数据进行解密, 而不用经过中间层. </p>
+<p>在非正式的测试中, 带来了 10% 的性能提升和更小的内存使用.</p>
+<p>这些改变对于用户来说都是透明的, 但有一个需要用户注意 TLS 的连接现在继承自 <code>tls.TLSSocket</code>, 而之前是 <code>tls.CryptoStream</code></p>
+<h3 id="Crypto_性能提升">Crypto 性能提升</h3><p>多个加密算法在 0.12 中将会更快, 具体提升细节参看下面 strongloop 原文</p>
+<h3 id="Reduced_garbage_collector_strain">Reduced garbage collector strain</h3><p>multi-context 重构带来的一个重大好处是, 他极大的降低了 Node.js 内核持久句柄的数量.</p>
+<p>multi-context cleanup 工作的一部分是, 许多持久句柄被去掉或使用其他更加轻量的机制实现,<br>所到来的好处就是应用可以在垃圾回收上花费更少的时间. 现在 <code>v8::internal::GlobalHandles::PostGarbageCollectionProcessing()</code> 应该会有更少的 <code>node –prof</code> 输出.</p>
+<p>关于持久句柄的定义和作用可以参看 strongloop 原文的对应部分.</p>
+<h3 id="更好的_cluster_性能">更好的 cluster 性能</h3><p>v0.10 中的 cluster 模块依赖系统将发送过来的请求平均分配给多个 worker.<br>在 Solaris 和 linux 上一直重负荷工作量导致这种非配非常不平衡, v0.12 的分配方式切换为 <a href="http://www.infoq.com/cn/articles/nodejs-cluster-round-robin-load-balancing" target="_blank" rel="external">轮转法负载均衡</a></p>
+<h3 id="更快的_timers,_setImmediate(),_process-nextTick()">更快的 timers, setImmediate(), process.nextTick()</h3><p>setTimeout() 和 相关方法现在使用更快和更准的 time source. 该优化在所有平台上都得到提升, 在 linux 上通过直接从 VDSO 获取当前时间(极大的降低了 gettimeofday 和 clock_gettime 的系统调用时间), 更进一步提升了性能</p>
+<p>setImmediate() 和 process.nextTick() 也通过添加更快的分发路径提升了速度. Said 方法已经很快了, 现在也更快了</p>
+<p><a href="http://www.infoq.com/cn/articles/nodejs-v012-optimize-performance" target="_blank" rel="external">0.12 性能优化原文</a></p>
+<h2 id="ES6">ES6</h2><p>下一代 JavaScript 标准 ES6 (代号 harmony), 基本已经定型, V8 引擎陆续开始增加对 ES6 的支持. 在该版本中增加了众多语言特性如迭代器, 生成器, with语句, Set, Map 等, 将会给 JS 带来全新的发展空间. </p>
+<p>0.11.9 可以开启的 ES6 特性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ node --v8-options | grep harmony&#10;  --harmony_typeof (enable harmony semantics for typeof)&#10;  --harmony_scoping (enable harmony block scoping)&#10;  --harmony_modules (enable harmony modules (implies block scoping))&#10;  --harmony_symbols (enable harmony symbols (a.k.a. private names))&#10;  --harmony_proxies (enable harmony proxies)&#10;  --harmony_collections (enable harmony collections (sets, maps, and weak maps))&#10;  --harmony_observation (enable harmony object observation (implies harmony collections)&#10;  --harmony_generators (enable harmony generators)&#10;  --harmony_iteration (enable harmony iteration (for-of))&#10;  --harmony_numeric_literals (enable harmony numeric literals (0o77, 0b11))&#10;  --harmony_strings (enable harmony string)&#10;  --harmony_arrays (enable harmony arrays)&#10;  --harmony_maths (enable harmony math functions)&#10;  --harmony (enable all harmony features (except typeof))</span><br></pre></td></tr></table></figure>
+<ul>
+<li><a href="http://dailyjs.com/2012/10/15/preparing-for-esnext/" target="_blank" rel="external">ES6 for Node</a></li>
+<li><a href="http://kangax.github.io/es5-compat-table/es6/" target="_blank" rel="external">ECMAScript 6 compatibility table</a></li>
+<li><a href="http://pointedears.de/scripts/test/es-matrix/" target="_blank" rel="external">ECMAScript Support Matrix</a></li>
+<li><a href="https://code.google.com/p/v8/issues/list?q=label:Harmony" target="_blank" rel="external">Google’s V8: Harmony features with corresponding open bugs in on the tracker</a></li>
+<li><a href="http://addyosmani.com/blog/tracking-es6-support/" target="_blank" rel="external">Tracking ECMAScript 6 Support</a></li>
+</ul>
+<h2 id="VM_improvements">VM improvements</h2><h2 id="Influence">Influence</h2><ul>
+<li><a href="http://venturebeat.com/2014/03/12/nodes-new-leader-tj-fontaine-explains-why-version-0-12-will-blow-developers-minds/" target="_blank" rel="external">Node’s new leader, TJ Fontaine, explains why version 0.12 will blow developers’ minds</a></li>
+</ul>
+<h2 id="RoadMap">RoadMap</h2><p>1.0 将会超级的快</p>
+<ul>
+<li><a href="http://strongloop.com/strongblog/node-js-v0-12-roadmap-for-the-future/" target="_blank" rel="external">Beyond Node.js v0.12: Thoughts on a Roadmap for the Future</a></li>
+<li><a href="http://blog.nodejs.org/2014/01/16/nodejs-road-ahead/" target="_blank" rel="external">Node.js and the Road Ahead</a></li>
+<li><a href="http://cnodejs.org/topic/520af1c044e76d216a1dcc8a" target="_blank" rel="external">The Future of Programming in Node.js</a></li>
+</ul>
+<h2 id="参考">参考</h2><ul>
+<li><a href="http://strongloop.com/strongblog/whats-new-nodejs-v0-12-debugging-clusters/" target="_blank" rel="external">What’s New in Node.js v0.12: Debugging Clustered Apps with Node-Inspector</a></li>
+<li><a href="http://strongloop.com/developers/videos/#whats-new-in-nodejs-v012" target="_blank" rel="external">What’s New in Node.js V0.12 (video)</a></li>
+<li><a href="http://www.infoworld.com/t/javascript/nodejs-boosts-load-balancing-adds-api-ahead-of-10-release-232105" target="_blank" rel="external">Node.js boosts load balancing, adds to API ahead of 1.0 release</a></li>
+<li><a href="http://strongloop.com/strongblog/whats-new-in-node-js-v0-12-cluster-round-robin-load-balancing/" target="_blank" rel="external">round-robin</a></li>
+<li><a href="http://www.infoq.com/cn/articles/nodejs-v012-new-characteristic" target="_blank" rel="external">在单进程中跑多个实例</a></li>
+<li><a href="http://strongloop.com/strongblog/performance-node-js-v-0-12-whats-new/" target="_blank" rel="external">What’s New in Node.js v0.12 – Performance Optimizations</a></li>
+</ul>
+<h5 id="TODO">TODO</h5><ul>
+<li>New API 详解</li>
+<li>0.12 影响分析</li>
+<li>未来发展规划分析</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://n.thepana.com/2014/04/08/node012-upgrade/" data-id="cifm46n2h000qms1mtfq0nqob" class="article-share-link">分享到</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2014/03/25/upgrade-node-npm/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Node &amp; NPM upgrade</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+</section>
+      
+        <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul id="recent-post" class="">
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2014/04/08/node012-upgrade/" class="thumbnail">
+  
+    <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/salt-lake.jpg)" alt="Node.js 0.12 全解" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2014/04/08/node012-upgrade/" class="title">Node.js 0.12 全解</a></p>
+              <p class="item-date"><time datetime="2014-04-08T06:52:15.000Z" itemprop="datePublished">2014-04-08</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2014/03/25/upgrade-node-npm/" class="thumbnail">
+  
+    <span class="thumbnail-image thumbnail-none"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2014/03/25/upgrade-node-npm/" class="title">Node &amp; NPM upgrade</a></p>
+              <p class="item-date"><time datetime="2014-03-25T09:05:45.000Z" itemprop="datePublished">2014-03-25</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2014/02/25/express-upgrade/" class="thumbnail">
+  
+    <span class="thumbnail-image thumbnail-none"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2014/02/25/express-upgrade/" class="title">Express 升级</a></p>
+              <p class="item-date"><time datetime="2014-02-25T06:51:56.000Z" itemprop="datePublished">2014-02-25</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2014/01/28/enterprise_conclusion/" class="thumbnail">
+  
+    <span class="thumbnail-image thumbnail-none"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2014/01/28/enterprise_conclusion/" class="title">Node.js企业开发 六总结</a></p>
+              <p class="item-date"><time datetime="2014-01-28T08:28:14.000Z" itemprop="datePublished">2014-01-28</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2014/01/27/performance-monitor/" class="thumbnail">
+  
+    <span style="background-image:url(http://public1.qiniudn.com/img/StrongLoop%20%20%20StrongOps.png.resized.png
+)" alt="Node.js企业开发 五服务监控" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2014/01/27/performance-monitor/" class="title">Node.js企业开发 五服务监控</a></p>
+              <p class="item-date"><time datetime="2014-01-27T09:19:04.000Z" itemprop="datePublished">2014-01-27</time></p>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Competition/">Competition</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6-异步流程/">ES6 异步流程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Express-upgrade/">Express upgrade</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HelloWorld/">HelloWorld</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intro/">Intro</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Module/">Module</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Native-Module/">Native Module</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/REPL/">REPL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog-cms/">blog&cms</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coffeescript/">coffeescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conference/">conference</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/国内/">国内</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安装/">安装</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应用/">应用</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应用场景/">应用场景</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/更新/">更新</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/说明/">说明</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">9</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://blog.rednode.cn">Rednode</a>
+          </li>
+        
+          <li>
+            <a href="http://pana.wang">Pana</a>
+          </li>
+        
+          <li>
+            <a href="http://nodejs.org">Node.js</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+  <div id="toTop" class="fa fa-chevron-up"></div>
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2011 - 2015 Pana Wang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+    </div>
+  </div>
+</footer>
+    
+
+
+
+ <script src="//ajax.useso.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

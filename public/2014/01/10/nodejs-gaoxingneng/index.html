@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Node.js企业开发 二应用开发 | N</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="当确定什么场合适合使用 Node.js 开发之后, 需要考虑的问题就是如何开发了. 这里介绍下 Node.js 程序开发需要注意的一些问题.
+良好的程序应该具有的特点这里笼统介绍几个好程序的特点, 详细内容可以参考网上资料.
+
+良好的架构
+高性能
+稳定和健壮
+可扩展, 易维护
+安全
+完善的测试, 文档, 良好的编码风格和注释
+其他: 易用, 美观等
+
+架构设计一般的小项目, 大多数的程序员都是没有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js企业开发 二应用开发">
+<meta property="og:url" content="http://n.thepana.com/2014/01/10/nodejs-gaoxingneng/index.html">
+<meta property="og:site_name" content="N">
+<meta property="og:description" content="当确定什么场合适合使用 Node.js 开发之后, 需要考虑的问题就是如何开发了. 这里介绍下 Node.js 程序开发需要注意的一些问题.
+良好的程序应该具有的特点这里笼统介绍几个好程序的特点, 详细内容可以参考网上资料.
+
+良好的架构
+高性能
+稳定和健壮
+可扩展, 易维护
+安全
+完善的测试, 文档, 良好的编码风格和注释
+其他: 易用, 美观等
+
+架构设计一般的小项目, 大多数的程序员都是没有">
+<meta property="og:updated_time" content="2015-10-10T10:22:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node.js企业开发 二应用开发">
+<meta name="twitter:description" content="当确定什么场合适合使用 Node.js 开发之后, 需要考虑的问题就是如何开发了. 这里介绍下 Node.js 程序开发需要注意的一些问题.
+良好的程序应该具有的特点这里笼统介绍几个好程序的特点, 详细内容可以参考网上资料.
+
+良好的架构
+高性能
+稳定和健壮
+可扩展, 易维护
+安全
+完善的测试, 文档, 良好的编码风格和注释
+其他: 易用, 美观等
+
+架构设计一般的小项目, 大多数的程序员都是没有">
+  
+  
+    <link rel="icon" href="http://blog.rednode.cn/content/images/2015/Jul/rednode_logo.png">
+  
+  
+ <link href='//fonts.useso.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+ <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" type="text/css">
+  
+
+  
+
+  
+</head>
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="/" id="logo"><i class="logo" style="background-image: url(http://blog.rednode.cn/content/images/2015/Jul/rednode_logo.png)"></i><span class="site-title">N</span></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/.">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags">标签</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+        <nav id="sub-nav">
+          <div class="profile" id="profile-nav">
+            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="http://pana.wang/assets/pana.png"><i class="fa fa-caret-down"></i></a>
+          </div>
+        </nav>
+      
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://n.thepana.com"></form>
+      </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+        
+          <td><a class="main-nav-link" href="/.">首页</a></td>
+        
+          <td><a class="main-nav-link" href="/archives">归档</a></td>
+        
+          <td><a class="main-nav-link" href="/tags">标签</a></td>
+        
+          <td><a class="main-nav-link" href="/about">关于</a></td>
+        
+        <td>
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="hidden" name="sitesearch" value="http://n.thepana.com"></form>
+        </td>
+      </tr>
+    </table>
+  </div>
+</header>
+
+    <div class="outer">
+      
+        <aside id="profile">
+  <div class="inner profile-inner">
+    <div class="base-info profile-block">
+      <img id="avatar" src="http://pana.wang/assets/pana.png">
+      <h2 id="name">Pana Wang</h2>
+      <h3 id="title">Professional Noder &amp; Gopher</h3>
+      <span id="location"><i class="fa fa-map-marker"></i>Beijing, China</span>
+      <a id="follow" href="https://github.com/Pana">关注我</a>
+    </div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        30
+        <span>文章</span>
+      </div>
+      <div class="article-info-block">
+        18
+        <span>标签</span>
+      </div>
+    </div>
+    
+    <div class="contact-info profile-block">
+      <table class="contact-list">
+        <tr>
+          
+          <td><a href="http://github.com/Pana" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
+          
+          <td><a href="https://twitter.com/coderpana" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
+          
+          <td><a href="https://www.facebook.com/pana.wang" target="_blank" title="facebook"><i class="fa fa-facebook"></i></a></td>
+          
+          <td><a href="http://www.linkedin.com/in/panawang" target="_blank" title="linkedin"><i class="fa fa-linkedin"></i></a></td>
+          
+        </tr>
+      </table>
+    </div>
+    
+    
+  </div>
+</aside>
+
+      
+      <section id="main"><article id="post-nodejs-gaoxingneng" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Node.js企业开发 二应用开发
+    </h1>
+  
+
+        <div class="article-meta">
+          
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2014/01/10/nodejs-gaoxingneng/">
+      <time datetime="2014-01-10T09:18:46.000Z" itemprop="datePublished">2014-01-10</time>
+    </a>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+                
+        <p>当确定什么场合适合使用 Node.js 开发之后, 需要考虑的问题就是如何开发了. 这里介绍下 Node.js 程序开发需要注意的一些问题.</p>
+<h2 id="良好的程序应该具有的特点">良好的程序应该具有的特点</h2><p>这里笼统介绍几个好程序的特点, 详细内容可以参考网上资料.</p>
+<ul>
+<li>良好的架构</li>
+<li>高性能</li>
+<li>稳定和健壮</li>
+<li>可扩展, 易维护</li>
+<li>安全</li>
+<li>完善的测试, 文档, 良好的编码风格和注释</li>
+<li>其他: 易用, 美观等</li>
+</ul>
+<h2 id="架构设计">架构设计</h2><p>一般的小项目, 大多数的程序员都是没有这个概念和环节的, 但是对于中大型和企业应用开发, 架构设计是必须和非常重要的. </p>
+<p>因为我目前是一个 Web 开发者, 并没有做过架构设计的工作, 所以这里只是介绍下我所了解和想到的地方.</p>
+<ol>
+<li>首先需要了解需求, 了解项目特点. 需要实现什么功能, 程序使用特点, 访问量多大等等.</li>
+<li>根据需求选择合适的技术和工具, 预估项目的开发量, 需要多少开发者, 花费多长时间, 解析设计项目架构, 如何分配工作并协调, 设定开发进度等等.</li>
+<li>设计架构需要注意: 项目要模块化这样便于扩展,维护且让程序更加稳定; 问题, 工作量, 时间要预估充分; </li>
+</ol>
+<p>良好的架构是一切的基石, 只有架构好了才能保证高性能, 健壮, 可扩展, 提高开发速度, 降低成本.</p>
+<h2 id="高性能">高性能</h2><p>Node 是一个高性能的 web 开发平台, 所以如何确保应用的高性能是一个非常重要的问题. 想要实现高性能可以根据 Node 的特点, 并参考大公司成熟的开发经验.</p>
+<p>想必大家都知道 LinkedIn 公司分享的代码高性能经验分享. 下面将他们列出, 具体的原因和细节可参考<a href="http://engineering.linkedin.com/nodejs/blazing-fast-nodejs-10-performance-tips-linkedin-mobile" target="_blank" rel="external">原文</a>.<br>这里面最重要的地方是–不要使用同步的代码, 异步是Node最大的特点, 也是它高效的原因, 所以在 Node 中一定不要使用同步代码, 除非你是写 demo, 本地测试.</p>
+<ul>
+<li>避免同步代码</li>
+<li>关闭socket池</li>
+<li>不要使用 Node.js 处理静态资源</li>
+<li>在客户端渲染页面</li>
+<li>开启 gzip 压缩</li>
+<li>并行代码</li>
+<li>避免使用 session</li>
+<li>使用 c++ 模块</li>
+<li>使用标准 V8 JavaScript 而不是客户端库</li>
+<li>保持小规模, 轻量级代码</li>
+</ul>
+<p>除了这几点, 还有不少方法可以加快程序速度</p>
+<ul>
+<li>使用 cluster 充分利用多核 CPU, 加快速度</li>
+<li>更高效的 JS 代码写法: 好的 JS 代码可以更快, 占用更少的内存</li>
+<li>使用性能检测工具查找程序瓶颈所在, 从而使程序变的更快</li>
+</ul>
+<h2 id="稳定,_健壮">稳定, 健壮</h2><p>Node 是单线程的, 任何没有捕捉的异常都会导致程序的结束和奔溃. 而程序稳定性是企业应用最看重的特性. 所以保证 Node 程序的稳定性是非常重要的.</p>
+<p>目前提高 Node 程序稳定性的方法主要有: 异常处理, 进程守护, 程序监控</p>
+<h4 id="异常处理">异常处理</h4><ul>
+<li>不要忽略错误, 所有的错误都要进行处理</li>
+<li>使用 <code>try{...} catch(err){...}</code> 捕捉异常</li>
+<li>使用 <code>domains</code> 特性</li>
+<li>使用 <code>process.on(‘uncaughtException’, function(err){…});</code> 处理</li>
+</ul>
+<p>这里是一篇关于 Node.js 错误处理模式的<a href="http://www.nodewiz.biz/nodejs-error-handling-pattern/" target="_blank" rel="external">博客</a>, 介绍的非常详细</p>
+<h4 id="进程守护">进程守护</h4><ul>
+<li>使用 cluster </li>
+<li>使用 forever, pm2 等进程守护工具</li>
+</ul>
+<h4 id="程序监控">程序监控</h4><ul>
+<li>添加服务监控, 异常时邮件, 短信等报警</li>
+<li>记录错误日志.</li>
+</ul>
+<h2 id="其他">其他</h2><ul>
+<li>可扩展</li>
+<li>测试</li>
+<li>调试, 内存泄露</li>
+</ul>
+<h3 id="参考">参考</h3><ul>
+<li><a href="http://engineering.linkedin.com/nodejs/blazing-fast-nodejs-10-performance-tips-linkedin-mobile" target="_blank" rel="external">linkedin 高性能总结</a></li>
+<li><a href="http://blog.lovedan.cn/?p=222" target="_blank" rel="external">如何提高NodeJS程序运行的稳定性</a></li>
+<li><a href="http://blog.lovedan.cn/?p=186" target="_blank" rel="external">如何提高Nodejs程序的稳定性和健壮性</a></li>
+<li><a href="http://developer.zdnet.com.cn/2012/1019/2126947.shtml" target="_blank" rel="external">Node.js实现网游服务器高性能和可扩展</a></li>
+<li><a href="https://medium.com/tech-talk/e7c0b0e5ce3c" target="_blank" rel="external">7 tips for a Node.js padawan</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://n.thepana.com/2014/01/10/nodejs-gaoxingneng/" data-id="cifm46n2f000pms1ml0ef2n0o" class="article-share-link">分享到</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/01/15/debug-test/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Node.js企业开发 三调试&amp;测试
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/01/06/node-yingyong-changjing/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Node.js企业开发 一应用场景</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+</section>
+      
+        <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul id="recent-post" class="">
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2014/04/08/node012-upgrade/" class="thumbnail">
+  
+    <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/salt-lake.jpg)" alt="Node.js 0.12 全解" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2014/04/08/node012-upgrade/" class="title">Node.js 0.12 全解</a></p>
+              <p class="item-date"><time datetime="2014-04-08T06:52:15.000Z" itemprop="datePublished">2014-04-08</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2014/03/25/upgrade-node-npm/" class="thumbnail">
+  
+    <span class="thumbnail-image thumbnail-none"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2014/03/25/upgrade-node-npm/" class="title">Node &amp; NPM upgrade</a></p>
+              <p class="item-date"><time datetime="2014-03-25T09:05:45.000Z" itemprop="datePublished">2014-03-25</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2014/02/25/express-upgrade/" class="thumbnail">
+  
+    <span class="thumbnail-image thumbnail-none"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2014/02/25/express-upgrade/" class="title">Express 升级</a></p>
+              <p class="item-date"><time datetime="2014-02-25T06:51:56.000Z" itemprop="datePublished">2014-02-25</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2014/01/28/enterprise_conclusion/" class="thumbnail">
+  
+    <span class="thumbnail-image thumbnail-none"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2014/01/28/enterprise_conclusion/" class="title">Node.js企业开发 六总结</a></p>
+              <p class="item-date"><time datetime="2014-01-28T08:28:14.000Z" itemprop="datePublished">2014-01-28</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2014/01/27/performance-monitor/" class="thumbnail">
+  
+    <span style="background-image:url(http://public1.qiniudn.com/img/StrongLoop%20%20%20StrongOps.png.resized.png
+)" alt="Node.js企业开发 五服务监控" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2014/01/27/performance-monitor/" class="title">Node.js企业开发 五服务监控</a></p>
+              <p class="item-date"><time datetime="2014-01-27T09:19:04.000Z" itemprop="datePublished">2014-01-27</time></p>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Competition/">Competition</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6-异步流程/">ES6 异步流程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Express-upgrade/">Express upgrade</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HelloWorld/">HelloWorld</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intro/">Intro</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Module/">Module</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Native-Module/">Native Module</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/REPL/">REPL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog-cms/">blog&cms</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coffeescript/">coffeescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conference/">conference</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/国内/">国内</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安装/">安装</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应用/">应用</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应用场景/">应用场景</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/更新/">更新</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/说明/">说明</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">9</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://blog.rednode.cn">Rednode</a>
+          </li>
+        
+          <li>
+            <a href="http://pana.wang">Pana</a>
+          </li>
+        
+          <li>
+            <a href="http://nodejs.org">Node.js</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+  <div id="toTop" class="fa fa-chevron-up"></div>
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2011 - 2015 Pana Wang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+    </div>
+  </div>
+</footer>
+    
+
+
+
+ <script src="//ajax.useso.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

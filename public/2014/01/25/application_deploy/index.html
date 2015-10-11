@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Node.js企业开发 四正式环境部署 | N</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Node 应用开发完成之后的工作就是应用部署了. 
+测试环境, 预发布环境企业级应用开发除了单元测试代码不可缺少之外, 通常还会部署多个环境保证最终服务的正确无误.通常开发阶段会有开发环境, 调试环境, 部署之前有测试环境, 预发布环境, 以及正式环境又叫产品环境.
+测试环境通常是给测试人员进行功能测试, 确保开发程序的所有功能是否Ok, 是否满足需求. 当在测试环境监测通过后应该就可以向正式环境">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js企业开发 四正式环境部署">
+<meta property="og:url" content="http://n.thepana.com/2014/01/25/application_deploy/index.html">
+<meta property="og:site_name" content="N">
+<meta property="og:description" content="Node 应用开发完成之后的工作就是应用部署了. 
+测试环境, 预发布环境企业级应用开发除了单元测试代码不可缺少之外, 通常还会部署多个环境保证最终服务的正确无误.通常开发阶段会有开发环境, 调试环境, 部署之前有测试环境, 预发布环境, 以及正式环境又叫产品环境.
+测试环境通常是给测试人员进行功能测试, 确保开发程序的所有功能是否Ok, 是否满足需求. 当在测试环境监测通过后应该就可以向正式环境">
+<meta property="og:updated_time" content="2015-10-10T10:21:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node.js企业开发 四正式环境部署">
+<meta name="twitter:description" content="Node 应用开发完成之后的工作就是应用部署了. 
+测试环境, 预发布环境企业级应用开发除了单元测试代码不可缺少之外, 通常还会部署多个环境保证最终服务的正确无误.通常开发阶段会有开发环境, 调试环境, 部署之前有测试环境, 预发布环境, 以及正式环境又叫产品环境.
+测试环境通常是给测试人员进行功能测试, 确保开发程序的所有功能是否Ok, 是否满足需求. 当在测试环境监测通过后应该就可以向正式环境">
+  
+  
+    <link rel="icon" href="http://blog.rednode.cn/content/images/2015/Jul/rednode_logo.png">
+  
+  
+ <link href='//fonts.useso.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+ <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" type="text/css">
+  
+
+  
+
+  
+</head>
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="/" id="logo"><i class="logo" style="background-image: url(http://blog.rednode.cn/content/images/2015/Jul/rednode_logo.png)"></i><span class="site-title">N</span></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/.">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/tags">标签</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+        <nav id="sub-nav">
+          <div class="profile" id="profile-nav">
+            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="http://pana.wang/assets/pana.png"><i class="fa fa-caret-down"></i></a>
+          </div>
+        </nav>
+      
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://n.thepana.com"></form>
+      </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+        
+          <td><a class="main-nav-link" href="/.">首页</a></td>
+        
+          <td><a class="main-nav-link" href="/archives">归档</a></td>
+        
+          <td><a class="main-nav-link" href="/tags">标签</a></td>
+        
+          <td><a class="main-nav-link" href="/about">关于</a></td>
+        
+        <td>
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="hidden" name="sitesearch" value="http://n.thepana.com"></form>
+        </td>
+      </tr>
+    </table>
+  </div>
+</header>
+
+    <div class="outer">
+      
+        <aside id="profile">
+  <div class="inner profile-inner">
+    <div class="base-info profile-block">
+      <img id="avatar" src="http://pana.wang/assets/pana.png">
+      <h2 id="name">Pana Wang</h2>
+      <h3 id="title">Professional Noder &amp; Gopher</h3>
+      <span id="location"><i class="fa fa-map-marker"></i>Beijing, China</span>
+      <a id="follow" href="https://github.com/Pana">关注我</a>
+    </div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        30
+        <span>文章</span>
+      </div>
+      <div class="article-info-block">
+        18
+        <span>标签</span>
+      </div>
+    </div>
+    
+    <div class="contact-info profile-block">
+      <table class="contact-list">
+        <tr>
+          
+          <td><a href="http://github.com/Pana" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
+          
+          <td><a href="https://twitter.com/coderpana" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
+          
+          <td><a href="https://www.facebook.com/pana.wang" target="_blank" title="facebook"><i class="fa fa-facebook"></i></a></td>
+          
+          <td><a href="http://www.linkedin.com/in/panawang" target="_blank" title="linkedin"><i class="fa fa-linkedin"></i></a></td>
+          
+        </tr>
+      </table>
+    </div>
+    
+    
+  </div>
+</aside>
+
+      
+      <section id="main"><article id="post-application_deploy" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Node.js企业开发 四正式环境部署
+    </h1>
+  
+
+        <div class="article-meta">
+          
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2014/01/25/application_deploy/">
+      <time datetime="2014-01-25T02:24:15.000Z" itemprop="datePublished">2014-01-25</time>
+    </a>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+                
+        <p>Node 应用开发完成之后的工作就是应用部署了. </p>
+<h2 id="测试环境,_预发布环境">测试环境, 预发布环境</h2><p>企业级应用开发除了单元测试代码不可缺少之外, 通常还会部署多个环境保证最终服务的正确无误.<br>通常开发阶段会有<code>开发环境</code>, <code>调试环境</code>, 部署之前有<code>测试环境</code>, <code>预发布环境</code>, 以及<code>正式环境</code>又叫<code>产品环境</code>.</p>
+<p>测试环境通常是给测试人员进行功能测试, 确保开发程序的所有功能是否Ok, 是否满足需求. 当在测试环境监测通过后应该就可以向正式环境部署了, 但测试环境的数据环境通常同正式环境会有很大差别, 所以很多企业还会有预发布环境用于排除数据或访问量带来的问题</p>
+<h2 id="cluster">cluster</h2><p>Node 单线程的架构没法充分利用当前服务器的多核 CPU 性能, 因此 Node.js 提供了原生的<a href="http://nodejs.org/api/cluster.html" target="_blank" rel="external">cluster</a>模块, 可以充分利用多核CPU的性能, 同时可以增加程序的稳定性.</p>
+<p>cluster 使用例子: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var cluster = require(&#39;cluster&#39;);&#10;var http = require(&#39;http&#39;);&#10;var numCPUs = require(&#39;os&#39;).cpus().length;&#10;&#10;if (cluster.isMaster) &#123;&#10;  // Fork workers.&#10;  for (var i = 0; i &#60; numCPUs; i++) &#123;&#10;    cluster.fork();&#10;  &#125;&#10;&#10;  cluster.on(&#39;exit&#39;, function(worker, code, signal) &#123;&#10;    console.log(&#39;worker &#39; + worker.process.pid + &#39; died&#39;);&#10;  &#125;);&#10;&#125; else &#123;&#10;  // Workers can share any TCP connection&#10;  // In this case its a HTTP server&#10;  http.createServer(function(req, res) &#123;&#10;    res.writeHead(200);&#10;    res.end(&#34;hello world\n&#34;);&#10;  &#125;).listen(8000);&#10;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="&amp;,_nohup,_forever,_pm2">&amp;, nohup, forever, pm2</h2><h4 id="后台执行">后台执行</h4><p>Node 服务进程通常需要在后台运行, 可以使用 linux 系统的后台命令, 也可以使用比较成熟的 module 使用.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nohup node app.js &#38;</span><br></pre></td></tr></table></figure>
+<p>这样程序将会在后台执行.</p>
+<h4 id="进程守护">进程守护</h4><p>正式环境一般都会对服务进程添加守护, Node 社区目前比较成熟的有 <a href="https://github.com/nodejitsu/forever" target="_blank" rel="external">forever</a> 和 <a href="https://github.com/Unitech/pm2" target="_blank" rel="external">pm2</a></p>
+<p>forever 是最早的进程守护工具, 可以以 CLI 或编码的形式使用.</p>
+<p>全局安装forever</p>
+<pre><code>$ npm <span class="operator"><span class="keyword">install</span> -<span class="keyword">g</span> forever</span>
+</code></pre><p>使用 forever 启动服务</p>
+<pre><code>$ <span class="keyword">forever</span> <span class="built_in">start</span> app.js
+</code></pre><p>forever 还可以记录服务运行日志及错误日志, 具体方法可参看 <a href="https://github.com/nodejitsu/forever" target="_blank" rel="external">github</a>文档</p>
+<p><code>pm2</code> 是全新开发的进程守护服务, 同时集成了负载均衡功能. 以及开机启动, 自动重启有问题进程. <a href="http://signup.pm2.io/" target="_blank" rel="external">pm2</a> 还可以查看各服务进程状态. 国外许多开发者认为 <a href="http://devo.ps/blog/2013/06/26/goodbye-node-forever-hello-pm2.html" target="_blank" rel="external">pm2 比 forever 更优</a></p>
+<p>pm2 命令方法与 forever 类似, 首先需要全局安装:</p>
+<pre><code>$ <span class="built_in">npm</span> install pm2<span class="property">@latest</span> -g
+</code></pre><p>然后使用 pm2 启动服务</p>
+<pre><code>$ pm2 start app<span class="class">.js</span> -<span class="tag">i</span> <span class="number">4</span>
+$ pm2 monit    #监控服务
+</code></pre><p>关于详细使用方法可以参看 <a href="https://github.com/Unitech/pm2" target="_blank" rel="external">官方文档</a></p>
+<h2 id="nginx">nginx</h2><p>nginx 是俄罗斯程序员开发的全新高性能web server, 其运行原理同 node 类似, 也是基于事件的机制, 但它是一个server 软件, 功能与 Apache 类似, 最近几年许多大型网站开始使用 nginx. Node.js 本身并不适合服务静态文件, 所以可以使用nginx同 node.js 结合使用, Node.js 处理业务逻辑, nginx 服务静态文件.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">server &#123;&#10;&#9;listen 80;&#10;    server_name domain.serve.com;&#10;    access_log  /var/log/logfile.log main;&#10;    root /opt/application_path;&#10;&#10;    location / &#123;&#10;    &#9;proxy_set_header Host $host;&#10;        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;&#10;        proxy_pass http://127.0.0.1:3000;&#10;    &#125;&#10;&#10;    location ~* \.(jpg|jpeg|gif|css|png|js|ico)$ &#123;&#10;    &#9;access_log off;&#10;        expires 7d;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>以上为最简单的nginx配置, 他会将具体的业务需求转给 node 处理. 还有其他配置方式和更加详细的优化可以参看网络资料.</p>
+<ul>
+<li><a href="http://developer.51cto.com/art/201301/378571.htm" target="_blank" rel="external">为高负载网络优化Nginx和Node.js</a></li>
+<li><a href="http://ittechnical.sinaapp.com/node-js-and-nginx/" target="_blank" rel="external">Node.js与Nginx</a></li>
+<li><a href="http://hi.baidu.com/guoxiaoming/item/1074554ab504feaddf2a9fb3" target="_blank" rel="external">node.js 与 nginx配合使用</a></li>
+<li><a href="http://www.douban.com/note/265207425/" target="_blank" rel="external">Node.js部署最佳实践</a></li>
+</ul>
+<h2 id="日志">日志</h2><p>web 服务记录访问和错误日志是必要工作, 最常使用的日志记录方式为文件日志(也可以使用数据库存储日志). 在 Node 中记录日志方式可以有多种:</p>
+<ul>
+<li>Nginx 或 Apache</li>
+<li>forever, pm2</li>
+<li>日志module: log4js, winston</li>
+</ul>
+<p>如 <code>log4js</code> 记录日志方法:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var log4js = require(&#39;log4js&#39;); &#10;//console log is loaded by default, so you won&#39;t normally need to do this&#10;//log4js.loadAppender(&#39;console&#39;);&#10;log4js.loadAppender(&#39;file&#39;);&#10;//log4js.addAppender(log4js.appenders.console());&#10;log4js.addAppender(log4js.appenders.file(&#39;logs/cheese.log&#39;), &#39;cheese&#39;);&#10;&#10;var logger = log4js.getLogger(&#39;cheese&#39;);&#10;logger.setLevel(&#39;ERROR&#39;);&#10;&#10;logger.trace(&#39;Entering cheese testing&#39;);&#10;logger.debug(&#39;Got cheese.&#39;);&#10;logger.info(&#39;Cheese is Gouda.&#39;);&#10;logger.warn(&#39;Cheese is quite smelly.&#39;);&#10;logger.error(&#39;Cheese is too ripe!&#39;);&#10;logger.fatal(&#39;Cheese was breeding ground for listeria.&#39;);</span><br></pre></td></tr></table></figure>
+<p>日志对于访问统计和错误处理非常有用, 正式环境的日志记录有许多规范方法和经验(如日志分离)具体可以到网上查找.</p>
+<h2 id="提醒">提醒</h2><p>正式服务通常都会有提醒服务, 当服务down掉, 或者有错误时会向运维人员或维护人员发送提醒服务, 通常的提醒方式有: 邮件, IM, 短信等. 具体实现方法可以自己研究查看.</p>
+<h3 id="参考">参考</h3><ul>
+<li><a href="http://www.slideshare.net/embwbam/how-to-deploy-node-to-production" target="_blank" rel="external">how-to-deploy-node-to-production</a></li>
+<li><a href="http://stackoverflow.com/questions/15971156/node-js-production-deployment" target="_blank" rel="external">stackoverflow-Node.js Production Deployment</a></li>
+<li><a href="http://stackoverflow.com/questions/8386455/deploying-a-production-node-js-server" target="_blank" rel="external">stackoverflow-Deploying a production Node.js server</a></li>
+<li><a href="http://codeplease.wordpress.com/2013/09/27/deploying-node-js-production/" target="_blank" rel="external">DEPLOYING NODE.JS TO PRODUCTION</a></li>
+<li><a href="http://blog.argteam.com/coding/hardening-nodejs-production-process-supervisor/" target="_blank" rel="external">HARDENING NODE.JS FOR PRODUCTION: A PROCESS SUPERVISOR</a></li>
+<li><a href="http://fluentconf.com/fluent2012/public/schedule/detail/24643" target="_blank" rel="external">book-How to Deploy a Node.js App to Production</a></li>
+<li><a href="http://www.joyent.com/developers/node/deploy" target="_blank" rel="external">Joyent-Production Practices-deploy</a></li>
+<li><a href="http://ngo-hung.com/blog/2012/07/14/node-js-deployment-in-production-settings" target="_blank" rel="external">Node.js deployment in production settings</a></li>
+<li><a href="http://shawn.dahlen.me/blog/2013/03/18/setup-node-dot-js-servers-within-a-load-balanced-configuration/" target="_blank" rel="external">Setup node.js Servers Within a Load-balanced Configuration</a></li>
+<li><a href="http://cthayer.wordpress.com/2013/11/05/nodejs-production-deployment/" target="_blank" rel="external">Nodejs Production Deployment</a></li>
+<li><a href="https://node.ci/" target="_blank" rel="external">https://node.ci</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://n.thepana.com/2014/01/25/application_deploy/" data-id="cifm46n3k001vms1mn8jy1dzh" class="article-share-link">分享到</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/01/27/performance-monitor/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Node.js企业开发 五服务监控
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/01/15/debug-test/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Node.js企业开发 三调试&amp;测试</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+</section>
+      
+        <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul id="recent-post" class="">
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2014/04/08/node012-upgrade/" class="thumbnail">
+  
+    <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/salt-lake.jpg)" alt="Node.js 0.12 全解" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2014/04/08/node012-upgrade/" class="title">Node.js 0.12 全解</a></p>
+              <p class="item-date"><time datetime="2014-04-08T06:52:15.000Z" itemprop="datePublished">2014-04-08</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2014/03/25/upgrade-node-npm/" class="thumbnail">
+  
+    <span class="thumbnail-image thumbnail-none"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2014/03/25/upgrade-node-npm/" class="title">Node &amp; NPM upgrade</a></p>
+              <p class="item-date"><time datetime="2014-03-25T09:05:45.000Z" itemprop="datePublished">2014-03-25</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2014/02/25/express-upgrade/" class="thumbnail">
+  
+    <span class="thumbnail-image thumbnail-none"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2014/02/25/express-upgrade/" class="title">Express 升级</a></p>
+              <p class="item-date"><time datetime="2014-02-25T06:51:56.000Z" itemprop="datePublished">2014-02-25</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2014/01/28/enterprise_conclusion/" class="thumbnail">
+  
+    <span class="thumbnail-image thumbnail-none"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2014/01/28/enterprise_conclusion/" class="title">Node.js企业开发 六总结</a></p>
+              <p class="item-date"><time datetime="2014-01-28T08:28:14.000Z" itemprop="datePublished">2014-01-28</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2014/01/27/performance-monitor/" class="thumbnail">
+  
+    <span style="background-image:url(http://public1.qiniudn.com/img/StrongLoop%20%20%20StrongOps.png.resized.png
+)" alt="Node.js企业开发 五服务监控" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2014/01/27/performance-monitor/" class="title">Node.js企业开发 五服务监控</a></p>
+              <p class="item-date"><time datetime="2014-01-27T09:19:04.000Z" itemprop="datePublished">2014-01-27</time></p>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Competition/">Competition</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6-异步流程/">ES6 异步流程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Express-upgrade/">Express upgrade</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HelloWorld/">HelloWorld</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intro/">Intro</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Module/">Module</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Native-Module/">Native Module</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/REPL/">REPL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog-cms/">blog&cms</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coffeescript/">coffeescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conference/">conference</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/国内/">国内</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安装/">安装</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应用/">应用</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应用场景/">应用场景</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/更新/">更新</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/说明/">说明</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">9</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://blog.rednode.cn">Rednode</a>
+          </li>
+        
+          <li>
+            <a href="http://pana.wang">Pana</a>
+          </li>
+        
+          <li>
+            <a href="http://nodejs.org">Node.js</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+  <div id="toTop" class="fa fa-chevron-up"></div>
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2011 - 2015 Pana Wang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+    </div>
+  </div>
+</footer>
+    
+
+
+
+ <script src="//ajax.useso.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
