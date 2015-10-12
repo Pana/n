@@ -20,6 +20,7 @@ $ sudo npm uninstall npm -g
 	
     $ sudo make uninstall
 
+<!-- more -->
 
 ## Node
 关于Node的安装[之前](http://n.thepana.com/2013/09/21/nodejs_install/)有详细的介绍, 具体方法可以移步过去看看.

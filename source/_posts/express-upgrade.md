@@ -6,6 +6,8 @@ Express 是 Node.js 平台使用最多, 最知名的 web 框架, 目前正式版
 Node 0.12 即将发布, Connect 3.0 和 Express 4.0 也都在紧锣密鼓的开发当中
 3.3 号, Express 4 发布了 RC 版. 这里介绍下Express 4 的最新特点
 
+<!-- more -->
+
 ### Express 4
 Express 4 将生成项目架构命令行工具移到了单独的项目 [express-generator](https://github.com/expressjs/generator),
 并且移除了对 Connect 的依赖. 具体特点为:

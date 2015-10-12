@@ -1,7 +1,7 @@
 title: Node.js 0.12 全解
 date: 2014-04-8 14:52:15
 tags:
-banner: http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/salt-lake.jpg
+banner: 
 ---
 
 Node 0.12 马上就会发布, 距离 0.10 发布已有一年多的时间, 该版本不仅增加了多个重大 API, 还大幅度提升了速度. 0.12 也是 1.0 之前最后一个重大版本. 至此 Node 的 API 基本固定, 为企业化大规模应用做好准备. 

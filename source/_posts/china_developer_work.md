@@ -9,6 +9,8 @@ N发展迅速, 在中国也有大量的N粉, 开发者. 并且诞生一些优秀
 ### [Node-Webkit](https://github.com/rogerwang/node-webkit)
 基于Chromium与Node.js的应用程序运行器，允许开发者使用web技术编写桌面应用程序。在英特尔的开源技术中心创建和发展起来的。
 
+<!-- more -->
+
 * 可以用HTML5、CSS3、JS和WebGL写应用
 * 完全支持Node.js的API以及它的所有第三方模块
 * 性能好：Node和WebKit运行在同一个线程内，函数调用简单，对象也在同一个堆上，可以与相引用

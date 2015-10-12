@@ -5,6 +5,8 @@ tags: coffeescript
 
 [CoffeeScript](http://coffeescript.org/)的实际意义是允许使用Ruby/Python的更优语法开发JS代码. JS语言本身有good parts和坏的部分(全局变量声明, with等), CoffeeScript的目标是使用一种简单的方式暴露JS的good parts
 
+<!-- more -->
+
 ## About coffeescript
 
 * 使用Coffeescript开发

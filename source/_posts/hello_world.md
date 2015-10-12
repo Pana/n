@@ -15,6 +15,7 @@ tags: HelloWorld
 
 还可将以上代码保存成文件 `example.js`, 然后执行`node example.js`, 可看到同样的结果.
 
+<!-- more -->
 
 # HTTP&TCP Version
 N最频繁的使用场合是Web或TCP Server开发

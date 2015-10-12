@@ -4,6 +4,8 @@ tags: 应用场景
 ---
 要想用Node.js首先需要知道它到底是什么, 有哪些优缺点. 然后我们才能知道到底 Node.js 适合哪些应用场景.
 
+<!-- more -->
+
 # Node.js
 
 [维基百科](http://en.wikipedia.org/wiki/Nodejs)：“Node.js 是谷歌 V8 引擎、libuv平台抽象层 以及主体使用 Javscript 编写的核心库三者集合的一个包装外壳。” Node.js的作者瑞恩·达尔 (Ryan Dahl) 给了开发者一个使用事件驱动来实现异步开发的优秀解决方案。

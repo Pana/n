@@ -9,6 +9,7 @@ tags: blog&cms
 ## [Ghost](http://ghost.org)
 Ghost是使用Node.js开发的专注博客的平台. 2013.10.14 在Github上公开源代码(版本0.33).
 
+<!-- more -->
 
 ### Ghost -- Free. Open. Simple. is a platform dedicated to one thing: Publishing. 
 Ghost设计优美, 支持高度自定义, 完全开源. Ghost提供了让大家轻松, 愉快编辑发布博客的工具. Ghost简单, 优雅. 让用户花费更少的时间搭建博客, 更多的时间写博客.

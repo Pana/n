@@ -9,6 +9,8 @@ tags:
 ### console
 [console](http://nodejs.org/api/console.html) 想必是大家最熟悉, 使用最多的调试方法了, Node 的 console 模块为内置原生模块, 包含了一些基本方法(log, error, info, warn, dir, time, trace, assert)将变量输出到 std 流中. 可以实现最基本的调试功能.
 
+<!-- more -->
+
 ### debugger
 [debugger](http://nodejs.org/api/debugger.html) 模块: V8 包含一个扩展调试器, 可以通过 TCP 协议在进程外访问, Node 包含一个内置的 debugger 客户端. 启动程序时添加 `debug` 参数可以启动.
 

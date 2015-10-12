@@ -15,6 +15,8 @@ N 大致有以下几种安装方式:
 * 源码编译安装
 * 其他
 
+<!-- more -->
+
 相关链接: [下载地址](http://nodejs.org/download/), [Github源码](https://github.com/joyent/node)
 
 

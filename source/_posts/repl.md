@@ -6,6 +6,8 @@ tags: REPL
 Read-Eval-Print-Loop(REPL)提供了交互式执行JS代码,查看结果的功能, 输入一行(块)代码, 可立刻看到执行结果. 
 适用于调试, 测试, 尝试代码. 不止N, Ruby, Python, Lua等语言都提供了类似的交互式环境.
 
+<!-- more -->
+
 ## 如何打开
 终端中命令`node`(不带参数)可以打开REPL. 它具有简单的Emacs行编辑.
 

@@ -8,6 +8,8 @@ tags: ES6 异步流程
 
 众多的语法特性将为JS开发打开全新的天地. 这里主要介绍[generator](http://wiki.ecmascript.org/doku.php?id=harmony:generators)和[iterator](http://wiki.ecmascript.org/doku.php?id=harmony:iterators), 因为该特性能够以同步的代码实现异步的流程.
 
+<!-- more -->
+
 ## generator & iterator
 iterator和generator特性借鉴于Python, Ruby, smalltalk, 本来用于方便访问容器内各个元素. 该特性需要node v0.11.9并开启--harmony特性才能使用, 在chrome(29+)浏览器中需要在`chrome://flags/` 开启`Enable Experimental JavaScript`选项, 然后重启. 这里先介绍下相关的概念.
 

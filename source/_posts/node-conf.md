@@ -4,6 +4,8 @@ tags: conference
 ---
 Node.js诞生于2009年, 之后在2009, 2010年的[JSConf](http://jsconf.com/)上都安排了Node讲座. 之后Node发展如火如荼, 异常迅猛, 出现了Node专门的开发者会议, 如NodeConf, NodeSummit等.
 
+<!-- more -->
+
 # [NodeSummit](http://nodesummit.com/)
 NodeSummit是一个为期两天的Node峰会, 2013.12.3-2013.12.4在旧金山的Mission Bay会议中心举办. 来自各大公司的business leaders和technology experts会讨论Node.js在future of computing中的transformative 角色. 在大会上还会展示许多使用Node.js作为主要技术的创业公司.
 

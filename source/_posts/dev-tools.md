@@ -4,6 +4,8 @@ tags: 工具
 ---
 工具存在的价值为帮助人们提高工作的效率甚至完成以前没法完成的工作. N开发同样有许多优秀的工具帮助提升效率. 目前比较流行好用的N开发工具有: [Sublime Text](http://www.sublimetext.com/), [WebStorm](http://www.jetbrains.com/webstorm/), [Cloud9](https://c9.io/), [NodeEclipse](http://www.nodeclipse.org/).
 
+<!-- more -->
+
 # [Sublime Text](http://www.sublimetext.com/)
 Sublime是一个跨平台的编辑器, 界面简单清爽, 功能强大, 有许多插件和主题,
 快速的代码文件切换功能. 适合前端, Ruby, Python, Node.js. 目前许多国外的大公司开发者都在使用并推荐该开发工具. 

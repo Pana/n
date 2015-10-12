@@ -4,6 +4,8 @@ tags: Module
 ---
 Node.js在Github代码仓库上的描述为Evented I/O for V8 JavaScript. 这句话清晰表达了Node.js最大特点Evented. Node.js通过事件异步机制成功突破单线程编程模型的性能机制, 并有前后端编程模型统一, 性能更高等优点, 从而迅速被大家所接受.本文介绍Node.js的事件机制.
 
+<!-- more -->
+
 ## Event 模块
 event模块是Node.js的核心原生模块, 该模块包含EventEmitter类, 提供事件绑定, 触发等相关方法. Node.js的大部分模块都继承自Event模块. 与前端DOM树事件不同之处在于不存在冒泡, 捕获等行为, 亦没有preventDefault(), stopPropagation(), stopImmediatePropagation(). 具体参看官方[API](http://nodejs.org/api/events.html)
 

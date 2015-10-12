@@ -11,6 +11,8 @@ Node.js通过回调实现非阻塞从而达到超高性能, 但回调大大增�
 * ES6 generator
 * 第三方module: async, step, wind.js, eventproxy
 
+<!-- more -->
+
 ## Node官方回调方式
 在早期的Node版本中曾经使用promise的回调方式, 后来被放弃了. 目前使用的方式为回调函数做为方法最后一个参数传递
 , 回调函数的第一个参数为error, 正常则为null, 其他参数为传回的数据
