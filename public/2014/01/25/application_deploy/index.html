@@ -15,7 +15,7 @@
 <meta property="og:description" content="Node 应用开发完成之后的工作就是应用部署了. 
 测试环境, 预发布环境企业级应用开发除了单元测试代码不可缺少之外, 通常还会部署多个环境保证最终服务的正确无误.通常开发阶段会有开发环境, 调试环境, 部署之前有测试环境, 预发布环境, 以及正式环境又叫产品环境.
 测试环境通常是给测试人员进行功能测试, 确保开发程序的所有功能是否Ok, 是否满足需求. 当在测试环境监测通过后应该就可以向正式环境">
-<meta property="og:updated_time" content="2015-10-10T10:21:32.000Z">
+<meta property="og:updated_time" content="2015-10-12T04:33:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Node.js企业开发 四正式环境部署">
 <meta name="twitter:description" content="Node 应用开发完成之后的工作就是应用部署了. 
@@ -100,7 +100,7 @@
     </div>
     <div class="article-info profile-block">
       <div class="article-info-block">
-        30
+        29
         <span>文章</span>
       </div>
       <div class="article-info-block">
@@ -163,6 +163,7 @@
         <p>Node 应用开发完成之后的工作就是应用部署了. </p>
 <h2 id="测试环境,_预发布环境">测试环境, 预发布环境</h2><p>企业级应用开发除了单元测试代码不可缺少之外, 通常还会部署多个环境保证最终服务的正确无误.<br>通常开发阶段会有<code>开发环境</code>, <code>调试环境</code>, 部署之前有<code>测试环境</code>, <code>预发布环境</code>, 以及<code>正式环境</code>又叫<code>产品环境</code>.</p>
 <p>测试环境通常是给测试人员进行功能测试, 确保开发程序的所有功能是否Ok, 是否满足需求. 当在测试环境监测通过后应该就可以向正式环境部署了, 但测试环境的数据环境通常同正式环境会有很大差别, 所以很多企业还会有预发布环境用于排除数据或访问量带来的问题</p>
+<a id="more"></a>
 <h2 id="cluster">cluster</h2><p>Node 单线程的架构没法充分利用当前服务器的多核 CPU 性能, 因此 Node.js 提供了原生的<a href="http://nodejs.org/api/cluster.html" target="_blank" rel="external">cluster</a>模块, 可以充分利用多核CPU的性能, 同时可以增加程序的稳定性.</p>
 <p>cluster 使用例子: </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var cluster = require(&#39;cluster&#39;);&#10;var http = require(&#39;http&#39;);&#10;var numCPUs = require(&#39;os&#39;).cpus().length;&#10;&#10;if (cluster.isMaster) &#123;&#10;  // Fork workers.&#10;  for (var i = 0; i &#60; numCPUs; i++) &#123;&#10;    cluster.fork();&#10;  &#125;&#10;&#10;  cluster.on(&#39;exit&#39;, function(worker, code, signal) &#123;&#10;    console.log(&#39;worker &#39; + worker.process.pid + &#39; died&#39;);&#10;  &#125;);&#10;&#125; else &#123;&#10;  // Workers can share any TCP connection&#10;  // In this case its a HTTP server&#10;  http.createServer(function(req, res) &#123;&#10;    res.writeHead(200);&#10;    res.end(&#34;hello world\n&#34;);&#10;  &#125;).listen(8000);&#10;&#125;</span><br></pre></td></tr></table></figure>
@@ -219,7 +220,7 @@ $ pm2 monit    #监控服务
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://n.thepana.com/2014/01/25/application_deploy/" data-id="cifm46n3k001vms1mn8jy1dzh" class="article-share-link">分享到</a>
+      <a data-url="http://n.thepana.com/2014/01/25/application_deploy/" data-id="cifmere25001tvs1m6pnox43r" class="article-share-link">分享到</a>
       
       
     </footer>
@@ -263,9 +264,26 @@ $ pm2 monit    #监控服务
           <li>
             
             <div class="item-thumbnail">
+              <a href="/2015/10/11/about-node-foundation/" class="thumbnail">
+  
+    <span style="background-image:url(/assets/nodejs-foundation.png)" alt="Node 基金会那些事" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2015/10/11/about-node-foundation/" class="title">Node 基金会那些事</a></p>
+              <p class="item-date"><time datetime="2015-10-11T11:08:15.000Z" itemprop="datePublished">2015-10-11</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
               <a href="/2014/04/08/node012-upgrade/" class="thumbnail">
   
-    <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/salt-lake.jpg)" alt="Node.js 0.12 全解" class="thumbnail-image"></span>
+    <span class="thumbnail-image thumbnail-none"></span>
   
 </a>
             </div>
@@ -328,24 +346,6 @@ $ pm2 monit    #监控服务
             </div>
           </li>
         
-          <li>
-            
-            <div class="item-thumbnail">
-              <a href="/2014/01/27/performance-monitor/" class="thumbnail">
-  
-    <span style="background-image:url(http://public1.qiniudn.com/img/StrongLoop%20%20%20StrongOps.png.resized.png
-)" alt="Node.js企业开发 五服务监控" class="thumbnail-image"></span>
-  
-</a>
-            </div>
-            
-            <div class="item-inner">
-              <p class="item-category"></p>
-              <p class="item-title"><a href="/2014/01/27/performance-monitor/" class="title">Node.js企业开发 五服务监控</a></p>
-              <p class="item-date"><time datetime="2014-01-27T09:19:04.000Z" itemprop="datePublished">2014-01-27</time></p>
-            </div>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -357,7 +357,7 @@ $ pm2 monit    #监控服务
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Competition/">Competition</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6-异步流程/">ES6 异步流程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Express-upgrade/">Express upgrade</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HelloWorld/">HelloWorld</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intro/">Intro</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Module/">Module</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Native-Module/">Native Module</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/REPL/">REPL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog-cms/">blog&cms</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coffeescript/">coffeescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conference/">conference</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/国内/">国内</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安装/">安装</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应用/">应用</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应用场景/">应用场景</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/更新/">更新</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/说明/">说明</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Competition/">Competition</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6-异步流程/">ES6 异步流程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Express-upgrade/">Express upgrade</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HelloWorld/">HelloWorld</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intro/">Intro</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Module/">Module</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Native-Module/">Native Module</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/REPL/">REPL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog-cms/">blog&cms</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coffeescript/">coffeescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conference/">conference</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/国内/">国内</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安装/">安装</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应用/">应用</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应用场景/">应用场景</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/说明/">说明</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -366,7 +366,7 @@ $ pm2 monit    #监控服务
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -378,15 +378,19 @@ $ pm2 monit    #监控服务
       <ul>
         
           <li>
+            <a href="http://nodeweekly.com/">Nodeweekly</a>
+          </li>
+        
+          <li>
+            <a href="http://cnodejs.org">Cnode</a>
+          </li>
+        
+          <li>
             <a href="http://blog.rednode.cn">Rednode</a>
           </li>
         
           <li>
             <a href="http://pana.wang">Pana</a>
-          </li>
-        
-          <li>
-            <a href="http://nodejs.org">Node.js</a>
           </li>
         
       </ul>

@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="N">
 <meta property="og:description" content="ES6ES6(代号harmony)是下一代JavaScript语言规范, 目前还在制定当中. 在2014年底将会完成规范制定, 并有部分Engine实现. ES6包含众多新语言特性: Module, Class, Set, Map, iterator, generator, for-of…  
 众多的语法特性将为JS开发打开全新的天地. 这里主要介绍generator和iterator, 因为该特">
-<meta property="og:updated_time" content="2015-10-10T10:19:43.000Z">
+<meta property="og:updated_time" content="2015-10-12T04:33:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="generator">
 <meta name="twitter:description" content="ES6ES6(代号harmony)是下一代JavaScript语言规范, 目前还在制定当中. 在2014年底将会完成规范制定, 并有部分Engine实现. ES6包含众多新语言特性: Module, Class, Set, Map, iterator, generator, for-of…  
@@ -97,7 +97,7 @@
     </div>
     <div class="article-info profile-block">
       <div class="article-info-block">
-        30
+        29
         <span>文章</span>
       </div>
       <div class="article-info-block">
@@ -159,6 +159,7 @@
                 
         <h2 id="ES6">ES6</h2><p><a href="http://wiki.ecmascript.org/doku.php" target="_blank" rel="external">ES6(代号harmony)</a>是下一代JavaScript语言规范, 目前还在制定当中. 在2014年底将会完成规范制定, 并有部分Engine实现. ES6包含众多新语言<a href="http://tc39wiki.calculist.org/es6/" target="_blank" rel="external">特性</a>: Module, Class, Set, Map, iterator, generator, for-of…  </p>
 <p>众多的语法特性将为JS开发打开全新的天地. 这里主要介绍<a href="http://wiki.ecmascript.org/doku.php?id=harmony:generators" target="_blank" rel="external">generator</a>和<a href="http://wiki.ecmascript.org/doku.php?id=harmony:iterators" target="_blank" rel="external">iterator</a>, 因为该特性能够以同步的代码实现异步的流程.</p>
+<a id="more"></a>
 <h2 id="generator_&amp;_iterator">generator &amp; iterator</h2><p>iterator和generator特性借鉴于Python, Ruby, smalltalk, 本来用于方便访问容器内各个元素. 该特性需要node v0.11.9并开启–harmony特性才能使用, 在chrome(29+)浏览器中需要在<code>chrome://flags/</code> 开启<code>Enable Experimental JavaScript</code>选项, 然后重启. 这里先介绍下相关的概念.</p>
 <p>iterator(迭代器): 具有next方法的对象, 返回{done: true/false, value: returnValue}结构数据</p>
 <p>iterable(可迭代变量): 具有内部方法<code>obj[@@iterator]()</code>的对象, 该方法会返回iterator.</p>
@@ -233,7 +234,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://n.thepana.com/2014/01/02/generator/" data-id="cifm46n32001bms1mm7y6rn81" class="article-share-link">分享到</a>
+      <a data-url="http://n.thepana.com/2014/01/02/generator/" data-id="cifmere1g0019vs1mfh2kvfxh" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6-异步流程/">ES6 异步流程</a></li></ul>
@@ -279,9 +280,26 @@
           <li>
             
             <div class="item-thumbnail">
+              <a href="/2015/10/11/about-node-foundation/" class="thumbnail">
+  
+    <span style="background-image:url(/assets/nodejs-foundation.png)" alt="Node 基金会那些事" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2015/10/11/about-node-foundation/" class="title">Node 基金会那些事</a></p>
+              <p class="item-date"><time datetime="2015-10-11T11:08:15.000Z" itemprop="datePublished">2015-10-11</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
               <a href="/2014/04/08/node012-upgrade/" class="thumbnail">
   
-    <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/salt-lake.jpg)" alt="Node.js 0.12 全解" class="thumbnail-image"></span>
+    <span class="thumbnail-image thumbnail-none"></span>
   
 </a>
             </div>
@@ -344,24 +362,6 @@
             </div>
           </li>
         
-          <li>
-            
-            <div class="item-thumbnail">
-              <a href="/2014/01/27/performance-monitor/" class="thumbnail">
-  
-    <span style="background-image:url(http://public1.qiniudn.com/img/StrongLoop%20%20%20StrongOps.png.resized.png
-)" alt="Node.js企业开发 五服务监控" class="thumbnail-image"></span>
-  
-</a>
-            </div>
-            
-            <div class="item-inner">
-              <p class="item-category"></p>
-              <p class="item-title"><a href="/2014/01/27/performance-monitor/" class="title">Node.js企业开发 五服务监控</a></p>
-              <p class="item-date"><time datetime="2014-01-27T09:19:04.000Z" itemprop="datePublished">2014-01-27</time></p>
-            </div>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -373,7 +373,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Competition/">Competition</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6-异步流程/">ES6 异步流程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Express-upgrade/">Express upgrade</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HelloWorld/">HelloWorld</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intro/">Intro</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Module/">Module</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Native-Module/">Native Module</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/REPL/">REPL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog-cms/">blog&cms</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coffeescript/">coffeescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conference/">conference</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/国内/">国内</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安装/">安装</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应用/">应用</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应用场景/">应用场景</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/更新/">更新</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/说明/">说明</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Competition/">Competition</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6-异步流程/">ES6 异步流程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Express-upgrade/">Express upgrade</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HelloWorld/">HelloWorld</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intro/">Intro</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Module/">Module</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Native-Module/">Native Module</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/REPL/">REPL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog-cms/">blog&cms</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coffeescript/">coffeescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conference/">conference</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/国内/">国内</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安装/">安装</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应用/">应用</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应用场景/">应用场景</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/说明/">说明</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -382,7 +382,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -394,15 +394,19 @@
       <ul>
         
           <li>
+            <a href="http://nodeweekly.com/">Nodeweekly</a>
+          </li>
+        
+          <li>
+            <a href="http://cnodejs.org">Cnode</a>
+          </li>
+        
+          <li>
             <a href="http://blog.rednode.cn">Rednode</a>
           </li>
         
           <li>
             <a href="http://pana.wang">Pana</a>
-          </li>
-        
-          <li>
-            <a href="http://nodejs.org">Node.js</a>
           </li>
         
       </ul>

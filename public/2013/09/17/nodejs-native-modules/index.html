@@ -5,19 +5,16 @@
   
   <title>Nodejs native modules | N</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Node.js目前的稳定版本为0.10, 很快会升级到0.12, 之后将是N粉翘首以待的1.0. 虽然目前还没有到达1.0但原生API已基本固定, 不会有很大变化. 想学好Node.js, 原生模块(API)是必须熟练知道的. 这里N将开始第一个博客系列–Native Module. 主要介绍Node.js的原生模块 并会涉及Node.js的内部架构和原理.
-Node.js官方提供了英文原版的AP">
+  <meta name="description" content="Node.js目前的稳定版本为0.10, 很快会升级到0.12, 之后将是N粉翘首以待的1.0. 虽然目前还没有到达1.0但原生API已基本固定, 不会有很大变化. 想学好Node.js, 原生模块(API)是必须熟练知道的. 这里N将开始第一个博客系列–Native Module. 主要介绍Node.js的原生模块 并会涉及Node.js的内部架构和原理.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Nodejs native modules">
 <meta property="og:url" content="http://n.thepana.com/2013/09/17/nodejs-native-modules/index.html">
 <meta property="og:site_name" content="N">
-<meta property="og:description" content="Node.js目前的稳定版本为0.10, 很快会升级到0.12, 之后将是N粉翘首以待的1.0. 虽然目前还没有到达1.0但原生API已基本固定, 不会有很大变化. 想学好Node.js, 原生模块(API)是必须熟练知道的. 这里N将开始第一个博客系列–Native Module. 主要介绍Node.js的原生模块 并会涉及Node.js的内部架构和原理.
-Node.js官方提供了英文原版的AP">
-<meta property="og:updated_time" content="2015-10-10T10:19:43.000Z">
+<meta property="og:description" content="Node.js目前的稳定版本为0.10, 很快会升级到0.12, 之后将是N粉翘首以待的1.0. 虽然目前还没有到达1.0但原生API已基本固定, 不会有很大变化. 想学好Node.js, 原生模块(API)是必须熟练知道的. 这里N将开始第一个博客系列–Native Module. 主要介绍Node.js的原生模块 并会涉及Node.js的内部架构和原理.">
+<meta property="og:updated_time" content="2015-10-12T04:36:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Nodejs native modules">
-<meta name="twitter:description" content="Node.js目前的稳定版本为0.10, 很快会升级到0.12, 之后将是N粉翘首以待的1.0. 虽然目前还没有到达1.0但原生API已基本固定, 不会有很大变化. 想学好Node.js, 原生模块(API)是必须熟练知道的. 这里N将开始第一个博客系列–Native Module. 主要介绍Node.js的原生模块 并会涉及Node.js的内部架构和原理.
-Node.js官方提供了英文原版的AP">
+<meta name="twitter:description" content="Node.js目前的稳定版本为0.10, 很快会升级到0.12, 之后将是N粉翘首以待的1.0. 虽然目前还没有到达1.0但原生API已基本固定, 不会有很大变化. 想学好Node.js, 原生模块(API)是必须熟练知道的. 这里N将开始第一个博客系列–Native Module. 主要介绍Node.js的原生模块 并会涉及Node.js的内部架构和原理.">
   
   
     <link rel="icon" href="http://blog.rednode.cn/content/images/2015/Jul/rednode_logo.png">
@@ -97,7 +94,7 @@ Node.js官方提供了英文原版的AP">
     </div>
     <div class="article-info profile-block">
       <div class="article-info-block">
-        30
+        29
         <span>文章</span>
       </div>
       <div class="article-info-block">
@@ -158,6 +155,7 @@ Node.js官方提供了英文原版的AP">
       
                 
         <p>Node.js目前的稳定版本为0.10, 很快会升级到0.12, 之后将是N粉翘首以待的1.0. 虽然目前还没有到达1.0<br>但原生API已基本固定, 不会有很大变化. 想学好Node.js, 原生模块(API)是必须熟练知道的. 这里N将开始<br>第一个博客系列–Native Module. 主要介绍Node.js的原生模块 并会涉及Node.js的内部架构和原理.</p>
+<a id="more"></a>
 <p>Node.js官方提供了英文原版的<a href="http://nodejs.org/api/" target="_blank" rel="external">API</a>文档. 可以一个页面查看所有模块, 也可以单模块查看,<br>还提供了JSON版本的文档. 国内社区和开发者正在进行中文翻译工作, 可以到<a href="http://jsfuns.com/ebook/#30d25070-118c-11e3-bc83-47c9e4e1d529" target="_blank" rel="external">这里</a>查看目前的工作情况. 其他相关资源:</p>
 <ul>
 <li><a href="http://overapi.com/nodejs/" target="_blank" rel="external">overapi</a></li>
@@ -235,7 +233,7 @@ Node.js官方提供了英文原版的AP">
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://n.thepana.com/2013/09/17/nodejs-native-modules/" data-id="cifm46n2d000mms1ma4ypjakp" class="article-share-link">分享到</a>
+      <a data-url="http://n.thepana.com/2013/09/17/nodejs-native-modules/" data-id="cifmere0k000kvs1myry81k7b" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Native-Module/">Native Module</a></li></ul>
@@ -281,9 +279,26 @@ Node.js官方提供了英文原版的AP">
           <li>
             
             <div class="item-thumbnail">
+              <a href="/2015/10/11/about-node-foundation/" class="thumbnail">
+  
+    <span style="background-image:url(/assets/nodejs-foundation.png)" alt="Node 基金会那些事" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2015/10/11/about-node-foundation/" class="title">Node 基金会那些事</a></p>
+              <p class="item-date"><time datetime="2015-10-11T11:08:15.000Z" itemprop="datePublished">2015-10-11</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
               <a href="/2014/04/08/node012-upgrade/" class="thumbnail">
   
-    <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/salt-lake.jpg)" alt="Node.js 0.12 全解" class="thumbnail-image"></span>
+    <span class="thumbnail-image thumbnail-none"></span>
   
 </a>
             </div>
@@ -346,24 +361,6 @@ Node.js官方提供了英文原版的AP">
             </div>
           </li>
         
-          <li>
-            
-            <div class="item-thumbnail">
-              <a href="/2014/01/27/performance-monitor/" class="thumbnail">
-  
-    <span style="background-image:url(http://public1.qiniudn.com/img/StrongLoop%20%20%20StrongOps.png.resized.png
-)" alt="Node.js企业开发 五服务监控" class="thumbnail-image"></span>
-  
-</a>
-            </div>
-            
-            <div class="item-inner">
-              <p class="item-category"></p>
-              <p class="item-title"><a href="/2014/01/27/performance-monitor/" class="title">Node.js企业开发 五服务监控</a></p>
-              <p class="item-date"><time datetime="2014-01-27T09:19:04.000Z" itemprop="datePublished">2014-01-27</time></p>
-            </div>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -375,7 +372,7 @@ Node.js官方提供了英文原版的AP">
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Competition/">Competition</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6-异步流程/">ES6 异步流程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Express-upgrade/">Express upgrade</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HelloWorld/">HelloWorld</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intro/">Intro</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Module/">Module</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Native-Module/">Native Module</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/REPL/">REPL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog-cms/">blog&cms</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coffeescript/">coffeescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conference/">conference</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/国内/">国内</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安装/">安装</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应用/">应用</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应用场景/">应用场景</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/更新/">更新</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/说明/">说明</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Competition/">Competition</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6-异步流程/">ES6 异步流程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Express-upgrade/">Express upgrade</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HelloWorld/">HelloWorld</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intro/">Intro</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Module/">Module</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Native-Module/">Native Module</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/REPL/">REPL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog-cms/">blog&cms</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coffeescript/">coffeescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conference/">conference</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/国内/">国内</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安装/">安装</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应用/">应用</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应用场景/">应用场景</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/说明/">说明</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -384,7 +381,7 @@ Node.js官方提供了英文原版的AP">
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -396,15 +393,19 @@ Node.js官方提供了英文原版的AP">
       <ul>
         
           <li>
+            <a href="http://nodeweekly.com/">Nodeweekly</a>
+          </li>
+        
+          <li>
+            <a href="http://cnodejs.org">Cnode</a>
+          </li>
+        
+          <li>
             <a href="http://blog.rednode.cn">Rednode</a>
           </li>
         
           <li>
             <a href="http://pana.wang">Pana</a>
-          </li>
-        
-          <li>
-            <a href="http://nodejs.org">Node.js</a>
           </li>
         
       </ul>
