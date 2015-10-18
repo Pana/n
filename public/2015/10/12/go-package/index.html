@@ -3,17 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: coffeescript | N</title>
+  <title>Go Package | N</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="N is a blog about Node.js everything about Node.js">
-<meta property="og:type" content="website">
-<meta property="og:title" content="N">
-<meta property="og:url" content="http://n.thepana.com/tags/coffeescript/index.html">
+  <meta name="description" content="Go 相较于 C++ 的一大进步即为具有良好的包管理系统. 在任何一个成熟的语言系统中包系统都是必不可少的. 本文将会对go的包系统进行详细的解释">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go Package">
+<meta property="og:url" content="http://n.thepana.com/2015/10/12/go-package/index.html">
 <meta property="og:site_name" content="N">
-<meta property="og:description" content="N is a blog about Node.js everything about Node.js">
+<meta property="og:description" content="Go 相较于 C++ 的一大进步即为具有良好的包管理系统. 在任何一个成熟的语言系统中包系统都是必不可少的. 本文将会对go的包系统进行详细的解释">
+<meta property="og:image" content="http://n.thepana.com/assets/go-package-import.jpg">
+<meta property="og:updated_time" content="2015-10-18T01:42:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="N">
-<meta name="twitter:description" content="N is a blog about Node.js everything about Node.js">
+<meta name="twitter:title" content="Go Package">
+<meta name="twitter:description" content="Go 相较于 C++ 的一大进步即为具有良好的包管理系统. 在任何一个成熟的语言系统中包系统都是必不可少的. 本文将会对go的包系统进行详细的解释">
   
   
     <link rel="icon" href="http://blog.rednode.cn/content/images/2015/Jul/rednode_logo.png">
@@ -123,49 +125,115 @@
 </aside>
 
       
-      <section id="main">
-    <section class="archives-wrap">
-    <div class="archive-tag-wrap">
-      <span class="archive-tag">#coffeescript</span>
-    </div>
-    <div class="archives">
+      <section id="main"><article id="post-go-package" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    
-    <div class="archive-article-thumbnail">
-      <a href="/2013/10/09/coffeescript/" class="thumbnail">
-  
-    <span class="thumbnail-image thumbnail-none"></span>
-  
-</a>
-    </div>
-    
-    <header class="archive-article-header">
       
+	
+		<img src="/assets/gophercomplex1.jpg" class="article-banner">
+	
+
+
+
+    
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2013/10/09/coffeescript/">CoffeeScript</a>
+    <h1 class="article-title" itemprop="name">
+      Go Package
     </h1>
   
 
-      
-        
-  <div class="archive-article-date">
+        <div class="article-meta">
+          
+  <div class="article-date">
     <i class="fa fa-calendar"></i>
-    <a href="/2013/10/09/coffeescript/">
-      <time datetime="2013-10-09T13:51:34.000Z" itemprop="datePublished">2013 10月 9</time>
+    <a href="/2015/10/12/go-package/">
+      <time datetime="2015-10-12T13:13:40.000Z" itemprop="datePublished">2015-10-12</time>
     </a>
   </div>
 
 
-      
-    </header>
-  </div>
-</article>
+          
+        </div>
+      </header>
     
-    </div></section>
-    </section>
+    <div class="article-entry" itemprop="articleBody">
+      
+                
+        <p>Go 相较于 C++ 的一大进步即为具有良好的包管理系统. 在任何一个成熟的语言系统中包系统都是必不可少的. 本文将会对go的包系统进行详细的解释</p>
+<a id="more"></a>
+<h3 id="定义">定义</h3><p>Go 的包使用关键字 <code>package</code> 进行定义, 后跟包名</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br></pre></td></tr></table></figure>
+<p>golang 的 package 和其他语言的组织方式完全不同, go 的 package 超越了文件的概念. 即多个文件可以有相同的 package name. 因此多个文件中不能出现相同的全局变量和函数，一个例外是init函数；而同一个package的不同文件可以直接引用相互之间的数据。</p>
+<p>包中的变量, 常量, 方法只有以大写字母作为首字符才算是外部可见内容, 否则只能在包内部使用.</p>
+<p>每个包文件都可以定义 init 方法, 用于包初始化操作</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> init () &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一般情况下以代码文件所在的目录作为包名, 但并非强制. 同一个目录下至允许有一个包.</p>
+<h3 id="特殊包_main">特殊包 main</h3><p>main 包在 go 中是一个特殊的包, 必须有且只有一个, 因为程序的入口函数(main)在该包中, main 函数没有参数, 没有返回</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main () &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="导入包">导入包</h3><p>包导入使用 import 关键字, 后跟字符串形式的包名. Go 的标准库可以直接以名字导入,其实是去GOROOT下去加载该模块</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br></pre></td></tr></table></figure>
+<p>go的package是以绝对路径GOPATH来寻址的，不要用相对路径来import(虽然也支持).</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">"a/b/c"</span>     <span class="comment">// 加载GOPATH/src/a/b/c</span></span><br></pre></td></tr></table></figure>
+<p>以通常惯例而言 import 路径的最后部分即为包名.</p>
+<p>多个包引入可以分成多行, 也可以一次导入</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"log"</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>几个特殊用法</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> _ “github.com/bitly/<span class="keyword">go</span>-nsq” <span class="comment">// 初始化某个包, 但不引入</span></span><br><span class="line"><span class="keyword">import</span> . <span class="string">"fmt"</span>  <span class="comment">// 调用包内容时可省略包名</span></span><br><span class="line"><span class="keyword">import</span> f <span class="string">"fmt"</span>   <span class="comment">// 别名导入</span></span><br></pre></td></tr></table></figure>
+<p>go 语言认可两个特殊的代码包名称 all, std. 前者代表了 GOPATH 中包含的所有工作区的所有代码包, 后者代表了 Go 语言标准库中的所有代码包</p>
+<h3 id="导入过程说明">导入过程说明</h3><p>程序的初始化和执行都起始于main包。如果main包还导入了其它的包，那么就会在编译时将它们依次导入。有时一个包会被多个包同时导入，那么它只会被导入一次（例如很多包可能都会用到fmt包，但它只会被导入一次，因为没有必要导入多次）。当一个包被导入时，如果该包还导入了其它的包，那么会先将其它包导入进来，然后再对这些包中的包级常量和变量进行初始化，接着执行init函数（如果有的话），依次类推。等所有被导入的包都加载完毕了，就会开始对main包中的包级常量和变量进行初始化，然后执行main包中的init函数（如果存在的话），最后执行main函数。下图详细地解释了整个执行过程</p>
+<p><img src="/assets/go-package-import.jpg" alt=""></p>
+<p>通过上面的介绍我们了解了import的时候其实是执行了该包里面的init函数，初始化了里面的变量，_操作只是说该包引入了，只初始化里面的init函数和一些变量，不能通过包名来调用其它的函数，这有什么用呢？往往这些init函数里面是注册自己包里面的引擎，让外部可以方便的使用，就很多实现database/sql的引起，在init函数里面都是调用了sql.Register(name string, driver driver.Driver)注册自己，然后外部就可以使用了。</p>
+<h3 id="工作区概念">工作区概念</h3><p>go 是一门推崇软件工程理念的编程语言, 高度强调代码和项目的规范和统一. go 代码必须放在工作区中, 所谓的工作区就是一个特定的目录, 工作区中必须包含src, pkg, bin 三个目录.<br>工作区路径需要被加入到 GOPATH 环境变量中.</p>
+<ul>
+<li>src: 用于以代码包的形式组织, 保存源代码. 其中的代码包与src的子目录一一对应, 比如logging 包应位于logging目录下. main 包可以直接放在src下, 但通常不建议.</li>
+<li>pkg: 用于存放由 go install 命令编译安装后的代码包, 通常以 .a 结尾</li>
+<li>bin: 保存由 go install 命令完成之后生成的可执行文件</li>
+</ul>
+<p>工作区可以有多个(都加入到 GOPATH), 通过 go get 命令获取的代码位于 GOPATH 的第一个工作区中, 通常情况建议不要把 GOROOT 放到 GOPATH 中, 并且添加两个工作区<br>到 GOPATH 中, 这样第一个工作区存放第三方库, 第二个则为真正的用户开发工作区.</p>
+<h3 id="依赖管理">依赖管理</h3><p>在 Go 语言中，我们可以使用go get命令安装远程仓库中托管的代码，不同于 Ruby Gem、pypi 等集中式的包管理机制， Go 语言的包管理系统是去中心化的。简单来讲，go get命令支持任何一个位置托管的 Git 或 Mercurial 的仓库，无论是 Github 还是 Google Code 上的包，都可以通过这个命令安装</p>
+<p>虽然 Go 语言本身已经提供了相当强大的包管理方式了，但是仍然有一些不足：</p>
+<ol>
+<li>不能很方便地隔离不同项目的环境</li>
+<li>不能很方便地控制某个依赖包的版本</li>
+<li>不能管理 Go 本身的版本</li>
+</ol>
+<p>关于这些问题的解决办法可参看<a href="http://io-meter.com/2014/07/30/go%27s-package-management/" target="_blank" rel="external">这里</a></p>
+<h3 id="参考">参考</h3><ul>
+<li><a href="http://godoc.org/" target="_blank" rel="external">godoc</a></li>
+<li><a href="http://gopm.io/" target="_blank" rel="external">gopm.io</a></li>
+<li><a href="http://io-meter.com/2014/07/30/go%27s-package-management/" target="_blank" rel="external">Go 语言本身提供的包管理机制</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://n.thepana.com/2015/10/12/go-package/" data-id="cifnz84vb00032m1m9ag0z7tv" class="article-share-link">分享到</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/10/11/about-node-foundation/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Node 基金会那些事</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+</section>
       
         <aside id="sidebar">
   
