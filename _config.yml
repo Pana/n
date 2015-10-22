@@ -69,6 +69,13 @@ pagination_dir: page
 ## Themes: https://github.com/hexojs/hexo/wiki/Themes
 theme: icarus
 
+deploy:
+  type: rsync
+  host: 211.155.86.93
+  user: root
+  port: 22
+  root: /opt/www/n/public
+
 # Disqus
 # disqus_shortname: hexo-theme-icarus
 
