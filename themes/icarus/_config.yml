@@ -1,0 +1,77 @@
+# Menus
+menu:
+  首页: .
+  归档: archives
+  #Categories: categories
+  标签: tags
+  关于: about
+
+# Customize
+customize:
+    logo:
+        enabled: true
+        width: 40
+        height: 40
+        url: http://yuan.rednode.cn/assets/img/node44.png
+    profile:
+        enabled: true # Whether to show profile bar
+        avatar: http://pana.wang/assets/pana.png
+        gravatar: # Gravatar email address, if you enable Gravatar, your avatar config will be overriden
+        author: Pana
+        author_title: Noder & Gopher
+        location: Beijing, China
+        follow: https://github.com/Pana
+    highlight: monokai
+    sidebar: right # sidebar position, options: left, right
+    thumbnail: true # enable posts thumbnail, options: true, false
+    favicon: # path to favicon
+    social_links:
+        github: http://github.com/Pana
+        twitter: https://twitter.com/coderpana
+        facebook: https://www.facebook.com/pana.wang
+        linkedin: http://www.linkedin.com/in/panawang
+
+# Widgets
+widgets:
+    - recent_posts
+    - category
+    - archive
+    - tag
+    - tagcloud
+    - links
+
+# Search
+search:
+    insight: true # you need to install `hexo-generator-json-content` before using Insight Search
+    swiftype: # enter swiftype install key here
+    baidu: false # you need to disable other search engines to use Baidu search, options: true, false
+
+# Comment
+comment:
+    disqus: hexo-theme-icarus # enter disqus shortname here
+
+# Share
+share: default # options: jiathis, bdshare, addtoany, default
+
+# Plugins
+plugins:
+    fancybox: true # options: true, false
+    google_analytics: # enter the tracking ID for your Google Analytics
+    google_site_verification: # enter Google site verification code
+    baidu_analytics: # enter Baidu Analytics hash key
+
+# Miscellaneous
+miscellaneous:
+    open_graph: # see http://ogp.me
+        fb_app_id:
+        fb_admins:
+        twitter_id:
+        google_plus:
+    links:
+        NodejsBlog: https://nodejs.org/en/blog/
+        NodeSourceBlog: https://nodesource.com/blog/
+        RisingStackBlog: https://blog.risingstack.com/
+        Nodeweekly: http://nodeweekly.com/
+        Cnode: http://cnodejs.org
+        Rednode: http://blog.rednode.cn
+        Pana: http://pana.wang
