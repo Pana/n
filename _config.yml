@@ -5,11 +5,11 @@
 # Site
 title: N
 subtitle: N is Node.js
-description: N is a blog about Node.js everything about Node.js
-author: Pana Wang
+description: N is a blog about Node.js, Golang and my life
+author: Pana.W
 email: pana.wang@outlook.com
 language: zh-CN
-author_title: 'Professional Noder & Gopher'
+author_title: 'Professional Gopher & Noder'
 avatar: http://pana.wang/assets/pana.png
 location: 'Beijing, China'
 follow: https://github.com/Pana
