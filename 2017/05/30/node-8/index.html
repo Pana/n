@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Node.js 8.0 | N</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Node.js 8.0终于发布了, 应该是今年 Node 最大的版本更新, 带来许多新特性: NPM 5.0, V8 5.8, N-API, async_hooks …">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js 8.0">
+<meta property="og:url" content="http://n.thepana.com/2017/05/30/node-8/index.html">
+<meta property="og:site_name" content="N">
+<meta property="og:description" content="Node.js 8.0终于发布了, 应该是今年 Node 最大的版本更新, 带来许多新特性: NPM 5.0, V8 5.8, N-API, async_hooks …">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-08-24T08:43:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node.js 8.0">
+<meta name="twitter:description" content="Node.js 8.0终于发布了, 应该是今年 Node 最大的版本更新, 带来许多新特性: NPM 5.0, V8 5.8, N-API, async_hooks …">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+    
+    
+
+</head>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">N</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="http://pana.wang/assets/pana.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="http://pana.wang/assets/pana.png" />
+            <h2 id="name">Pana</h2>
+            <h3 id="title">Noder &amp; Gopher</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Beijing, China</span>
+            <a id="follow" target="_blank" href="https://github.com/Pana">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                52
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                22
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    <td><a href="http://github.com/Pana" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
+                    
+                    <td><a href="https://twitter.com/coderpana" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
+                    
+                    <td><a href="https://www.facebook.com/pana.wang" target="_blank" title="facebook"><i class="fa fa-facebook"></i></a></td>
+                    
+                    <td><a href="http://www.linkedin.com/in/panawang" target="_blank" title="linkedin"><i class="fa fa-linkedin"></i></a></td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-node-8" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Node.js 8.0
+        </h1>
+    
+
+                <div class="article-meta">
+                    
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/05/30/node-8/">
+            <time datetime="2017-05-30T09:48:38.000Z" itemprop="datePublished">2017-05-30</time>
+        </a>
+    </div>
+
+
+                    
+                    
+                </div>
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>Node.js 8.0终于发布了, 应该是今年 Node 最大的版本更新, 带来许多新特性: NPM 5.0, V8 5.8, N-API, async_hooks …<br><a id="more"></a></p>
+<h3 id="NPM-5-0"><a href="#NPM-5-0" class="headerlink" title="NPM 5.0"></a>NPM 5.0</h3><p>5.0 的 npm 有两大改进: 一是性能巨大提升(5倍), 二是 lockfile 支持: Shrinkwrap 从 5.0 开始变成了默认开启功能. 有了该特性, 每次npm install 的结果都是一样的, 不会产生版本升级导致项目无法运行. <a href="http://blog.npmjs.org/post/161276872334/npm5-is-now-npmlatest" target="_blank" rel="external">详情参看</a></p>
+<h3 id="V8-5-8"><a href="#V8-5-8" class="headerlink" title="V8 5.8"></a>V8 5.8</h3><p>Node.js 8.0.0 使用了 V8 5.8，这是 JavaScript 运行时的重要更新，其中包括性能方面和面向开发者 API 的重大改进。对 Node.js 开发者来说最重要的是 V8 5.8 保证与 V8 5.9 和即将推出的 V8 6.0 具有 ABI 的向前兼容性，这将有助于确保 Node.js 原生插件生态系统的稳定性。在 Node.js 8 的生命周期中，会计划升级到 5.9 甚至 6.0</p>
+<p>V8 5.8 引擎还有助于设置新的 TurboFan + Ignition 编译器管道（compiler pipeline）的转移，这将为所有 Node.js 应用程序提供重要的新的性能优化。虽然 V8 之前的版本已经存在，但 TurboFan 和 Ignition 将在 V8 5.9 中首次默认启用。新的编译器管道代表了这样一个重大变化 —— Node.js 核心技术委员会（CTC）选择推迟最初发布安排在 4 月的 Node.js 8，以便更好地适应它。</p>
+<p>另外此次该版本的 V8 运行 async 方法的速度也有巨大的提升.</p>
+<h3 id="N-API"><a href="#N-API" class="headerlink" title="N API"></a>N API</h3><p>对于使用或创建原生插件的 Node.js 开发者，新的实验性的 Node.js API（N-API）对于现有的 Native Abstractions for Node.js (nan) 来说是一个重大的改进，它将允许原生插件在一个系统上编译一次，并在多个版本的 Node.js 上使用。</p>
+<p>通过提供一个新的虚拟机不可知的应用程序二进制接口（ABI），原生插件不仅可以在多个版本的 V8 JavaScript 运行时上运行，还可以在微软的 Chakra-Core 运行时上使用。</p>
+<p>N-API 在 Node.js 8.0.0 中是实验性的功能。</p>
+<p>另外提一下 Rust 对 N API 也有封装, 即可以使用 Rust 开发原生的 Node 模块. 具体可以参考</p>
+<ul>
+<li><a href="https://github.com/neon-bindings/neon" target="_blank" rel="external">neon</a></li>
+<li><a href="http://www.tuicool.com/articles/bU7byaJ" target="_blank" rel="external">Rust for Node developers</a></li>
+<li><a href="https://mp.weixin.qq.com/s?src=3&amp;timestamp=1496628364&amp;ver=1&amp;signature=HpNvv4g2xUmSBJJwxA5UGVjd26sL8O8-p*PD7Vp8Wy6Lvb8-YfsN6omcj27xj1Tqf4VTQ2vevuhuG01LnGzMkEAPffbFDsQVgGk6sqwZT8Z851wh2PiWlKf-4pgoEcxgmP5nU0lplJWmPWLvHlySOV4egbAcc8*sEGzOb8mWawk=" target="_blank" rel="external">node love rust</a></li>
+</ul>
+<h3 id="async-hooks"><a href="#async-hooks" class="headerlink" title="async_hooks"></a>async_hooks</h3><p>Async Hooks （以前称为AsyncWrap） API允许获取有关句柄对象生命周期的结构跟踪信息。它包含了一组用于诊断的 API，开发人员可以用它监控 Node.js事件循环里的各种操作，跟踪句柄对象全生命周期的事件。可以通过该模块的 createHooks方法注册用于处理句柄对象生命周期各个阶段事件的函数<br>Async Hooks API 在 Node.js 8 中如何工作, createHooks函数的注册功能会被每一个异步操作的不同生命周期事件调用。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> asyncHooks = <span class="built_in">require</span>(<span class="string">'async_hooks'</span>)</div><div class="line">asyncHooks.createHooks(&#123; </div><div class="line">    init,</div><div class="line">    pre,</div><div class="line">    post,</div><div class="line">    destroy</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>了解更多Async Hooks，或查看正在进行的工作文档。这些函数将会根据处理程序对象的生命周期事件选择性触发。</p>
+<h3 id="LTS"><a href="#LTS" class="headerlink" title="LTS"></a>LTS</h3><p>Node.js v8 是下一个长期支持（LTS）的版本。这将在 2017 年 10 月进入，一旦 Node.js 8 转换到 LTS，将会使用代号 Carbon。</p>
+<h3 id="其他更新"><a href="#其他更新" class="headerlink" title="其他更新"></a>其他更新</h3><ul>
+<li>WHATWG URL parser</li>
+<li>Buffer API 引入了大量新变化</li>
+<li>新的 util.promisify() API</li>
+<li>console 模块加入 console.log() 和 console.error()</li>
+</ul>
+<p><a href="https://nodejs.org/en/blog/release/v8.0.0/#say-hello-to-npm-version-5-0-0" target="_blank" rel="external">官方更新日志</a></p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://n.thepana.com/2017/05/30/node-8/" data-id="cj7cp1xy9001ncys6hr2dm2pk" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://n.thepana.com/2017/05/30/node-8/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://n.thepana.com/2017/05/30/node-8/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/06/01/do-not-hesitate/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    墨迹是不对的
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2017/05/30/live-everyday/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">明确每一天</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+</section>
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/04/nginx-monitoring/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/09/04/nginx-monitoring/" class="title">Nginx Monitoring</a></p>
+                            <p class="item-date"><time datetime="2017-09-04T02:23:00.000Z" itemprop="datePublished">2017-09-04</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/08/24/mongodb-lookup/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/08/24/mongodb-lookup/" class="title">Mongodb lookup</a></p>
+                            <p class="item-date"><time datetime="2017-08-24T08:47:36.000Z" itemprop="datePublished">2017-08-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/06/16/get-inputs/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/06/16/get-inputs/" class="title">Go 命令行获取输入</a></p>
+                            <p class="item-date"><time datetime="2017-06-16T07:56:03.000Z" itemprop="datePublished">2017-06-16</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/06/11/webassembly/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/06/11/webassembly/" class="title">Webassembly 初识</a></p>
+                            <p class="item-date"><time datetime="2017-06-11T03:00:29.000Z" itemprop="datePublished">2017-06-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/06/08/react-router-v4/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/06/08/react-router-v4/" class="title">react-router v4</a></p>
+                            <p class="item-date"><time datetime="2017-06-08T14:55:42.000Z" itemprop="datePublished">2017-06-08</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/go/">go</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/go/json/">json</a><span class="category-list-count">1</span></li></ul></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">8</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Competition/">Competition</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6-异步流程/">ES6 异步流程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Express-upgrade/">Express upgrade</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HelloWorld/">HelloWorld</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intro/">Intro</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Module/">Module</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Native-Module/">Native Module</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/REPL/">REPL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog-cms/">blog&cms</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coffeescript/">coffeescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conference/">conference</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/koa/">koa</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/release/">release</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/国内/">国内</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安装/">安装</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应用/">应用</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应用场景/">应用场景</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/成长/">成长</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/说明/">说明</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Competition/" style="font-size: 10px;">Competition</a> <a href="/tags/ES6-异步流程/" style="font-size: 10px;">ES6 异步流程</a> <a href="/tags/Express-upgrade/" style="font-size: 10px;">Express upgrade</a> <a href="/tags/HelloWorld/" style="font-size: 10px;">HelloWorld</a> <a href="/tags/Intro/" style="font-size: 10px;">Intro</a> <a href="/tags/Module/" style="font-size: 20px;">Module</a> <a href="/tags/Native-Module/" style="font-size: 10px;">Native Module</a> <a href="/tags/REPL/" style="font-size: 10px;">REPL</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/blog-cms/" style="font-size: 10px;">blog&cms</a> <a href="/tags/coffeescript/" style="font-size: 10px;">coffeescript</a> <a href="/tags/conference/" style="font-size: 10px;">conference</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/koa/" style="font-size: 10px;">koa</a> <a href="/tags/release/" style="font-size: 10px;">release</a> <a href="/tags/国内/" style="font-size: 10px;">国内</a> <a href="/tags/安装/" style="font-size: 10px;">安装</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/应用/" style="font-size: 10px;">应用</a> <a href="/tags/应用场景/" style="font-size: 10px;">应用场景</a> <a href="/tags/成长/" style="font-size: 20px;">成长</a> <a href="/tags/说明/" style="font-size: 10px;">说明</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="https://nodejs.org/en/blog/">NodejsBlog</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://nodesource.com/blog/">NodeSourceBlog</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://blog.risingstack.com/">RisingStackBlog</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://nodeweekly.com/">Nodeweekly</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://cnodejs.org">Cnode</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://blog.rednode.cn">Rednode</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://pana.wang">Pana</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2017 Pana.W<br>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-icarus';
+    
+    
+    var disqus_url = 'http://n.thepana.com/2017/05/30/node-8/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

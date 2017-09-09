@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Node.js企业开发 一应用场景 | N</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="要想用Node.js首先需要知道它到底是什么, 有哪些优缺点. 然后我们才能知道到底 Node.js 适合哪些应用场景.">
+<meta name="keywords" content="应用场景">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js企业开发 一应用场景">
+<meta property="og:url" content="http://n.thepana.com/2014/01/06/node-yingyong-changjing/index.html">
+<meta property="og:site_name" content="N">
+<meta property="og:description" content="要想用Node.js首先需要知道它到底是什么, 有哪些优缺点. 然后我们才能知道到底 Node.js 适合哪些应用场景.">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-08-24T08:43:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node.js企业开发 一应用场景">
+<meta name="twitter:description" content="要想用Node.js首先需要知道它到底是什么, 有哪些优缺点. 然后我们才能知道到底 Node.js 适合哪些应用场景.">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+    
+    
+
+</head>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">N</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="http://pana.wang/assets/pana.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="http://pana.wang/assets/pana.png" />
+            <h2 id="name">Pana</h2>
+            <h3 id="title">Noder &amp; Gopher</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Beijing, China</span>
+            <a id="follow" target="_blank" href="https://github.com/Pana">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                52
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                22
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    <td><a href="http://github.com/Pana" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
+                    
+                    <td><a href="https://twitter.com/coderpana" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
+                    
+                    <td><a href="https://www.facebook.com/pana.wang" target="_blank" title="facebook"><i class="fa fa-facebook"></i></a></td>
+                    
+                    <td><a href="http://www.linkedin.com/in/panawang" target="_blank" title="linkedin"><i class="fa fa-linkedin"></i></a></td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-node-yingyong-changjing" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Node.js企业开发 一应用场景
+        </h1>
+    
+
+                <div class="article-meta">
+                    
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2014/01/06/node-yingyong-changjing/">
+            <time datetime="2014-01-06T13:40:29.000Z" itemprop="datePublished">2014-01-06</time>
+        </a>
+    </div>
+
+
+                    
+                    
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/应用场景/">应用场景</a>
+    </div>
+
+                </div>
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>要想用Node.js首先需要知道它到底是什么, 有哪些优缺点. 然后我们才能知道到底 Node.js 适合哪些应用场景.</p>
+<a id="more"></a>
+<h1 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h1><p><a href="http://en.wikipedia.org/wiki/Nodejs" target="_blank" rel="external">维基百科</a>：“Node.js 是谷歌 V8 引擎、libuv平台抽象层 以及主体使用 Javscript 编写的核心库三者集合的一个包装外壳。” Node.js的作者瑞恩·达尔 (Ryan Dahl) 给了开发者一个使用事件驱动来实现异步开发的优秀解决方案。</p>
+<p>Node.js 的主要思路是：使用非阻塞的，事件驱动的 I/O 操作来保持在处理跨平台 (across distributed devices) 数据密集型实时应用时的轻巧高效。</p>
+<p>它的 Web 工作原理跟传统网络技术大不相同. 传统的网络服务技术，是每个新增一个连接（请求）便生成一个新的线程，这个新的线程会占用系统内存，最终会占掉所有的可用内存。而 Node.js 仅仅只运行在一个单线程中，使用非阻塞的异步 I/O 调用，所有连接都由该线程处理，在 libuv 的加分下，可以允许其支持数万并发连接（全部挂在该线程的事件循环中）。</p>
+<p>当然这也有它自身的缺点: 大量的计算可能会使得 Node 的单线程暂时失去反应, 并导致所有的其他客户端的请求一直阻塞, 直到计算结束才恢复正常。 其次，开发人员需要非常小心，不要让一个 Exception 阻塞核心的事件循环，因为这将导致 Node.js 实例的终止.</p>
+<p>Node.js 具有以下特点:</p>
+<ul>
+<li>单线程</li>
+<li>事件驱动, 非阻塞</li>
+<li>JS语言</li>
+<li>Google V8</li>
+</ul>
+<p>所以它具有以下优点:</p>
+<ul>
+<li>系统资源(内存)占用少, 高访问量时更明显</li>
+<li>速度快(远快于php, python, ruby)</li>
+<li>前后端使用JS, 统一开发语言, 学习成本低, 社区活跃, NPM发展异常快</li>
+<li>善于处理高并发量的请求</li>
+</ul>
+<p>同事也有他的缺点: </p>
+<ul>
+<li>单线程不健壮</li>
+<li>平台较新, 不稳定</li>
+<li>调试不方便, 回调嵌套代码难读</li>
+<li>Module太多, 质量不一</li>
+</ul>
+<p>注：V8是谷歌开发的，目前公认最快的 Javascript 解析引擎，libuv 是一个开源的、为 Node 定制而生的跨平台的异步 IO 库。</p>
+<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>Node.js 适合解决特定问题, 在一些领域并不适合使用:</p>
+<ul>
+<li>CPU 密集型应用 </li>
+<li>Simple CRUD / HTML apps</li>
+<li>数据库依赖复杂; 业务逻辑和验证复杂的应用</li>
+<li>需要管理界面的应用</li>
+<li>大型企业应用</li>
+</ul>
+<p>Node.js适合于 IO 密集而非计算密集的情景；高并发微数据（比如账号系统）的情景; Node.js也适用于开发实时应用.</p>
+<h2 id="RESTful-API-JSON-API-Mobile-backend-API"><a href="#RESTful-API-JSON-API-Mobile-backend-API" class="headerlink" title="RESTful API/ JSON API/ Mobile backend API"></a>RESTful API/ JSON API/ Mobile backend API</h2><p>提供 RESTful API 的 Web 服务接收参数，解析，组合响应，并返回响应（通常是较少的文本）给用户。这是适合 Node 的理想情况，因为您可以构建它来处理数万条连接。它仍然不需要大量逻辑；它本质上只是从某个数据库中查找一些值并将它们组成一个响应。由于响应是少量文本，入站请求也是少量的文本，因此流量不高，一台机器甚至也可以处理最繁忙的公司的 API 需求。</p>
+<h2 id="实时程序"><a href="#实时程序" class="headerlink" title="实时程序"></a>实时程序</h2><p>node.js另一个很大的方面是你可以很轻松的开发软实时系统。这是指那些像twitter，聊天软件，体彩或实时通讯网络的接口, 游戏.</p>
+<h2 id="单页的app"><a href="#单页的app" class="headerlink" title="单页的app"></a>单页的app</h2><p>如果你打算写一个AJAX操作非常多的单页面app（比如gmail），node.js是非常合适的。在极短的响应时间内处理大量请求的能力，不同的客户端共享像确认信息之类的东西，这些都让node.js成为那种在客户端做很多处理的web程序的很好的选择。</p>
+<h2 id="流数据"><a href="#流数据" class="headerlink" title="流数据"></a>流数据</h2><p>传统的web程序讲http请求和响应作为元事件处理。可事实是它们是流，很多很酷的node.js程序正是利用这个优点创建的。最牛的例子是实时解析上传文件，还在不同的数据层建立了代理。</p>
+<h2 id="对unix工具的脚本化调用"><a href="#对unix工具的脚本化调用" class="headerlink" title="对unix工具的脚本化调用"></a>对unix工具的脚本化调用</h2><p>node.js现在还很年轻，它正在试图为自己重新发明各种软件，不过更好的办法是深入到现有的广阔的命令行工具世界里。Node.js拥有产生数以千计的子进程的能力，同时可以把这些子进程的输出以流的方式处理，这让它成为那种和现有软件寻求平衡时的很好的选择</p>
+<h2 id="电子游戏统计数据"><a href="#电子游戏统计数据" class="headerlink" title="电子游戏统计数据"></a>电子游戏统计数据</h2><p>如果您在线玩过《使命召唤》这款游戏，当您查看游戏统计数据时，就会立即意识到一个问题：要生成那种级别的统计数据，必须跟踪海量信息。这样，如果有数百万玩家同时在线玩游戏，而且他们处于游戏中的不同位置，那么很快就会生成海量信息。Node 是这种场景的一种很好的解决方案，因为它能采集游戏生成的数据，对数据进行最少的合并，然后对数据进行排队，以便将它们写入数据库。使用整个服务器来跟踪玩家在游戏中发射了多少子弹看起来很愚蠢，如果您使用 Apache 这样的服务器，可能会 有一些有用的限制；但相反，如果您专门使用一个服务器来跟踪一个游戏的所有统计数据，就像使用运行 Node 的服务器所做的那样，那看起来似乎是一种明智之举。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>Node.js是一个年轻的平台, 不久就会迎来自己的成人礼(1.0大概会在2014年发布). Node有它自己的一些优点, 也有各种各样的问题. 但最让人欣慰的是越来越多的开发者加入进来, 促进Node.js不断完善, 应用到更多的领域当中. 即最重要的是它在不断的前进.</p>
+<p>关于Node.js到底适合应用于何种场景, 只要看看业界对Node.js的采用情况就知道了. LinkedIn, WaltmartLab, Yahoo, ebay, Paypal… 而且这是最可靠, 最及时的.</p>
+<p><a href="http://strongloop.com/strongblog/" target="_blank" rel="external">StrongLoop</a> 的 In the loop 和 Mobile News Round-up会定期总结一些Node.js最新的应用情况, 另外 <a href="https://www.google.com.hk/search?hl=en&amp;gl=us&amp;tbm=nws&amp;authuser=0&amp;q=nodejs&amp;oq=nodejs&amp;gs_l=news-cc.3..43j43i53.1468.2073.0.2456.6.4.0.2.0.1.148.288.2j2.4.0...0.0...1ac.1.BWenTbq3spg" target="_blank" rel="external">Google news</a> 也是了解Node.js最新动态的好地方</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a href="http://www.ibm.com/developerworks/cn/opensource/os-nodejs/" target="_blank" rel="external">IBM–Node.js究竟是什么</a></li>
+<li><a href="http://blog.lovedan.cn/?p=266" target="_blank" rel="external">How to decide when to use Node.js</a></li>
+<li><a href="http://www.tuicool.com/articles/nAjYNf" target="_blank" rel="external">推酷–Node.js 优缺点及适用场景讨论</a></li>
+<li><a href="http://nodeguide.com/convincing_the_boss.html" target="_blank" rel="external">Felix Node.js guide–说服老板</a></li>
+<li><a href="http://cssor.com/suitable-for-the-scene-of-nodejs-use.html" target="_blank" rel="external">说服老板中文翻译</a> </li>
+<li><a href="http://www.zhihu.com/question/19653241" target="_blank" rel="external">知乎–使用 Node.js 的优势和劣势都有哪些？有大公司用吗？</a></li>
+<li><a href="http://www.zhihu.com/question/19587881" target="_blank" rel="external">知乎–Node.js 发展前景如何？适用于哪些场景？</a></li>
+<li><a href="http://segmentfault.com/a/1190000000375619" target="_blank" rel="external">segmentfault–实例说明为什么应使用 Node.js</a></li>
+<li><a href="http://developer.51cto.com/art/201312/425921.htm" target="_blank" rel="external">为什么我要用 Node.js? 案例逐一介绍</a></li>
+<li><a href="http://stackoverflow.com/questions/5062614/how-to-decide-when-to-use-nodejs" target="_blank" rel="external">stackoverflow–How to decide when to use NodeJS?</a></li>
+<li><a href="http://blog.appfog.com/node-js-is-taking-over-the-enterprise-whether-you-like-it-or-not/" target="_blank" rel="external">Node.js is taking over the Enterprise – whether you like it or not</a></li>
+<li><a href="http://www.infoq.com/cn/interviews/lk-nodejs-taobao" target="_blank" rel="external">Infoq–廖恺谈NodeJS在淘宝的应用</a></li>
+<li><a href="http://tech.it168.com/a2011/0914/1245/000001245990.shtml" target="_blank" rel="external">NodeJS与Rails何去何从？</a></li>
+</ul>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://n.thepana.com/2014/01/06/node-yingyong-changjing/" data-id="cj7cp1xyc001tcys6ip04xd8j" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://n.thepana.com/2014/01/06/node-yingyong-changjing/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://n.thepana.com/2014/01/06/node-yingyong-changjing/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2014/01/10/nodejs-gaoxingneng/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    Node.js企业开发 二应用开发
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2014/01/02/generator/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">generator</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+</section>
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/04/nginx-monitoring/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/09/04/nginx-monitoring/" class="title">Nginx Monitoring</a></p>
+                            <p class="item-date"><time datetime="2017-09-04T02:23:00.000Z" itemprop="datePublished">2017-09-04</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/08/24/mongodb-lookup/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/08/24/mongodb-lookup/" class="title">Mongodb lookup</a></p>
+                            <p class="item-date"><time datetime="2017-08-24T08:47:36.000Z" itemprop="datePublished">2017-08-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/06/16/get-inputs/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/06/16/get-inputs/" class="title">Go 命令行获取输入</a></p>
+                            <p class="item-date"><time datetime="2017-06-16T07:56:03.000Z" itemprop="datePublished">2017-06-16</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/06/11/webassembly/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/06/11/webassembly/" class="title">Webassembly 初识</a></p>
+                            <p class="item-date"><time datetime="2017-06-11T03:00:29.000Z" itemprop="datePublished">2017-06-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/06/08/react-router-v4/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/06/08/react-router-v4/" class="title">react-router v4</a></p>
+                            <p class="item-date"><time datetime="2017-06-08T14:55:42.000Z" itemprop="datePublished">2017-06-08</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/go/">go</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/go/json/">json</a><span class="category-list-count">1</span></li></ul></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">8</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Competition/">Competition</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6-异步流程/">ES6 异步流程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Express-upgrade/">Express upgrade</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HelloWorld/">HelloWorld</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intro/">Intro</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Module/">Module</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Native-Module/">Native Module</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/REPL/">REPL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog-cms/">blog&cms</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coffeescript/">coffeescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conference/">conference</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/koa/">koa</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/release/">release</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/国内/">国内</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安装/">安装</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应用/">应用</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应用场景/">应用场景</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/成长/">成长</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/说明/">说明</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Competition/" style="font-size: 10px;">Competition</a> <a href="/tags/ES6-异步流程/" style="font-size: 10px;">ES6 异步流程</a> <a href="/tags/Express-upgrade/" style="font-size: 10px;">Express upgrade</a> <a href="/tags/HelloWorld/" style="font-size: 10px;">HelloWorld</a> <a href="/tags/Intro/" style="font-size: 10px;">Intro</a> <a href="/tags/Module/" style="font-size: 20px;">Module</a> <a href="/tags/Native-Module/" style="font-size: 10px;">Native Module</a> <a href="/tags/REPL/" style="font-size: 10px;">REPL</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/blog-cms/" style="font-size: 10px;">blog&cms</a> <a href="/tags/coffeescript/" style="font-size: 10px;">coffeescript</a> <a href="/tags/conference/" style="font-size: 10px;">conference</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/koa/" style="font-size: 10px;">koa</a> <a href="/tags/release/" style="font-size: 10px;">release</a> <a href="/tags/国内/" style="font-size: 10px;">国内</a> <a href="/tags/安装/" style="font-size: 10px;">安装</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/应用/" style="font-size: 10px;">应用</a> <a href="/tags/应用场景/" style="font-size: 10px;">应用场景</a> <a href="/tags/成长/" style="font-size: 20px;">成长</a> <a href="/tags/说明/" style="font-size: 10px;">说明</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="https://nodejs.org/en/blog/">NodejsBlog</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://nodesource.com/blog/">NodeSourceBlog</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://blog.risingstack.com/">RisingStackBlog</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://nodeweekly.com/">Nodeweekly</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://cnodejs.org">Cnode</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://blog.rednode.cn">Rednode</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://pana.wang">Pana</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2017 Pana.W<br>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-icarus';
+    
+    
+    var disqus_url = 'http://n.thepana.com/2014/01/06/node-yingyong-changjing/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>pointer &amp; interface | N</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="指针, 接口的说明和常见用法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pointer &amp; interface">
+<meta property="og:url" content="http://n.thepana.com/2017/05/07/interface/index.html">
+<meta property="og:site_name" content="N">
+<meta property="og:description" content="指针, 接口的说明和常见用法">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-08-24T08:43:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="pointer &amp; interface">
+<meta name="twitter:description" content="指针, 接口的说明和常见用法">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+    
+    
+
+</head>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">N</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="http://pana.wang/assets/pana.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="http://pana.wang/assets/pana.png" />
+            <h2 id="name">Pana</h2>
+            <h3 id="title">Noder &amp; Gopher</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Beijing, China</span>
+            <a id="follow" target="_blank" href="https://github.com/Pana">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                52
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                22
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    <td><a href="http://github.com/Pana" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
+                    
+                    <td><a href="https://twitter.com/coderpana" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
+                    
+                    <td><a href="https://www.facebook.com/pana.wang" target="_blank" title="facebook"><i class="fa fa-facebook"></i></a></td>
+                    
+                    <td><a href="http://www.linkedin.com/in/panawang" target="_blank" title="linkedin"><i class="fa fa-linkedin"></i></a></td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-interface" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            pointer &amp; interface
+        </h1>
+    
+
+                <div class="article-meta">
+                    
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/05/07/interface/">
+            <time datetime="2017-05-07T14:04:45.000Z" itemprop="datePublished">2017-05-07</time>
+        </a>
+    </div>
+
+
+                    
+                    
+                </div>
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>指针, 接口的说明和常见用法</p>
+<a id="more"></a>
+<h3 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h3><p>一个指针的值是另一个变量的地址, 通过指针，我们可以直接读或更新对应变量的值，而不需要知道该变量的名字</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x <span class="keyword">int</span>  <span class="comment">// 声明一个 int 类型的变量 x</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> p *<span class="keyword">int</span>  <span class="comment">// int 类型对应的指针类型为 *int</span></div><div class="line"></div><div class="line">p = &amp;x  <span class="comment">// 取地址操作</span></div><div class="line"></div><div class="line">*p = <span class="number">3</span>  <span class="comment">// 该表达式表示 p指针指向的变量, 等同于 x</span></div></pre></td></tr></table></figure>
+<p>任何类型的指针的零值都是nil</p>
+<p>因为指针包含了一个变量的地址，因此如果将指针作为参数调用函数，那将可以在函数中通过该指针来更新变量的值</p>
+<p>指针又叫引用, slice, map, chan, struct, array, interface 都是引用类型</p>
+<p>内建的new函数可以用来创建变量. 表达式new(T)将创建一个T类型的匿名变量，初始化为T类型的零值，然后返回变量地址，返回的指针类型为*T<br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">p := <span class="built_in">new</span>(<span class="keyword">int</span>)</div></pre></td></tr></table></figure></p>
+<h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><p>接口类型是对其它类型行为的抽象和概括<br>接口类型不会和特定的实现细节绑定在一起, 是一种抽象的类型<br>它不会暴露出它所代表的对象的内部值的结构和这个对象支持的基础操作的集合；它们只会展示出它们自己的方法</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 接口是一组待实现方法的集合, 一个实现了这些方法的具体类型是这个接口类型的实例</span></div><div class="line"><span class="keyword">type</span> Writer <span class="keyword">interface</span> &#123;</div><div class="line">    Write(p []<span class="keyword">byte</span>) (n <span class="keyword">int</span>, err error)</div><div class="line">&#125;</div><div class="line"><span class="keyword">type</span> Reader <span class="keyword">interface</span> &#123;</div><div class="line">    Read(p []<span class="keyword">byte</span>) (n <span class="keyword">int</span>, err error)</div><div class="line">&#125;</div><div class="line"><span class="comment">// 接口可以组合</span></div><div class="line"><span class="keyword">type</span> ReadWriter <span class="keyword">interface</span> &#123;</div><div class="line">    Reader</div><div class="line">    Writer</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Go中不需要显式的声明实现了某个接口，只要实现了其中的所有方法，就默认为实现了该接口</span></div><div class="line"><span class="keyword">type</span> myFile <span class="keyword">struct</span> &#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(f *myFile)</span> <span class="title">Read</span> <span class="params">(p []<span class="keyword">byte</span>)</span> <span class="params">(n <span class="keyword">int</span>, err error)</span></span> &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>空接口interface{} 其实和泛型的概念很像。任何类型都实现了空接口, 我们可以将任意一个值赋给空接口类型<br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">interface</span>&#123;&#125;</div></pre></td></tr></table></figure></p>
+<p>一个类型如果拥有一个接口需要的所有方法，那么这个类型就实现了这个接口, *os.File类型实现了io.Reader，Writer，Closer，和ReadWriter接口</p>
+<p>概念上讲一个接口的值，接口值，由两个部分组成，一个具体的类型和那个类型的值。它们被称为接口的动态类型和动态值<br>对于一个接口的零值就是它的类型和值的部分都是nil<br>调用一个空接口值上的任意方法都会产生panic</p>
+<h4 id="类型断言"><a href="#类型断言" class="headerlink" title="类型断言"></a>类型断言</h4><p>类型断言是一个使用在接口值上的操作, 一个类型断言检查它操作对象的动态类型是否和断言的类型匹配</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">x.(T)</div><div class="line"></div><div class="line">rw = w.(io.ReadWriter) <span class="comment">// 类型断言失败会引发 panic</span></div><div class="line"></div><div class="line"><span class="comment">// 如果类型断言出现在一个预期有两个结果的赋值操作中, 失败的时候发生panic但是代替地返回一个额外的第二个结果，这个结果是一个标识成功的布尔值</span></div><div class="line">f, ok := w.(*os.File)</div><div class="line"></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="keyword">if</span> f, ok := w.(*os.File); ok &#123;</div><div class="line">    <span class="comment">// ...use f...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="类型开关"><a href="#类型开关" class="headerlink" title="类型开关"></a>类型开关</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 根据类型的不同进行不同的处理</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">sqlQuote</span><span class="params">(x <span class="keyword">interface</span>&#123;&#125;)</span> <span class="title">string</span></span> &#123;</div><div class="line">    <span class="keyword">if</span> x == <span class="literal">nil</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"NULL"</span></div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> _, ok := x.(<span class="keyword">int</span>); ok &#123;</div><div class="line">        <span class="keyword">return</span> fmt.Sprintf(<span class="string">"%d"</span>, x)</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> _, ok := x.(<span class="keyword">uint</span>); ok &#123;</div><div class="line">        <span class="keyword">return</span> fmt.Sprintf(<span class="string">"%d"</span>, x)</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> b, ok := x.(<span class="keyword">bool</span>); ok &#123;</div><div class="line">        <span class="keyword">if</span> b &#123;</div><div class="line">            <span class="keyword">return</span> <span class="string">"TRUE"</span></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="string">"FALSE"</span></div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> s, ok := x.(<span class="keyword">string</span>); ok &#123;</div><div class="line">        <span class="keyword">return</span> sqlQuoteString(s) <span class="comment">// (not shown)</span></div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="built_in">panic</span>(fmt.Sprintf(<span class="string">"unexpected type %T: %v"</span>, x, x))</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">// switch 简化版</span></div><div class="line"><span class="keyword">switch</span> x.(<span class="keyword">type</span>) &#123;</div><div class="line">    <span class="keyword">case</span> <span class="literal">nil</span>:       <span class="comment">// ...</span></div><div class="line">    <span class="keyword">case</span> <span class="keyword">int</span>, <span class="keyword">uint</span>: <span class="comment">// ...</span></div><div class="line">    <span class="keyword">case</span> <span class="keyword">bool</span>:      <span class="comment">// ...</span></div><div class="line">    <span class="keyword">case</span> <span class="keyword">string</span>:    <span class="comment">// ...</span></div><div class="line">    <span class="keyword">default</span>:        <span class="comment">// ...</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 类型开关语句有一个扩展的形式，它可以将提取的值绑定到一个在每个case范围内的新变量</span></div><div class="line"><span class="comment">// 一个类型开关隐式的创建了一个语言块，因此新变量x的定义不会和外面块中的x变量冲突。每一个case也会隐式的创建一个单独的语言块。</span></div><div class="line"><span class="keyword">switch</span> x := x.(<span class="keyword">type</span>) &#123;</div><div class="line">    <span class="keyword">case</span> <span class="literal">nil</span>:</div><div class="line">        <span class="keyword">return</span> <span class="string">"NULL"</span></div><div class="line">    <span class="keyword">case</span> <span class="keyword">int</span>, <span class="keyword">uint</span>:</div><div class="line">        <span class="keyword">return</span> fmt.Sprintf(<span class="string">"%d"</span>, x) <span class="comment">// x has type interface&#123;&#125; here.</span></div><div class="line">    <span class="keyword">case</span> <span class="keyword">bool</span>:</div><div class="line">        <span class="keyword">if</span> x &#123;</div><div class="line">            <span class="keyword">return</span> <span class="string">"TRUE"</span></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="string">"FALSE"</span></div><div class="line">    <span class="keyword">case</span> <span class="keyword">string</span>:</div><div class="line">        <span class="keyword">return</span> sqlQuoteString(x) <span class="comment">// (not shown)</span></div><div class="line">    <span class="keyword">default</span>:</div><div class="line">        <span class="built_in">panic</span>(fmt.Sprintf(<span class="string">"unexpected type %T: %v"</span>, x, x))</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在Go语言中只有当两个或更多的类型实现一个接口时才使用接口，它们必定会从任意特定的实现细节中抽象出来</p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://n.thepana.com/2017/05/07/interface/" data-id="cj7cp1xy3001acys6rbjer5df" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://n.thepana.com/2017/05/07/interface/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://n.thepana.com/2017/05/07/interface/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/05/09/homeland/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    homeland 论坛部署填坑
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2017/05/07/sql/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">Go connect sqlite3</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+</section>
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/04/nginx-monitoring/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/09/04/nginx-monitoring/" class="title">Nginx Monitoring</a></p>
+                            <p class="item-date"><time datetime="2017-09-04T02:23:00.000Z" itemprop="datePublished">2017-09-04</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/08/24/mongodb-lookup/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/08/24/mongodb-lookup/" class="title">Mongodb lookup</a></p>
+                            <p class="item-date"><time datetime="2017-08-24T08:47:36.000Z" itemprop="datePublished">2017-08-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/06/16/get-inputs/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/06/16/get-inputs/" class="title">Go 命令行获取输入</a></p>
+                            <p class="item-date"><time datetime="2017-06-16T07:56:03.000Z" itemprop="datePublished">2017-06-16</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/06/11/webassembly/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/06/11/webassembly/" class="title">Webassembly 初识</a></p>
+                            <p class="item-date"><time datetime="2017-06-11T03:00:29.000Z" itemprop="datePublished">2017-06-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/06/08/react-router-v4/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/06/08/react-router-v4/" class="title">react-router v4</a></p>
+                            <p class="item-date"><time datetime="2017-06-08T14:55:42.000Z" itemprop="datePublished">2017-06-08</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/go/">go</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/go/json/">json</a><span class="category-list-count">1</span></li></ul></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">8</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Competition/">Competition</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6-异步流程/">ES6 异步流程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Express-upgrade/">Express upgrade</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HelloWorld/">HelloWorld</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intro/">Intro</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Module/">Module</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Native-Module/">Native Module</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/REPL/">REPL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog-cms/">blog&cms</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coffeescript/">coffeescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conference/">conference</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/koa/">koa</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/release/">release</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/国内/">国内</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安装/">安装</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应用/">应用</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应用场景/">应用场景</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/成长/">成长</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/说明/">说明</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Competition/" style="font-size: 10px;">Competition</a> <a href="/tags/ES6-异步流程/" style="font-size: 10px;">ES6 异步流程</a> <a href="/tags/Express-upgrade/" style="font-size: 10px;">Express upgrade</a> <a href="/tags/HelloWorld/" style="font-size: 10px;">HelloWorld</a> <a href="/tags/Intro/" style="font-size: 10px;">Intro</a> <a href="/tags/Module/" style="font-size: 20px;">Module</a> <a href="/tags/Native-Module/" style="font-size: 10px;">Native Module</a> <a href="/tags/REPL/" style="font-size: 10px;">REPL</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/blog-cms/" style="font-size: 10px;">blog&cms</a> <a href="/tags/coffeescript/" style="font-size: 10px;">coffeescript</a> <a href="/tags/conference/" style="font-size: 10px;">conference</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/koa/" style="font-size: 10px;">koa</a> <a href="/tags/release/" style="font-size: 10px;">release</a> <a href="/tags/国内/" style="font-size: 10px;">国内</a> <a href="/tags/安装/" style="font-size: 10px;">安装</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/应用/" style="font-size: 10px;">应用</a> <a href="/tags/应用场景/" style="font-size: 10px;">应用场景</a> <a href="/tags/成长/" style="font-size: 20px;">成长</a> <a href="/tags/说明/" style="font-size: 10px;">说明</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="https://nodejs.org/en/blog/">NodejsBlog</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://nodesource.com/blog/">NodeSourceBlog</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://blog.risingstack.com/">RisingStackBlog</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://nodeweekly.com/">Nodeweekly</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://cnodejs.org">Cnode</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://blog.rednode.cn">Rednode</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://pana.wang">Pana</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2017 Pana.W<br>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-icarus';
+    
+    
+    var disqus_url = 'http://n.thepana.com/2017/05/07/interface/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

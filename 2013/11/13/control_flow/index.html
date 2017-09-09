@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Node.js流程控制 | N</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Node.js通过回调实现非阻塞从而达到超高性能, 但回调大大增加了流程控制的复杂度, 一直为广大JS程序员所诟病, 甚至将许多开发者挡在了大门之外. 虽然目前回调方式不可避免, 但有许多解决方案可以大大简化回调开发难度. 目前常见的解决方案可归为如下几类:  Node官方使用方式: 回调作为最后一个参数传递, 回调的第一个参数为error promise ES6 generator 第三方mod">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js流程控制">
+<meta property="og:url" content="http://n.thepana.com/2013/11/13/control_flow/index.html">
+<meta property="og:site_name" content="N">
+<meta property="og:description" content="Node.js通过回调实现非阻塞从而达到超高性能, 但回调大大增加了流程控制的复杂度, 一直为广大JS程序员所诟病, 甚至将许多开发者挡在了大门之外. 虽然目前回调方式不可避免, 但有许多解决方案可以大大简化回调开发难度. 目前常见的解决方案可归为如下几类:  Node官方使用方式: 回调作为最后一个参数传递, 回调的第一个参数为error promise ES6 generator 第三方mod">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-08-24T08:43:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node.js流程控制">
+<meta name="twitter:description" content="Node.js通过回调实现非阻塞从而达到超高性能, 但回调大大增加了流程控制的复杂度, 一直为广大JS程序员所诟病, 甚至将许多开发者挡在了大门之外. 虽然目前回调方式不可避免, 但有许多解决方案可以大大简化回调开发难度. 目前常见的解决方案可归为如下几类:  Node官方使用方式: 回调作为最后一个参数传递, 回调的第一个参数为error promise ES6 generator 第三方mod">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+    
+    
+
+</head>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">N</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="http://pana.wang/assets/pana.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="http://pana.wang/assets/pana.png" />
+            <h2 id="name">Pana</h2>
+            <h3 id="title">Noder &amp; Gopher</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Beijing, China</span>
+            <a id="follow" target="_blank" href="https://github.com/Pana">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                52
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                22
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    <td><a href="http://github.com/Pana" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
+                    
+                    <td><a href="https://twitter.com/coderpana" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
+                    
+                    <td><a href="https://www.facebook.com/pana.wang" target="_blank" title="facebook"><i class="fa fa-facebook"></i></a></td>
+                    
+                    <td><a href="http://www.linkedin.com/in/panawang" target="_blank" title="linkedin"><i class="fa fa-linkedin"></i></a></td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-control_flow" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Node.js流程控制
+        </h1>
+    
+
+                <div class="article-meta">
+                    
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2013/11/13/control_flow/">
+            <time datetime="2013-11-13T01:41:12.000Z" itemprop="datePublished">2013-11-13</time>
+        </a>
+    </div>
+
+
+                    
+                    
+                </div>
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>Node.js通过回调实现非阻塞从而达到超高性能, 但回调大大增加了流程控制的复杂度, 一直为广大JS程序员所诟病, 甚至将许多开发者挡在了大门之外. 虽然目前回调方式不可避免, 但有许多解决方案可以大大简化回调开发难度.</p>
+<p>目前常见的解决方案可归为如下几类:</p>
+<ul>
+<li>Node官方使用方式: 回调作为最后一个参数传递, 回调的第一个参数为error</li>
+<li>promise</li>
+<li>ES6 generator</li>
+<li>第三方module: async, step, wind.js, eventproxy</li>
+</ul>
+<a id="more"></a>
+<h2 id="Node官方回调方式"><a href="#Node官方回调方式" class="headerlink" title="Node官方回调方式"></a>Node官方回调方式</h2><p>在早期的Node版本中曾经使用promise的回调方式, 后来被放弃了. 目前使用的方式为回调函数做为方法最后一个参数传递<br>, 回调函数的第一个参数为error, 正常则为null, 其他参数为传回的数据</p>
+<h2 id="promise"><a href="#promise" class="headerlink" title="promise"></a>promise</h2><p>promise是CommonJS提出的一种异步实现方式, 在CommonJS的<a href="http://wiki.commonjs.org/wiki/Promises" target="_blank" rel="external">wiki</a>中有对promise的详细解释.<br>微软现在win8 JS app SDK就使用了promise回调模式. 目前有多个promise库可供大家使用</p>
+<ul>
+<li><a href="https://github.com/kriskowal/q" target="_blank" rel="external">Q</a> by Kris Kowal</li>
+<li><a href="https://github.com/kriszyp/promised-io" target="_blank" rel="external">Promised-IO</a> by Kriz Zyp</li>
+</ul>
+<p>关于promise的具体内容可参看howtonode 的一篇博客 <a href="http://howtonode.org/promises" target="_blank" rel="external">promise</a>以及infoq的<a href="http://www.infoq.com/cn/news/2011/09/js-promise" target="_blank" rel="external">介绍</a></p>
+<h2 id="ES6-generator"><a href="#ES6-generator" class="headerlink" title="ES6 generator"></a>ES6 generator</h2><p>generator是ES6的一个新特性, yield调用代码块, 将会给回调带来方便</p>
+<ul>
+<li><a href="http://wiki.ecmascript.org/doku.php?id=harmony:generators" target="_blank" rel="external">官方wiki</a></li>
+<li><a href="http://jlongster.com/2012/10/05/javascript-yield.html" target="_blank" rel="external">Javascript’s Future: Generators</a></li>
+<li><a href="http://devsmash.com/blog/whats-the-big-deal-with-generators" target="_blank" rel="external">whats the big deal with generators</a></li>
+</ul>
+<h2 id="第三方库"><a href="#第三方库" class="headerlink" title="第三方库"></a>第三方库</h2><p>Node.js目前有很多流程控制的module</p>
+<ul>
+<li><a href="https://github.com/caolan/async" target="_blank" rel="external">async</a></li>
+<li><a href="https://github.com/creationix/step" target="_blank" rel="external">step</a></li>
+<li><a href="http://windjs.org/cn/" target="_blank" rel="external">wind.js</a></li>
+<li><a href="https://github.com/JacksonTian/eventproxy" target="_blank" rel="external">eventproxy</a></li>
+</ul>
+<p>其中async module是npm依赖排行榜第二名, 仅落后于underscore, 个人也非常推荐使用该库, 具体使用方式可参看官方文档和<a href="http://www.sebastianseilund.com/nodejs-async-in-practice" target="_blank" rel="external">async使用实战</a><br>这篇博客, 另外async使用named function 对tracking error有帮助.</p>
+<h2 id="常见的流程模式"><a href="#常见的流程模式" class="headerlink" title="常见的流程模式"></a>常见的流程模式</h2><ul>
+<li>Series</li>
+<li>Fully parallel</li>
+<li>Limitedly parallel</li>
+</ul>
+<p>参考:</p>
+<ul>
+<li><a href="http://howtonode.org/promises" target="_blank" rel="external">howtonode – promiese</a></li>
+<li><a href="http://howtonode.org/control-flow" target="_blank" rel="external">howtonode – control flow</a></li>
+<li><a href="http://howtonode.org/control-flow-part-ii" target="_blank" rel="external">howtonode – control flow ii</a></li>
+<li><a href="http://book.mixu.net/node/ch7.html" target="_blank" rel="external">Mixu’s node book – control flow</a></li>
+<li><a href="https://nodejsmodules.org/tags/flow" target="_blank" rel="external">流程控制模块</a></li>
+<li><a href="http://www.sebastianseilund.com/nodejs-async-in-practice" target="_blank" rel="external">async使用实战</a></li>
+</ul>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://n.thepana.com/2013/11/13/control_flow/" data-id="cj7cp1xxi000acys6oh9uq04j" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://n.thepana.com/2013/11/13/control_flow/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://n.thepana.com/2013/11/13/control_flow/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2013/11/18/node-books/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    node-books
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2013/11/08/events/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">Node.js事件机制</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+</section>
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/04/nginx-monitoring/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/09/04/nginx-monitoring/" class="title">Nginx Monitoring</a></p>
+                            <p class="item-date"><time datetime="2017-09-04T02:23:00.000Z" itemprop="datePublished">2017-09-04</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/08/24/mongodb-lookup/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/08/24/mongodb-lookup/" class="title">Mongodb lookup</a></p>
+                            <p class="item-date"><time datetime="2017-08-24T08:47:36.000Z" itemprop="datePublished">2017-08-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/06/16/get-inputs/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/06/16/get-inputs/" class="title">Go 命令行获取输入</a></p>
+                            <p class="item-date"><time datetime="2017-06-16T07:56:03.000Z" itemprop="datePublished">2017-06-16</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/06/11/webassembly/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/06/11/webassembly/" class="title">Webassembly 初识</a></p>
+                            <p class="item-date"><time datetime="2017-06-11T03:00:29.000Z" itemprop="datePublished">2017-06-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/06/08/react-router-v4/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/06/08/react-router-v4/" class="title">react-router v4</a></p>
+                            <p class="item-date"><time datetime="2017-06-08T14:55:42.000Z" itemprop="datePublished">2017-06-08</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/go/">go</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/go/json/">json</a><span class="category-list-count">1</span></li></ul></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">8</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Competition/">Competition</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6-异步流程/">ES6 异步流程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Express-upgrade/">Express upgrade</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HelloWorld/">HelloWorld</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intro/">Intro</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Module/">Module</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Native-Module/">Native Module</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/REPL/">REPL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog-cms/">blog&cms</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coffeescript/">coffeescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conference/">conference</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/koa/">koa</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/release/">release</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/国内/">国内</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安装/">安装</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应用/">应用</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/应用场景/">应用场景</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/成长/">成长</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/说明/">说明</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Competition/" style="font-size: 10px;">Competition</a> <a href="/tags/ES6-异步流程/" style="font-size: 10px;">ES6 异步流程</a> <a href="/tags/Express-upgrade/" style="font-size: 10px;">Express upgrade</a> <a href="/tags/HelloWorld/" style="font-size: 10px;">HelloWorld</a> <a href="/tags/Intro/" style="font-size: 10px;">Intro</a> <a href="/tags/Module/" style="font-size: 20px;">Module</a> <a href="/tags/Native-Module/" style="font-size: 10px;">Native Module</a> <a href="/tags/REPL/" style="font-size: 10px;">REPL</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/blog-cms/" style="font-size: 10px;">blog&cms</a> <a href="/tags/coffeescript/" style="font-size: 10px;">coffeescript</a> <a href="/tags/conference/" style="font-size: 10px;">conference</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/koa/" style="font-size: 10px;">koa</a> <a href="/tags/release/" style="font-size: 10px;">release</a> <a href="/tags/国内/" style="font-size: 10px;">国内</a> <a href="/tags/安装/" style="font-size: 10px;">安装</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/应用/" style="font-size: 10px;">应用</a> <a href="/tags/应用场景/" style="font-size: 10px;">应用场景</a> <a href="/tags/成长/" style="font-size: 20px;">成长</a> <a href="/tags/说明/" style="font-size: 10px;">说明</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="https://nodejs.org/en/blog/">NodejsBlog</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://nodesource.com/blog/">NodeSourceBlog</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://blog.risingstack.com/">RisingStackBlog</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://nodeweekly.com/">Nodeweekly</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://cnodejs.org">Cnode</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://blog.rednode.cn">Rednode</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://pana.wang">Pana</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2017 Pana.W<br>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-icarus';
+    
+    
+    var disqus_url = 'http://n.thepana.com/2013/11/13/control_flow/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
